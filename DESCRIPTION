@@ -1,0 +1,17 @@
+Package: docsifier
+Type: Package
+Title: Generate The Structure To Use Docsify For The Package Documentation
+Version: 0.0.0.9000
+Author@R: person(given = "Etienne",
+           family = "Bacher",
+           role = c("aut", "cre"),
+           email = "etienne.bacher@protonmail.com")
+Description: This provides two functions that allow to create the structure to use docsify to generate the documentation.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    fs,
+    cli
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE) 
