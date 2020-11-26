@@ -73,7 +73,7 @@ use_docsify(open = FALSE)
     #> └── index.html
 
 The second function is `add_md()`. This function is very simple: it just
-creates an `md.` file in “docs” to save some time.
+creates an `.md` file in “docs” to save some time.
 
 ## Code of Conduct
 

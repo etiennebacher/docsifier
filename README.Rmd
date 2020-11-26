@@ -69,7 +69,7 @@ fs::dir_tree("docs")
 ```
 
 
-The second function is `add_md()`. This function is very simple: it just creates an `md.` file in "docs" to save some time.
+The second function is `add_md()`. This function is very simple: it just creates an `.md` file in "docs" to save some time.
 
 
 ## Code of Conduct
