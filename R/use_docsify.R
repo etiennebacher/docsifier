@@ -4,7 +4,7 @@
 #'
 #' You can use `add_md()` to add Markdown files in "/docs" to populate the documentation.
 
-use_docsify <- function() {
+use_docsify <- function(open = TRUE) {
 
   ### Only works in a package
 
@@ -45,7 +45,9 @@ use_docsify <- function() {
     system.file("templates/md-template.md", package = "docsifier"),
     "docs/homepage.md"
   )
-  file.edit(c("docs/homepage.md", "docs/index.html"))
+  if (isTRUE(open)) {
+    file.edit(c("docs/homepage.md", "docs/index.html"))
+  }
   cli::cat_bullet(
     bullet_col = "green", bullet = "tick",
     'Files "index.html" and "homepage.md" have been created.'
