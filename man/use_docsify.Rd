@@ -4,7 +4,7 @@
 \alias{use_docsify}
 \title{Create the structure to use docsify in an R package}
 \usage{
-use_docsify()
+use_docsify(open = TRUE)
 }
 \description{
 Create the structure to use docsify in an R package
