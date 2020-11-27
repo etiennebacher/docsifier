@@ -2,10 +2,10 @@
 % Please edit documentation in R/preview_docsify.R
 \name{preview_docsify}
 \alias{preview_docsify}
-\title{Preview the documentation in a webpage}
+\title{Preview the documentation in a webpage or in viewer}
 \usage{
 preview_docsify()
 }
 \description{
-Preview the documentation in a webpage
+Preview the documentation in a webpage or in viewer
 }

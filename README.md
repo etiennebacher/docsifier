@@ -3,8 +3,6 @@
 
 # docsifier
 
-\[WORK IN PROGRESS - USE WITH CAUTION\]
-
 <!-- badges: start -->
 
 <!-- badges: end -->
@@ -39,9 +37,9 @@ Docsify uses two things:
   - one or several Markdown files that populate the page. These files
     contain the documentation that you want to include in your page.
 
-`docsifier` can’t create the documentation for you, this is still your
-work. However, it provides helpers so that the creation of the
-documentation with Docsify is easier.
+For now, `docsifier` can’t create the documentation for you, this is
+still your work. However, it provides helpers so that the creation of
+the documentation with Docsify is easier.
 
 ## How to use
 
@@ -87,15 +85,6 @@ in “docs” to save some time.
 Once you have created your documentation or if you want to check the
 changes you make in real situation, you can preview the webpage with
 `preview_docsify()`.
-
-## Experimental
-
-A set of functions to install docsify:
-
-  - `dep_available()` to check if npm is installed (should work)
-
-  - `install_docsify()` to install docsify on user’s computer (doesn’t
-    work at all)
 
 ## Code of Conduct
 

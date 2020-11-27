@@ -1,4 +1,4 @@
-#' Preview the documentation in a webpage
+#' Preview the documentation in a webpage or in viewer
 #'
 #' @export
 preview_docsify <- function() {
