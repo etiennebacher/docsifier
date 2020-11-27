@@ -12,11 +12,15 @@ use_docsify <- function(open = TRUE) {
   ### Only works in a package
 
   if (file.exists("DESCRIPTION")) {
-    x <- readLines("DESCRIPTION")[2]
-    is_package <- grepl("Type: Package", x)
-    if (is_package == FALSE) {
+
+    x <- readLines("DESCRIPTION")
+    is_package <- grep("Type: Package", x)
+    is_package2 <- grep("Package:", x)
+
+    if (length(is_package) == 0 && length(is_package2) == 0) {
       stop("use_docsify only works if it is used in a package setup.")
     }
+
   } else {
     stop("use_docsify only works if it is used in a package setup.")
   }
