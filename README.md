@@ -64,7 +64,7 @@ stage) before `use_docsifier()`…
 … and after its use:
 
 ``` r
-use_docsify(open = FALSE)
+use_docsify()
 #> ✓ Folder "docs" has been created.
 #> ✓ Files "index.html" and "homepage.md" have been created.
 ```
@@ -75,7 +75,7 @@ use_docsify(open = FALSE)
     #> ├── inst
     #> │   └── templates
     #> └── man
-
+    
     #> docs
     #> ├── homepage.md
     #> └── index.html

@@ -58,24 +58,30 @@ The first one creates the bare structure that Docsify needs: a folder "docs" (if
 
 For example, this is the folder structure of this package (at its early stage) before `use_docsifier()`...
 
-```{r echo = FALSE}
-fs::dir_tree(type = "directory")
+    #> .
+    #> ├── R
+    #> ├── inst
+    #> │   └── templates
+    #> └── man
+
+… and after its use:
+
+``` r
+use_docsify()
+#> ✓ Folder "docs" has been created.
+#> ✓ Files "index.html" and "homepage.md" have been created.
 ```
 
-... and after its use:
+    #> .
+    #> ├── R
+    #> ├── docs
+    #> ├── inst
+    #> │   └── templates
+    #> └── man
 
-```{r echo = FALSE, message = FALSE}
-devtools::load_all()
-```
-```{r echo = TRUE}
-use_docsify(open = FALSE)
-```
-```{r echo = FALSE}
-fs::dir_tree(type = "directory")
-```
-```{r echo = FALSE}
-fs::dir_tree("docs")
-```
+    #> docs
+    #> ├── homepage.md
+    #> └── index.html
 
 
 The two other functions are `add_rmd()` `add_md()`. These functions are very simple: they just create respectively an `.Rmd` and an `.md` file in "docs" to save some time.
