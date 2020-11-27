@@ -37,6 +37,9 @@ use_docsify <- function(open = TRUE) {
     )
   }
 
+  if (file.exists("docs/index.html")) {
+    stop('"index.html" already exists. \n Please remove it before running use_docsify(). \n Nothing has been modified.')
+  }
 
   ### Import examples of html and md in "docs"
 
