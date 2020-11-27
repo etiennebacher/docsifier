@@ -3,9 +3,17 @@
 
 # docsifier
 
+\[WORK IN PROGRESS - USE WITH CAUTION\]
+
 <!-- badges: start -->
 
 <!-- badges: end -->
+
+  - [Installation](#installation)
+  - [Purpose of `docsifier`](#purpose)
+  - [How to use](#howto)
+  - [Experimental](#experimental)
+  - [Code of Conduct](#CoC)
 
 The goal of docsifier is to generate the structure to use
 [docsify.js](https://docsify.js.org/#/) for the documentation of an R
@@ -75,6 +83,19 @@ use_docsify(open = FALSE)
 The two other functions are `add_rmd()` `add_md()`. These functions are
 very simple: they just create respectively an `.Rmd` and an `.md` file
 in “docs” to save some time.
+
+## Experimental
+
+A set of functions to install and run docsify:
+
+  - `dep_available()` to check if Node.js and npm are installed (should
+    work)
+
+  - `install_docsify()` to install docsify on user’s computer (doesn’t
+    work at all)
+
+  - `preview_docsify()` to preview the documentation in a webpage (works
+    but can’t be stopped)
 
 ## Code of Conduct
 
