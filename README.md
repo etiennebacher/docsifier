@@ -8,7 +8,7 @@
 <!-- badges: end -->
 
 The goal of docsifier is to generate the structure to use
-[docsify](https://docsify.js.org/#/) for the documentation of an R
+[docsify.js](https://docsify.js.org/#/) for the documentation of an R
 package.
 
 ## Installation
