@@ -12,7 +12,8 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     fs,
-    cli
+    cli,
+    servr
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE) 
 URL: https://github.com/etiennebacher/docsifier

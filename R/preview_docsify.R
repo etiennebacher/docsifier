@@ -3,10 +3,10 @@
 #' @export
 preview_docsify <- function() {
 
-  if (!isTRUE(install_docsify())) {
-    "You need to install docsify first."
+  if (!fs::file_exists("docs/index.html")) {
+    stop("index.html was not found. You can run use_docsify() to create it.")
   }
 
-  system("docsify serve docs --open")
+  servr::httw("docs/")
 
 }
