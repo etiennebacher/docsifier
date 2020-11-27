@@ -6,6 +6,9 @@
 \usage{
 use_docsify(open = TRUE)
 }
+\arguments{
+\item{open}{Boolean indicating whether to open "index.html" and "homepage.md" following their creation.}
+}
 \description{
 Create the structure to use docsify in an R package
 }
