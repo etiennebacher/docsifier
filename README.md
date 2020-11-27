@@ -84,6 +84,18 @@ The two other functions are `add_rmd()` `add_md()`. These functions are
 very simple: they just create respectively an `.Rmd` and an `.md` file
 in “docs” to save some time.
 
+Once you have created your documentation or if you want to check that
+the changes you make in real situation, you can preview the webpage. If
+you use Linux (works maybe on other OS too, I didn’t check), open a
+console and:
+
+  - install npm if it isn’t already the case: `sudo apt install npm`
+
+  - install docsify: `sudo npm i docsify-cli -g`
+
+  - preview docsify in browser: `docsify serve /path/to/package/docs
+    --open`
+
 ## Experimental
 
 A set of functions to install and run docsify:
