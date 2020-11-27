@@ -2,6 +2,4 @@
 
 export(add_md)
 export(add_rmd)
-export(install_docsify)
-export(npm_available)
 export(preview_docsify)
