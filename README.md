@@ -38,7 +38,7 @@ documentation with Docsify is easier.
 ## How to use
 
 **Note that `docsifier` only works for R packages.** `docsifier`
-provides two functions: `use_docsifier()` and `add_md()`.
+provides three functions: `use_docsifier()`, `add_rmd()` and `add_md()`.
 
 The first one creates the bare structure that Docsify needs: a folder
 “docs” (if there isn’t already one), an HTML file called `index.html`,
@@ -72,8 +72,9 @@ use_docsify(open = FALSE)
     #> ├── homepage.md
     #> └── index.html
 
-The second function is `add_md()`. This function is very simple: it just
-creates an `.md` file in “docs” to save some time.
+The two other functions are `add_rmd()` `add_md()`. These functions are
+very simple: they just create respectively an `.Rmd` and an `.md` file
+in “docs” to save some time.
 
 ## Code of Conduct
 
