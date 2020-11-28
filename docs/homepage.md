@@ -4,7 +4,7 @@ This is the homepage of the package [`{docsifier}`](https://github.com/etienneba
 
 ## Purpose of this package
 
-Package developers may want to build a webpage that contains the documentation of their package. [`{pkgdown}`](https://pkgdown.r-lib.org/articles/pkgdown.html) is the most famous way to easily build such a page.
+Package developers may want to build a webpage that contains the documentation of their package. [`{pkgdown}`](https://pkgdown.r-lib.org/index.html) is the most famous way to easily build such a page.
 
 The aim of this package is to propose a new alternative to package developers by bringing [`docsify.js`](https://docsify.js.org/#/) into R. `docsify.js` is a tool that uses Markdown files to create a static webpage very easily. 
 
