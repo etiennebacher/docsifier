@@ -3,4 +3,5 @@
 * [Home](/)
 * [How to use](howto.md)
 * [Deploy](deploy.md)
+* [Configurate](configurate.md)
 * [Code of Conduct](coc.md)
