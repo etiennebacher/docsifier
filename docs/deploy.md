@@ -14,7 +14,7 @@ This is the situation I am in:
 
 * I would like to have the package documentation as a subdomain, such as `mypackage.mywebsite.com`.
 
-If you are in the same situation, you can follow the steps below. Otherwise, you should refer to the link to `docsify.js`'s documentation above.
+If you are in the same situation, you can follow the steps below. Otherwise, you should refer to the `docsify.js`'s documentation linked above.
 
 **Step 1:** Push your package with the documentation to GitHub
 
@@ -36,7 +36,7 @@ Your page with the documentation is created, but the domain is a random name so 
 
 **Step 9:** Force HTTPS (automatically proposed by Netlify).
 
-Done!
+Done! You can now check at `mypackage.mywebsite.com` that the documentation is well loaded. This will update every time you push changes in `/docs` on GitHub.
 
 
 

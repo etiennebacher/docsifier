@@ -13,7 +13,7 @@ Secondly, when the folder `/docs` is created, it will add Markdown (`.md`) and H
 
 * `index.html`, which is where the call to `docsify.js` is made. It is also the place where you can add or remove options. We will see this later. **This file is absolutely essential**, which is why `use_docsify()` returns an error if it already exists. 
  
-* `_sidebar.md`, `homepage.md`, and `howto.md` provide an minimal documentation so that you can already see what the documentation will look like. Their content is explained in the next part.
+* `_sidebar.md`, `homepage.md`, and `howto.md` provide a minimal documentation so that you can already see what the documentation will look like. Their content is explained in the next part.
 
 
 With these basic files, you can already run `preview_docsify()` to have a preview of your documentation in RStudio Viewer or in a web browser.
@@ -24,9 +24,9 @@ With these basic files, you can already run `preview_docsify()` to have a previe
 
 ### Structure of contents
 
-Before explaining how to add contents, let's investigate the structure of the `.md` files. `_sidebar.md` is where you can define the main sections of your documentation. As you can see in the default file, you can link `.md` files to a particular section. This only works if you have put `loadSidebar: true` in `index.html` (which is the default).
+Before explaining how to add contents, let's detail the structure of the `.md` files. `_sidebar.md` is where you can define the main sections of your documentation. As you can see in the default file, this is done by linking `.md` files to a particular section. This only works if you have put `loadSidebar: true` in `index.html` (which is the default).
 
-`homepage.md` and `howto.md` are some files that you might want to use but their content is useless, it is just there to show what it looks like before doing any changes.
+`homepage.md` and `howto.md` are some files that are just here to show what the documentation looks like before doing any changes.
 
 ### Add contents
 
