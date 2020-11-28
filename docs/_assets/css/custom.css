@@ -11,3 +11,6 @@
   background-color: #e6f2ff;
 }
 
+.sidebar > h1 .app-name-link {
+  color: #000;
+}
