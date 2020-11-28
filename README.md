@@ -1,23 +1,15 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # docsifier
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-  - [Installation](#installation)
-  - [Purpose of `docsifier`](#purpose)
-  - [How to use](#howto)
-  - [Experimental](#experimental)
-  - [Code of Conduct](#CoC)
-
-The goal of docsifier is to generate the structure to use
+The goal of `{docsifier}` is to generate the structure to use
 [docsify.js](https://docsify.js.org/#/) for the documentation of an R
 package.
 
-## Installation
+## Installation and documentation
 
 You can install the development version with:
 
@@ -26,65 +18,8 @@ You can install the development version with:
 devtools::install_github("etiennebacher/docsifier")
 ```
 
-## Purpose of `docsifier`
-
-Docsify uses two things:
-
-  - an index written in HTML that contains several options for the page,
-    such as the presence of a navbar, a coverpage, the color of the
-    background, etc.
-
-  - one or several Markdown files that populate the page. These files
-    contain the documentation that you want to include in your page.
-
-For now, `docsifier` can’t create the documentation for you, this is
-still your work. However, it provides helpers so that the creation of
-the documentation with Docsify is easier.
-
-## How to use
-
-**Note that `docsifier` only works for R packages.** `docsifier`
-provides three functions: `use_docsifier()`, `add_rmd()` and `add_md()`.
-
-The first one creates the bare structure that Docsify needs: a folder
-“docs” (if there isn’t already one), an HTML file called `index.html`,
-and a Markdown file called `homepage.md`.
-
-For example, this is the folder structure of this package (at its early
-stage) before `use_docsifier()`…
-
-    #> .
-    #> ├── R
-    #> ├── inst
-    #> │   └── templates
-    #> └── man
-
-… and after its use:
-
-``` r
-use_docsify()
-#> ✓ Folder "docs" has been created.
-#> ✓ Files "index.html" and "homepage.md" have been created.
-```
-
-    #> .
-    #> ├── R
-    #> ├── docs
-    #> ├── inst
-    #> │   └── templates
-    #> └── man
-    
-    #> docs
-    #> ├── homepage.md
-    #> └── index.html
-
-The two other functions are `add_rmd()` `add_md()`. These functions are
-very simple: they just create respectively an `.Rmd` and an `.md` file
-in “docs” to save some time.
-
-Once you have created your documentation or if you want to check the
-changes you make in real situation, you can preview the webpage with
-`preview_docsify()`.
+Please check the [documentation](https://docsifier.etiennebacher.com)
+for more details on how to use `{docsifier}`.
 
 ## Code of Conduct
 
