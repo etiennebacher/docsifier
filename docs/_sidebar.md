@@ -2,3 +2,4 @@
 
 * [Home](/)
 * [How to use](howto.md)
+* [Deploy](deploy.md)
