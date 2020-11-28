@@ -1,11 +1,12 @@
 Package: docsifier
 Type: Package
-Title: Generate The Structure To Use Docsify For The Package Documentation
+Title: Generate The Structure To Use Docsify.js For The Package Documentation
 Version: 0.0.0.9000
-Author@R: person(given = "Etienne",
+Authors@R: 
+    person(given = "Etienne",
            family = "Bacher",
-           role = c("aut", "cre"),
-           email = "etienne.bacher@protonmail.com")
+           email = "etienne.bacher@protonmail.com",
+	   role = c("aut", "cre"))
 Description: This provides two functions that allow to create the structure to use docsify to generate the documentation.
 License: MIT + file LICENSE
 Encoding: UTF-8
