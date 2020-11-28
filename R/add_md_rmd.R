@@ -2,9 +2,10 @@
 #'
 #' @param name Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.
 #'
-#' @export
 #'
 #' @name add_md_rmd
+#' @importFrom utils file.edit
+#' @export
 #'
 #' @examples
 #' \dontrun{

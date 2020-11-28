@@ -1,6 +1,6 @@
 Package: docsifier
 Type: Package
-Title: Generate The Structure To Use Docsify.js For The Package Documentation
+Title: Generate the Structure to Use Docsify.js for Package Documentation
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Etienne",
@@ -14,7 +14,8 @@ LazyData: true
 Imports: 
     fs,
     cli,
-    servr
+    servr,
+    utils
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE) 
 URL: https://github.com/etiennebacher/docsifier

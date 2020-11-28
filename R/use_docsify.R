@@ -5,6 +5,8 @@
 #' @details This function creates the folder "/docs" if it doesn"t already exist, and "index.html" to create the documentation with docsify. The structure of "index.html" is automatically created and you can complete it with your custom info.
 #'
 #' You can use `add_md()` to add Markdown files in "/docs" to populate the documentation.
+#'
+#' @importFrom utils file.edit
 #' @export
 
 use_docsify <- function(open = TRUE) {
