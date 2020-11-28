@@ -1,0 +1,13 @@
+:root {
+  --base-background-color: #e6f2ff;
+  --code-inline-background: #D5EAFA;
+  --code-theme-background: #D5EAFA;
+  --sidebar-toggle-background: #D5EAFA;
+	--copycode-background: #b3d9ff;
+	--copycode-color: #000;
+}
+
+.sidebar {
+  background-color: #e6f2ff;
+}
+
