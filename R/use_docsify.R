@@ -76,7 +76,17 @@ use_docsify <- function(open = TRUE) {
     "docs/howto.md"
   )
   if (isTRUE(open)) {
-    file.edit(c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html"))
+    if (rstudioapi::isAvailable()) {
+      invisible(lapply(
+        c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html"),
+        function(x) {
+          rstudioapi::navigateToFile(x)
+          return()
+        }
+      ))
+    } else {
+      file.edit(c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html"))
+    }
   }
   cli::cat_bullet(
     bullet_col = "green", bullet = "tick",

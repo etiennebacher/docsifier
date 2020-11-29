@@ -14,12 +14,19 @@ add_css <- function(name = NULL) {
   }
 
   file_name <- paste0(name, ".css")
+  file_path <- paste0("docs/_assets/css/", file_name)
 
-  if (file.exists(paste0("docs/_assets/css/", file_name)))
+  if (file.exists("docs/_assets/css/", file_name))
     stop(paste0("File ", file_name, " already exists."))
 
-  fs::file_create(file.path("docs/_assets/css/", file_name))
-  file.edit(file.path("docs/_assets/css/", file_name))
+  fs::file_create(file_path)
+
+  if (rstudioapi::isAvailable()) {
+    rstudioapi::navigateToFile(file_path)
+  } else {
+    file.edit(file_path)
+  }
+
   cli::cat_bullet(
     bullet_col = "green", bullet = "tick",
     paste0('File "docs/_assets/css/', file_name, '" has been created.')
