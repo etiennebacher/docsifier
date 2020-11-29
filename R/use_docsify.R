@@ -59,7 +59,7 @@ use_docsify <- function(open = TRUE) {
   )
   cli::cat_bullet(
     bullet_col = "green", bullet = "tick",
-    'Files "index.html" and "homepage.md" have been created.'
+    'File "index.html" has been created.'
   )
 
 

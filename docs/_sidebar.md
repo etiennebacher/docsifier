@@ -2,6 +2,7 @@
 
 * [Home](/)
 * [How to use](howto.md)
+* [Demo](demo.md)
 * [Deploy](deploy.md)
-* [Configurate](configurate.md)
+* [Customize](customize.md)
 * [Code of Conduct](coc.md)
