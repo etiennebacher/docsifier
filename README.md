@@ -17,9 +17,7 @@ You can install the development version with:
 # install.packages("devtools")
 devtools::install_github("etiennebacher/docsifier")
 ```
-
-Please check the [documentation](https://docsifier.etiennebacher.com)
-for more details on how to use `{docsifier}`.
+Follow the [demo](https://docsifier.etiennebacher.com/#/demo) and the [documentation](https://docsifier.etiennebacher.com) to see how to implement `{docsifier}` in your package.
 
 ## Code of Conduct
 
