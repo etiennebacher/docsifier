@@ -52,4 +52,6 @@ The structure of the documentation is made in `_sidebar.md` and the options deta
 
 When you have finished your documentation, you can deploy it with several tools. This procedure is detailed in the "Deploy" part. 
 
+Here's a GIF that reproduces these steps (except the package creation):
 
+![](_assets/image/demo.gif)
