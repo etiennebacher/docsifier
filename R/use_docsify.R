@@ -36,6 +36,10 @@ use_docsify <- function(open = TRUE) {
       bullet_col = "green", bullet = "tick",
       'Folder "docs" has been created.'
     )
+    cli::cat_bullet(
+      bullet_col = "red",
+      paste0('Folder "docs" is not standard in R packages. ', "Don't forget to add it in .buildignore.")
+    )
   } else {
     cli::cat_bullet(
       bullet_col = "red",
