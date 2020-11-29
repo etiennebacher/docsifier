@@ -15,7 +15,8 @@ Imports:
     fs,
     cli,
     servr,
-    utils
+    utils,
+    rstudioapi
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE) 
 URL: https://github.com/etiennebacher/docsifier

@@ -23,12 +23,19 @@ add_md <- function(name) {
   }
 
   file_name <- paste0(name, ".md")
+  file_path <- paste0("docs/", file_name)
 
   if (file.exists(paste0("docs/", file_name)))
     stop(paste0("File ", file_name, " already exists."))
 
-  fs::file_create(file.path("docs/", file_name))
-  file.edit(file.path("docs/", file_name))
+  fs::file_create(file_path)
+
+  if (rstudioapi::isAvailable()) {
+    rstudioapi::navigateToFile(file_path)
+  } else {
+    utils::file.edit(file_path)
+  }
+
   cli::cat_bullet(
     bullet_col = "green", bullet = "tick",
     paste0('File "', file_name, '" has been created.')
@@ -41,22 +48,28 @@ add_md <- function(name) {
 
 add_rmd <- function(name) {
 
-  if (missing(name)) stop("Must give a name to the .Rmd file")
+  if (missing(name)) stop("Must give a name to the .md file")
   if (!file.exists("docs")) {
     fs::dir_create("docs")
   }
 
   file_name <- paste0(name, ".Rmd")
+  file_path <- paste0("docs/", file_name)
 
   if (file.exists(paste0("docs/", file_name)))
     stop(paste0("File ", file_name, " already exists."))
 
-  fs::file_create(file.path("docs/", file_name))
-  file.edit(file.path("docs/", file_name))
+  fs::file_create(file_path)
+
+  if (rstudioapi::isAvailable()) {
+    rstudioapi::navigateToFile(file_path)
+  } else {
+    utils::file.edit(file_path)
+  }
+
   cli::cat_bullet(
     bullet_col = "green", bullet = "tick",
     paste0('File "', file_name, '" has been created.')
   )
 
 }
-
