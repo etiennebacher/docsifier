@@ -1,12 +1,21 @@
 ## How to deploy
 
-`docsify.js` documentation can be deployed with several tools, which are detailed [here](https://docsify.js.org/#/deploy). I can't detail the way to deploy the documentation with all these tools here, as I only tested one of them. Therefore, I only describe my experience below. Refer to the link above if you want to deploy with GitHub pages for example (which should be quite similar than for a blog if you have one).
+`docsify.js` documentation can be deployed with several tools, which are detailed [here](https://docsify.js.org/#/deploy). I won't detail the way to deploy the documentation with all these tools here (mostly because I don't know most of them).
 
 
+### GitHub Pages
 
-## Personal walkthrough
+It is very easy to deploy the documentation with GitHub Pages so I start with this. If you have ever used `{pkgdown}`, this is the same process: go to your GitHub repo settings, add "docs" as the source of GitHub Pages, and that's it!
 
-This is the situation I am in:
+
+### Netlify
+
+The process is the same as for deploying a blog made with `{blogdown}`, so I invite you to follow the steps described in the [`{blogdown}` book](https://bookdown.org/yihui/blogdown/netlify.html).
+
+
+## Personal experience
+
+In case it helps some people, I describe here how I got this documentation deployed with an address like `mypackage.mywebsite.com`. This is the situation I am in:
 
 * I have a website made with `{blogdown}`, deployed through Netlify;
 
