@@ -5,4 +5,5 @@
 * [Demo](demo.md)
 * [Deploy](deploy.md)
 * [Customize](customize.md)
+* [Reference](func_reference.md)
 * [Code of Conduct](coc.md)
