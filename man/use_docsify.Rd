@@ -7,11 +7,11 @@
 use_docsify(open = TRUE, add_reference = TRUE, include_internal = TRUE)
 }
 \arguments{
-\item{open}{Boolean indicating whether to open the HTML and Markdown files created. Defaukt is TRUE.}
+\item{open}{Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.}
 
 \item{add_reference}{Boolean indicating whether to add a Markdown file containing function references, i.e the list of functions (and their title and arguments) exported by the package. Default is TRUE.}
 
-\item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.}
+\item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires \code{add_reference} to be TRUE. Default is TRUE. See Details.}
 }
 \description{
 Create the structure to use docsify in an R package

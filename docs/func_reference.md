@@ -7,6 +7,7 @@
  
  ``` 
 add_css(name = NULL)
+
  ``` 
  
  **Arguments:** 
@@ -24,6 +25,7 @@ add_css(name = NULL)
  
  ``` 
 add_function_references(include_internal = TRUE)
+
  ``` 
  
  **Arguments:** 
@@ -40,7 +42,10 @@ add_function_references(include_internal = TRUE)
  <summary> More </summary> 
  
  ``` 
-add_md(name)add_rmd(name)
+add_md(name)
+
+add_rmd(name)
+
  ``` 
  
  **Arguments:** 
@@ -58,6 +63,7 @@ add_md(name)add_rmd(name)
  
  ``` 
 preview_docsify()
+
  ``` 
  
  **Arguments:** 
@@ -73,15 +79,16 @@ preview_docsify()
  
  ``` 
 use_docsify(open = TRUE, add_reference = TRUE, include_internal = TRUE)
+
  ``` 
  
  **Arguments:** 
 
-* `open`: Boolean indicating whether to open the HTML and Markdown files created. Defaukt is TRUE.
+* `open`: Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.
  
 * `add_reference`: Boolean indicating whether to add a Markdown file containing function references, i.e the list of functions (and their title and arguments) exported by the package. Default is TRUE.
  
-* `include_internal`: Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.
+* `include_internal`: Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires `add_reference` to be TRUE. Default is TRUE. See Details.
  
 
  </details> 

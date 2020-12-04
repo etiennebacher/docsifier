@@ -1,8 +1,8 @@
 #' Create the structure to use docsify in an R package
 #'
-#' @param open Boolean indicating whether to open the HTML and Markdown files created. Defaukt is TRUE.
+#' @param open Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.
 #' @param add_reference Boolean indicating whether to add a Markdown file containing function references, i.e the list of functions (and their title and arguments) exported by the package. Default is TRUE.
-#' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.
+#' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires `add_reference` to be TRUE. Default is TRUE. See Details.
 #'
 #' @details This function creates the folder "/docs" (if it doesn't already exist) and "index.html" to create the documentation with docsify.js. The structure of "index.html" is automatically created and you can complete it with your custom info.
 #' You can use `add_md()` to add Markdown files in "/docs" to populate the documentation.
