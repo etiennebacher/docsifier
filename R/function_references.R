@@ -62,7 +62,8 @@ add_function_references <- function(include_internal = TRUE) {
 
 
   fs::file_copy(
-    "inst/templates/func_reference-template.md",
+    system.file("templates/func_reference-template.md",
+                package = "docsifier"),
     "docs/func_reference.md"
   )
 
