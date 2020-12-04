@@ -48,10 +48,14 @@ add_function_references <- function(include_internal = TRUE) {
     paste0(
       "`", x$name, "` : ", x$title,
       "\n <details>",
-      "\n <summary> More </summary> \n ",
+      "\n <summary> More </summary> \n \n **Usage:** ",
       "\n ``` \n", x$usage, "\n ``` \n ",
-      "\n **Arguments:** ", "\n",
-      "\n", paste(unlist(x$markdown_list), collapse = ""), "\n",
+      if (!is.null(x$argument)) {
+        paste0(
+          "\n **Arguments:** ", "\n",
+          paste(unlist(x$markdown_list), collapse = ""), "\n"
+        )
+      },
       if (!is.null(x$examples)) {
         paste0("\n **Examples:** \n ```", x$examples, "```")
       },
