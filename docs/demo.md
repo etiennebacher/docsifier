@@ -26,6 +26,7 @@ library(docsifier)
 use_docsify()
 
 ✓ Folder "docs" has been created.
+● Folder "docs" is not standard in R packages. Don't forget to add it in .buildignore.
 ✓ File "index.html" has been created.
 ✓ Files "homepage.md", "_sidebar.md", and "howto.md" have been created.
 ```
@@ -52,6 +53,6 @@ The structure of the documentation is made in `_sidebar.md` and the options deta
 
 When you have finished your documentation, you can deploy it with several tools. This procedure is detailed in the "Deploy" part. 
 
-Here's a GIF that reproduces these steps (except the package creation):
+Here's a GIF that reproduces these steps (except the package creation and the online deployment):
 
 ![](_assets/image/demo.gif)
