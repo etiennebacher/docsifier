@@ -74,6 +74,28 @@ add_function_references <- function(include_internal = TRUE) {
     })
   )
 
+  # Add the "reference" category to the sidebar.
+  # Check whether there is already a "reference" section in the sidebar.
+  # If there isn't, I add it.
+  sidebar_file <- readLines("docs/_sidebar.md")
+  reference_in_sidebar <- grepl(
+    "* [Reference](func_reference.md)",
+    sidebar_file,
+    fixed = TRUE
+  )
+  condition <- TRUE %in% reference_in_sidebar
+  if (!condition) {
+    cli::cat_bullet(
+      bullet_col = "green", bullet = "tick",
+      'Added the "Reference" section in "docs/_sidebar.md".'
+    )
+    cat(
+      "* [Reference](func_reference.md)",
+      file = "docs/_sidebar.md",
+      append = TRUE
+    )
+  }
+
 }
 
 #' Obtain words between curly braces in .Rd files
