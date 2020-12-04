@@ -15,6 +15,7 @@ add_css(name = NULL)
 * `name`: Name to give to the CSS file you want to create. If `NULL`, the file will be named `custom.css`
  
 
+
  </details> 
  
 --- 
@@ -32,6 +33,7 @@ add_function_references(include_internal = TRUE)
 
 * `include_internal`: Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.
  
+
 
  </details> 
  
@@ -53,6 +55,15 @@ add_rmd(name)
 * `name`: Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.
  
 
+
+ **Examples:** 
+ ```
+# Create a new .md in "/docs"
+add_md("test")
+
+# Will output an error because "test.md" already exists
+add_md("test")
+```
  </details> 
  
 --- 
@@ -67,6 +78,7 @@ preview_docsify()
  ``` 
  
  **Arguments:** 
+
 
 
  </details> 
@@ -90,6 +102,7 @@ use_docsify(open = TRUE, add_reference = TRUE, include_internal = TRUE)
  
 * `include_internal`: Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires `add_reference` to be TRUE. Default is TRUE. See Details.
  
+
 
  </details> 
  

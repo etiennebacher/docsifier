@@ -51,7 +51,10 @@ add_function_references <- function(include_internal = TRUE) {
       "\n <summary> More </summary> \n ",
       "\n ``` \n", x$usage, "\n ``` \n ",
       "\n **Arguments:** ", "\n",
-      "\n", paste(unlist(x$markdown_list), collapse = ""),
+      "\n", paste(unlist(x$markdown_list), collapse = ""), "\n",
+      if (!is.null(x$examples)) {
+        paste0("\n **Examples:** \n ```", x$examples, "```")
+      },
       "\n </details> \n \n",
       "--- \n \n"
     )
@@ -153,7 +156,8 @@ build_function_reference <- function(include_internal = TRUE) {
       title = get_in_text("title", x),
       usage = get_in_text("usage", x),
       argument = get_in_text("argument", x),
-      argument_description = get_in_text("argument_description", x)
+      argument_description = get_in_text("argument_description", x),
+      examples = get_in_text("dontrun", x)
     )
   })
 
