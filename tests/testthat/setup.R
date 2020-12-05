@@ -1,5 +1,6 @@
 library(fs)
 library(usethis)
+library(withr)
 
 
 ### Taken from {usethis} (file "R/project.R")
@@ -51,7 +52,7 @@ create_local_thing <- function(
   old_project <- proj_get_() # this could be `NULL`, i.e. no active project
   old_wd <- getwd() # not necessarily same as `old_project`
 
-  withr::defer(
+  defer(
     {
       ui_done("Deleting temporary project: {ui_path(dir)}")
       fs::dir_delete(dir)
@@ -66,10 +67,10 @@ create_local_thing <- function(
     )
   )
 
-  withr::defer(proj_set(old_project, force = TRUE), envir = env)
+  defer(proj_set(old_project, force = TRUE), envir = env)
   proj_set(dir)
 
-  withr::defer(
+  defer(
     {
       ui_done("Restoring original working directory: {ui_path(old_wd)}")
       setwd(old_wd)
