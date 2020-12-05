@@ -4,11 +4,10 @@
 #' @importFrom utils file.edit
 #' @export
 
-add_css <- function(name = NULL) {
+add_css <- function(name = NULL, open = TRUE) {
 
-  if (missing(name)) {
-    name <- "custom"
-  }
+  if (missing(name)) name <- "custom"
+  if (name == "") name <- "custom"
   if (!file.exists("docs/_assets/css")) {
     fs::dir_create("docs/_assets/css")
   }
@@ -16,15 +15,17 @@ add_css <- function(name = NULL) {
   file_name <- paste0(name, ".css")
   file_path <- paste0("docs/_assets/css/", file_name)
 
-  if (file.exists("docs/_assets/css/", file_name))
+  if (file.exists(paste0("docs/_assets/css/", file_name)))
     stop(paste0("File ", file_name, " already exists."))
 
   fs::file_create(file_path)
 
-  if (rstudioapi::isAvailable()) {
-    rstudioapi::navigateToFile(file_path)
-  } else {
-    file.edit(file_path)
+  if (isTRUE(open)) {
+    if (rstudioapi::isAvailable()) {
+      rstudioapi::navigateToFile(file_path)
+    } else {
+      utils::file.edit(file_path)
+    }
   }
 
   cli::cat_bullet(

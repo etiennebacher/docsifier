@@ -15,9 +15,10 @@
 #' # Will output an error because "test.md" already exists
 #' add_md("test")
 #' }
-add_md <- function(name) {
+add_md <- function(name, open = TRUE) {
 
   if (missing(name)) stop("Must give a name to the .md file")
+  if (name == "") stop("Must give a name to the .md file")
   if (!file.exists("docs")) {
     fs::dir_create("docs")
   }
@@ -30,10 +31,12 @@ add_md <- function(name) {
 
   fs::file_create(file_path)
 
-  if (rstudioapi::isAvailable()) {
-    rstudioapi::navigateToFile(file_path)
-  } else {
-    utils::file.edit(file_path)
+  if (isTRUE(open)) {
+    if (rstudioapi::isAvailable()) {
+      rstudioapi::navigateToFile(file_path)
+    } else {
+      utils::file.edit(file_path)
+    }
   }
 
   cli::cat_bullet(
@@ -46,9 +49,10 @@ add_md <- function(name) {
 #' @rdname add_md_rmd
 #' @export
 
-add_rmd <- function(name) {
+add_rmd <- function(name, open = TRUE) {
 
   if (missing(name)) stop("Must give a name to the .md file")
+  if (name == "") stop("Must give a name to the .md file")
   if (!file.exists("docs")) {
     fs::dir_create("docs")
   }
@@ -61,10 +65,12 @@ add_rmd <- function(name) {
 
   fs::file_create(file_path)
 
-  if (rstudioapi::isAvailable()) {
-    rstudioapi::navigateToFile(file_path)
-  } else {
-    utils::file.edit(file_path)
+  if (isTRUE(open)) {
+    if (rstudioapi::isAvailable()) {
+      rstudioapi::navigateToFile(file_path)
+    } else {
+      utils::file.edit(file_path)
+    }
   }
 
   cli::cat_bullet(
