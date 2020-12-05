@@ -125,11 +125,41 @@ get_in_text <- function(item, text) {
   else if (item == "argument")
     item <- "item"
 
-  pattern <- paste0(item, "\\{\\K[^{}]+(?=\\})")
 
-  result <- regmatches(text, gregexpr(pattern, text, perl=TRUE))
-  result <- result[lapply(result, length) > 0]
-  unlist(result)
+  # In the examples, there can be \donttest{}, \dontrun{},
+  # or if (interactive()) {}. Therefore, the item we get depends
+  # on the existence of one of this three things
+  if (item == "examples") {
+    if (isTRUE(grepl("\\\\donttest\\{", text))) {
+      item <- "donttest"
+    } else if (isTRUE(grepl("\\\\dontrun\\{", text))) {
+      item <- "dontrun"
+    } else if (isTRUE(grepl("if \\(interactive\\(\\)\\) \\{", text))) {
+      item <- "if \\(interactive\\(\\)\\) "
+    } else {
+      item <- "examples"
+    }
+
+    # regex to get examples is very different than for others
+    # so I put it also in the if condition
+
+    if (item == "if \\(interactive\\(\\)\\) ") {
+      pattern <- paste0(item, "({([^{}]*?(?:(?1)[^{}]*?)*)\\s*})")
+    } else {
+      pattern <- paste0("\\\\", item, "({([^{}]*?(?:(?1)[^{}]*?)*)\\s*})")
+    }
+
+    result <- regmatches(text, regexec(pattern, text, perl=TRUE))
+    unlist(result)[3]
+
+  } else {
+
+    pattern <- paste0(item, "\\{\\K[^{}]+(?=\\})")
+    result <- regmatches(text, gregexpr(pattern, text, perl=TRUE))
+    result <- result[lapply(result, length) > 0]
+    unlist(result)
+
+  }
 
 }
 
@@ -151,7 +181,7 @@ build_function_reference <- function(include_internal = TRUE) {
   # package developer specified that these files only provide
   # non-exported functions
 
-  if (isTRUE(include_internal)) {
+  if (include_internal == FALSE) {
     files_to_exclude <- lapply(man_files, function(x){
       y <- readChar(x, file.info(x)$size)
       if (grepl("\\keyword{internal}", y, fixed=TRUE))
@@ -184,7 +214,7 @@ build_function_reference <- function(include_internal = TRUE) {
       usage = get_in_text("usage", x),
       argument = get_in_text("argument", x),
       argument_description = get_in_text("argument_description", x),
-      examples = get_in_text("dontrun", x)
+      examples = get_in_text("examples", x)
     )
   })
 
