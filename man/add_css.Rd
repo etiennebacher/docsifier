@@ -4,7 +4,7 @@
 \alias{add_css}
 \title{Add a CSS file to your documentation}
 \usage{
-add_css(name = NULL)
+add_css(name = NULL, open = TRUE)
 }
 \arguments{
 \item{name}{Name to give to the CSS file you want to create. If \code{NULL}, the file will be named \code{custom.css}}

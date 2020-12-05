@@ -15,26 +15,27 @@
 
 use_docsify <- function(
   open = TRUE,
-  add_reference = TRUE,
-  include_internal = TRUE
+  add_reference = FALSE,
+  include_internal = FALSE
 ) {
 
-  ### Only works in a package
+  ### Check whether the project is a package
 
   if (file.exists("DESCRIPTION")) {
 
     x <- readLines("DESCRIPTION")
-    is_package <- grep("Type: Package", x)
-    is_package2 <- grep("Package:", x)
+    first_cond <- grep("Type: Package", x)
+    second_cond <- grep("Package:", x)
 
-    if (length(is_package) == 0 && length(is_package2) == 0) {
-      stop("use_docsify only works if it is used in a package setup.")
+    if (length(first_cond) == 0 && length(second_cond) == 0) {
+      is_package <- FALSE
+    } else {
+      is_package <- TRUE
     }
 
   } else {
-    stop("use_docsify only works if it is used in a package setup.")
+    is_package <- FALSE
   }
-
 
   ### Creates folder "docs"
 
@@ -44,10 +45,12 @@ use_docsify <- function(
       bullet_col = "green", bullet = "tick",
       'Folder "docs" has been created.'
     )
-    cli::cat_bullet(
-      bullet_col = "red",
-      paste0('Folder "docs" is not standard in R packages. ', "Don't forget to add it in .buildignore.")
-    )
+    if (isTRUE(is_package)) {
+      cli::cat_bullet(
+        bullet_col = "red",
+        paste0('Folder "docs" is not standard in R packages. ', "Don't forget to add it in .buildignore.")
+      )
+    }
   } else {
     cli::cat_bullet(
       bullet_col = "red",
@@ -115,10 +118,16 @@ use_docsify <- function(
 
 
   ### Add a page with function references if user wants
+  ### AND if the project is a package
 
   if (isTRUE(add_reference)) {
-    add_function_references(include_internal)
+    if (fs::dir_exists("man")) {
+      add_function_references(include_internal = include_internal)
+    } else {
+      stop('You need to create the folder "man" does not exist before adding a "Reference" page.')
+    }
   }
+
 
 
 

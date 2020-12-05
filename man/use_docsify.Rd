@@ -4,7 +4,7 @@
 \alias{use_docsify}
 \title{Create the structure to use docsify in an R package}
 \usage{
-use_docsify(open = TRUE, add_reference = TRUE, include_internal = TRUE)
+use_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
 }
 \arguments{
 \item{open}{Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.}

@@ -6,9 +6,9 @@
 \alias{add_rmd}
 \title{Create a Markdown (or R Markdown) file to populate your documentation.}
 \usage{
-add_md(name)
+add_md(name, open = TRUE)
 
-add_rmd(name)
+add_rmd(name, open = TRUE)
 }
 \arguments{
 \item{name}{Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.}
