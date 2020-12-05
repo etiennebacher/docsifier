@@ -12,6 +12,8 @@ add_rmd(name, open = TRUE)
 }
 \arguments{
 \item{name}{Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.}
+
+\item{open}{Open or not the files created. Default is TRUE.}
 }
 \description{
 Create a Markdown (or R Markdown) file to populate your documentation.

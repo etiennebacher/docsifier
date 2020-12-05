@@ -1,6 +1,8 @@
 #' Add a CSS file to your documentation
 #'
+#' @param open Open or not the file created. Default is TRUE.
 #' @param name Name to give to the CSS file you want to create. If `NULL`, the file will be named `custom.css`
+#'
 #' @importFrom utils file.edit
 #' @export
 

@@ -2,6 +2,7 @@
 #'
 #' @param name Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.
 #'
+#' @param open Open or not the files created. Default is TRUE.
 #'
 #' @name add_md_rmd
 #' @importFrom utils file.edit

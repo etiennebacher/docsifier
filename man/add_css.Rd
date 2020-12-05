@@ -8,6 +8,8 @@ add_css(name = NULL, open = TRUE)
 }
 \arguments{
 \item{name}{Name to give to the CSS file you want to create. If \code{NULL}, the file will be named \code{custom.css}}
+
+\item{open}{Open or not the file created. Default is TRUE.}
 }
 \description{
 Add a CSS file to your documentation
