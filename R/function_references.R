@@ -57,7 +57,7 @@ add_function_references <- function(include_internal = TRUE) {
         )
       },
       if (!is.null(x$examples)) {
-        paste0("\n **Examples:** \n ```", x$examples, "```")
+        paste0("\n **Examples:** \n ```", x$examples, "\n ```")
       },
       "\n </details> \n \n",
       "--- \n \n"
