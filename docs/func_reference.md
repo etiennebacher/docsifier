@@ -7,12 +7,14 @@
  
  **Usage:** 
  ``` 
-add_css(name = NULL)
+add_css(name = NULL, open = TRUE)
 
  ``` 
  
  **Arguments:** 
 * `name`: Name to give to the CSS file you want to create. If `NULL`, the file will be named `custom.css`
+ 
+* `open`: Open or not the file created. Default is TRUE.
  
 
 
@@ -45,14 +47,16 @@ add_function_references(include_internal = TRUE)
  
  **Usage:** 
  ``` 
-add_md(name)
+add_md(name, open = TRUE)
 
-add_rmd(name)
+add_rmd(name, open = TRUE)
 
  ``` 
  
  **Arguments:** 
 * `name`: Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.
+ 
+* `open`: Open or not the files created. Default is TRUE.
  
 
 
@@ -63,7 +67,7 @@ add_md("test")
 
 # Will output an error because "test.md" already exists
 add_md("test")
-```
+ ```
  </details> 
  
 --- 
@@ -88,7 +92,7 @@ preview_docsify()
  
  **Usage:** 
  ``` 
-use_docsify(open = TRUE, add_reference = TRUE, include_internal = TRUE)
+use_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
 
  ``` 
  

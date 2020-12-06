@@ -121,11 +121,20 @@ use_docsify <- function(
   ### AND if the project is a package
 
   if (isTRUE(add_reference)) {
-    if (fs::dir_exists("man")) {
-      add_function_references(include_internal = include_internal)
+    if (isTRUE(is_package)) {
+      if (fs::dir_exists("man")) {
+        add_function_references(include_internal = include_internal)
+        cli::cat_bullet(
+          bullet_col = "green", bullet = "tick",
+          'File "func_reference.md" has been created.'
+        )
+      } else {
+        stop('You need to create the folder "man" before adding a "Reference" page.')
+      }
     } else {
-      stop('You need to create the folder "man" does not exist before adding a "Reference" page.')
+      stop("You can only add functions reference in a package environment.")
     }
+
   }
 
 
