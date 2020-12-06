@@ -56,7 +56,7 @@ add_function_references <- function(include_internal = TRUE) {
           paste(unlist(x$markdown_list), collapse = ""), "\n"
         )
       },
-      if (!is.null(x$examples)) {
+      if (!is.na(x$examples)) {
         paste0("\n **Examples:** \n ```", x$examples, "\n ```")
       },
       "\n </details> \n \n",
