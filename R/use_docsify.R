@@ -45,11 +45,21 @@ use_docsify <- function(
       bullet_col = "green", bullet = "tick",
       'Folder "docs" has been created.'
     )
+
+    # If "docs" isn't already ignored, add it to .Rbuildignore
     if (isTRUE(is_package)) {
-      cli::cat_bullet(
-        bullet_col = "red",
-        paste0('Folder "docs" is not standard in R packages. ', "Don't forget to add it in .buildignore.")
+      buildignore_content <- readChar(
+        ".Rbuildignore",
+        file.info(".Rbuildignore")$size
       )
+      docs_already_ignored <- grepl("\\^docs\\$", buildignore_content)
+      if (docs_already_ignored == FALSE) {
+        cat("^docs$", file = ".Rbuildignore", append = TRUE)
+        cli::cat_bullet(
+          bullet_col = "red",
+          paste0('Folder "docs" has been added in .Rbuildignore.')
+        )
+      }
     }
   } else {
     cli::cat_bullet(

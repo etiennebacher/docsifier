@@ -19,7 +19,18 @@ test_that("use_docsify has an error if 'index.html' already exists", {
   create_local_package()
   dir_create("docs")
   file_create("docs/index.html")
+  expect_error(use_docsify(open = FALSE))
+})
 
+test_that("use_docsify adds 'docs' in .Rbuildignore if not already in", {
+  create_local_package()
+
+  x <- readChar(".Rbuildignore", file.info(".Rbuildignore")$size)
+  expect_false(grepl("\\^docs\\$", x))
+
+  use_docsify(open = FALSE)
+  y <- readChar(".Rbuildignore", file.info(".Rbuildignore")$size)
+  expect_true(grepl("\\^docs\\$", y))
 })
 
 

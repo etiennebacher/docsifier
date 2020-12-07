@@ -22,7 +22,7 @@ proj_set_ <- function(path) {
 create_local_package <- function(
   dir = file_temp(pattern = "testpkg"),
   env = parent.frame(),
-  rstudio = FALSE
+  rstudio = TRUE
 ) {
   create_local_thing(dir, env, rstudio, "package")
 }
