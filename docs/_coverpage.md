@@ -2,5 +2,5 @@
 
 > Use docsify.js to create documentation for R packages and projects
 
-[GitHub](https://github.com/etiennebacher/docsifier/)
 [Get Started](/?id=welcome)
+[GitHub](https://github.com/etiennebacher/docsifier/)
