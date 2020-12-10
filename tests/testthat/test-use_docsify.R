@@ -13,6 +13,8 @@ test_that("use_docsify creates the right files in 'docs'", {
   expect_proj_file("docs/homepage.md")
   expect_proj_file("docs/_sidebar.md")
   expect_proj_file("docs/howto.md")
+  expect_proj_file("docs/docsify_files/docsify.min.js")
+  expect_proj_file("docs/docsify_files/vue.min.css")
 })
 
 test_that("use_docsify has an error if 'index.html' already exists", {

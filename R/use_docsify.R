@@ -127,6 +127,19 @@ use_docsify <- function(
   )
 
 
+  ### Import the JS and CSS files
+  if (!file.exists("docs/docsify_files")) {
+    fs::dir_create("docs/docsify_files")
+  }
+  fs::file_copy(
+    system.file("docsify/docsify.min.js", package = "docsifier"),
+    "docs/docsify_files/docsify.min.js"
+  )
+  fs::file_copy(
+    system.file("docsify/vue.min.css", package = "docsifier"),
+    "docs/docsify_files/vue.min.css"
+  )
+
   ### Add a page with function references if user wants
   ### AND if the project is a package
 
