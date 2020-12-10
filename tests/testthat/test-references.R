@@ -1,3 +1,5 @@
+# Only in packages because need "man" folder
+
 test_that("build_function_references cannot work without 'man' folder", {
   create_local_package()
   expect_error(build_function_references())
