@@ -4,4 +4,4 @@
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
 ^docs$
-.travis.yml
+^\.github$
