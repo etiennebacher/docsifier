@@ -1,10 +1,6 @@
-# turns out that readChar generates some "\r" instead of "\n" on linux
-# need to replace those "\r" to pass github actions
-
 test_that("get_in_text obtains the good information", {
   x <- testthat::test_path("examples", "example-doc.Rd")
-  rd_file <- readChar(x, file.info(x)$size)
-  rd_file <- gsub("\\\r\\\n", "\\\n\\\n", rd_file)
+  rd_file <- paste(readLines(x), collapse = "")
 
   expect_equal(
     get_in_text("name", rd_file),
@@ -12,7 +8,7 @@ test_that("get_in_text obtains the good information", {
   )
   expect_equal(
     get_in_text("usage", rd_file),
-    "\ne_bar(\n  e,\n  serie,\n  bind,\n  name = NULL,\n  legend = TRUE,\n  y_index = 0,\n  x_index = 0,\n  coord_system = \"cartesian2d\",\n  ...\n)\n\ne_bar_(\n  e,\n  serie,\n  bind = NULL,\n  name = NULL,\n  legend = TRUE,\n  y_index = 0,\n  x_index = 0,\n  coord_system = \"cartesian2d\",\n  ...\n)\n"
+    "e_bar(  e,  serie,  bind,  name = NULL,  legend = TRUE,  y_index = 0,  x_index = 0,  coord_system = \"cartesian2d\",  ...)e_bar_(  e,  serie,  bind = NULL,  name = NULL,  legend = TRUE,  y_index = 0,  x_index = 0,  coord_system = \"cartesian2d\",  ...)"
   )
   expect_equal(
     get_in_text("argument", rd_file),
@@ -42,34 +38,30 @@ test_that("get_in_text can obtain the examples, whatever they're wrapped in", {
   # wrapped in \donttest{}
   x4 <- test_path("examples", "example-doc4.Rd")
 
-  rd_file <- readChar(x, file.info(x)$size)
-  rd_file <- gsub("\\\r\\\n", "\\\n\\\n", rd_file)
-  rd_file2 <- readChar(x2, file.info(x2)$size)
-  rd_file2 <- gsub("\\\r\\\n", "\\\n\\\n", rd_file2)
-  rd_file3 <- readChar(x3, file.info(x3)$size)
-  rd_file3 <- gsub("\\\r\\\n", "\\\n\\\n", rd_file3)
-  rd_file4 <- readChar(x4, file.info(x4)$size)
-  rd_file4 <- gsub("\\\r\\\n", "\\\n\\\n", rd_file4)
+  rd_file <- paste(readLines(x), collapse = "")
+  rd_file2 <- paste(readLines(x2), collapse = "")
+  rd_file3 <- paste(readLines(x3), collapse = "")
+  rd_file4 <- paste(readLines(x4), collapse = "")
 
 
   expect_equal(
     get_in_text("examples", rd_file),
-    "\nlibrary(dplyr)\n\nmtcars \\%>\\%\n  mutate(\n    model = row.names(.),\n    total = mpg + qsec\n  ) \\%>\\%\n  arrange(desc(total)) \\%>\\%\n  e_charts(model) \\%>\\%\n  e_bar(mpg, stack = \"grp\") \\%>\\%\n  e_bar(qsec, stack = \"grp\")"
+    "library(dplyr)mtcars \\%>\\%  mutate(    model = row.names(.),    total = mpg + qsec  ) \\%>\\%  arrange(desc(total)) \\%>\\%  e_charts(model) \\%>\\%  e_bar(mpg, stack = \"grp\") \\%>\\%  e_bar(qsec, stack = \"grp\")"
   )
 
   expect_equal(
     get_in_text("examples", rd_file2),
-    "\nui <- fluidPage(\n  actionBttn(\n    inputId = \"bttn1\"\n  )\n)\nserver <- function(input, output) {\n  output$res_bttn1 <- renderPrint(input$bttn1)\n  output$res_bttn2 <- renderPrint({input$bttn2})\n}\nshinyApp(ui = ui, server = server)"
+    "ui <- fluidPage(  actionBttn(    inputId = \"bttn1\"  ))server <- function(input, output) {  output$res_bttn1 <- renderPrint(input$bttn1)  output$res_bttn2 <- renderPrint({input$bttn2})}shinyApp(ui = ui, server = server)"
   )
 
   expect_equal(
     get_in_text("examples", rd_file3),
-    "\nlibrary(ggplot2)\n\nplot1 <- ggplot(mtcars, aes(hp, drat)) +\n  geom_point()\n\ntinyslider(plot_to_card(plot1))"
+    "library(ggplot2)plot1 <- ggplot(mtcars, aes(hp, drat)) +  geom_point()tinyslider(plot_to_card(plot1))"
   )
 
   expect_equal(
     get_in_text("examples", rd_file4),
-    "\nlibrary(ggplot2)\n\nplot1 <- ggplot(mtcars, aes(hp, drat)) +\n  geom_point()\n\ntinyslider(plot_to_card(plot1))"
+    "library(ggplot2)plot1 <- ggplot(mtcars, aes(hp, drat)) +  geom_point()tinyslider(plot_to_card(plot1))"
   )
 
 })
