@@ -1,6 +1,10 @@
+# turns out that readChar generates some "\r" instead of "\n" on linux
+# need to replace those "\r" to pass github actions
+
 test_that("get_in_text obtains the good information", {
   x <- testthat::test_path("examples", "example-doc.Rd")
   rd_file <- readChar(x, file.info(x)$size)
+  rd_file <- gsub("\\\r\\\n", "\\\n\\\n", rd_file)
 
   expect_equal(
     get_in_text("name", rd_file),
@@ -39,9 +43,13 @@ test_that("get_in_text can obtain the examples, whatever they're wrapped in", {
   x4 <- test_path("examples", "example-doc4.Rd")
 
   rd_file <- readChar(x, file.info(x)$size)
+  rd_file <- gsub("\\\r\\\n", "\\\n\\\n", rd_file)
   rd_file2 <- readChar(x2, file.info(x2)$size)
+  rd_file2 <- gsub("\\\r\\\n", "\\\n\\\n", rd_file2)
   rd_file3 <- readChar(x3, file.info(x3)$size)
+  rd_file3 <- gsub("\\\r\\\n", "\\\n\\\n", rd_file3)
   rd_file4 <- readChar(x4, file.info(x4)$size)
+  rd_file4 <- gsub("\\\r\\\n", "\\\n\\\n", rd_file4)
 
 
   expect_equal(
