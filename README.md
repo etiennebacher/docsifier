@@ -1,8 +1,8 @@
 # docsifier
 
 <!-- badges: start -->
-[![Codecov.io test coverage](https://codecov.io/gh/etiennebacher/docsifier/branch/master/graphs/badge.svg)](https://codecov.io/github/etiennebacher/docsifier)
-[![R build status](https://github.com/etiennebacher/docsifier/workflows/R-CMD-check/badge.svg)](https://github.com/etiennebacher/docsifier/actions)
+[![](https://codecov.io/gh/etiennebacher/docsifier/branch/master/graphs/badge.svg)](https://codecov.io/github/etiennebacher/docsifier)
+[![](https://github.com/etiennebacher/docsifier/workflows/R-CMD-check/badge.svg)](https://github.com/etiennebacher/docsifier/actions)
 <!-- badges: end -->
 
 The goal of `{docsifier}` is to generate the structure to use [docsify.js](https://docsify.js.org/#/) for the documentation of an R

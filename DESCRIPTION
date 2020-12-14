@@ -1,13 +1,20 @@
 Package: docsifier
 Type: Package
-Title: Generate the Structure to Use Docsify.js for Package Documentation
+Title: Generate the Structure to Use 'docsify.js' for Package Documentation
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Etienne",
            family = "Bacher",
            email = "etienne.bacher@protonmail.com",
 	   role = c("aut", "cre"))
-Description: This provides two functions that allow to create the structure to use docsify to generate the documentation.
+Description: Sometimes, developers want to create a specific webpage for 
+    their documentation, so that they can easily add new contents for 
+    example. A very popular package to easily generate such a page is 
+    'pkgdown'. But there exists many tools to create static pages from
+    Markdown documents. One example is 'docsify.js'. The role of 'docsifier'
+    is to provide helpers for using 'docsify.js', such as importation of 
+    key files for the documentation, creation of new files, and live preview
+    of the webpage.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
