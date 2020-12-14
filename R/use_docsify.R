@@ -12,6 +12,22 @@
 #'
 #' @importFrom utils file.edit
 #' @export
+#'
+#' @return Creates a folder "docs" (if does not exist yet) and creates necessary files for docsify.js in it.
+#'
+#' @examples
+#' \dontrun{
+#' # Create a test folder and a test package for the example
+#'
+#' test_folder <- tempdir()
+#' setwd(test_folder)
+#' devtools::create("dummy")
+#' setwd("dummy")
+#'
+#' # Generate the minimal documentation for docsify.js
+#'
+#' use_docsify()
+#' }
 
 use_docsify <- function(
   open = TRUE,

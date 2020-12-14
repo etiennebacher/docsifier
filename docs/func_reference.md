@@ -18,6 +18,23 @@ add_css(name = NULL, open = TRUE)
  
 
 
+ **Examples:** 
+ ```
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+
+# Create "custom.css"  in "/docs/_assets/css"
+
+add_css()
+ ```
  </details> 
  
 --- 
@@ -37,6 +54,23 @@ add_function_references(include_internal = TRUE)
  
 
 
+ **Examples:** 
+ ```
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify(add_reference = FALSE)
+
+# Generate the "Reference" page in the documentation
+
+add_function_references()
+ ```
  </details> 
  
 --- 
@@ -62,10 +96,23 @@ add_rmd(name, open = TRUE)
 
  **Examples:** 
  ```
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+
 # Create a new .md in "/docs"
+
 add_md("test")
 
 # Will output an error because "test.md" already exists
+
 add_md("test")
  ```
  </details> 
@@ -82,6 +129,23 @@ preview_docsify()
 
  ``` 
  
+ **Examples:** 
+ ```
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+
+# Run the preview
+
+preview_docsify()
+ ```
  </details> 
  
 --- 
@@ -105,6 +169,19 @@ use_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
  
 
 
+ **Examples:** 
+ ```
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+ ```
  </details> 
  
 --- 

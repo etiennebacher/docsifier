@@ -10,7 +10,7 @@ add_function_references(include_internal = TRUE)
 \item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.}
 }
 \value{
-A Markdown file called "func_reference.md" in the folder "docs".
+Creates a Markdown file called "func_reference.md" in the folder "docs", and edit "_sidebar.md" to add a "Reference" section.
 }
 \description{
 Add a Markdown file with function references
@@ -19,4 +19,22 @@ Add a Markdown file with function references
 This function is automatically called with \code{use_docsify()} by default. However, if you didn't want to create it at the beginning but you changed your mind after having run \code{use_docsify()}, you can run it on its own.
 
 If you don't want to include internal functions (i.e functions that are not exported by the package), include "@keywords internal" in the roxygen block of the function concerned, and use \code{include_internal = FALSE}.
+}
+\examples{
+\dontrun{
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify(add_reference = FALSE)
+
+# Generate the "Reference" page in the documentation
+
+add_function_references()
+}
 }

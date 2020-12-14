@@ -5,6 +5,26 @@
 #'
 #' @importFrom utils file.edit
 #' @export
+#'
+#' @return Creates a CSS file in "docs/_assets/css"
+#'
+#' @examples
+#' \dontrun{
+#' # Create a test folder and a test package for the example
+#'
+#' test_folder <- tempdir()
+#' setwd(test_folder)
+#' devtools::create("dummy")
+#' setwd("dummy")
+#'
+#' # Generate the minimal documentation for docsify.js
+#'
+#' use_docsify()
+#'
+#' # Create "custom.css"  in "/docs/_assets/css"
+#'
+#' add_css()
+#' }
 
 add_css <- function(name = NULL, open = TRUE) {
 

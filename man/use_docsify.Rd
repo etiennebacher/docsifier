@@ -13,6 +13,9 @@ use_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
 
 \item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires \code{add_reference} to be TRUE. Default is TRUE. See Details.}
 }
+\value{
+Creates a folder "docs" (if does not exist yet) and creates necessary files for docsify.js in it.
+}
 \description{
 Create the structure to use docsify in an R package
 }
@@ -21,4 +24,18 @@ This function creates the folder "/docs" (if it doesn't already exist) and "inde
 You can use \code{add_md()} to add Markdown files in "/docs" to populate the documentation.
 
 You can add a page containing the list of functions that your package provide, and their documentation. Internal functions (i.e functions that are not exported by the package) are included by default. If you don't want to include them, add "@keywords internal" in the roxygen block of the function concerned, and use \code{include_internal = FALSE}.
+}
+\examples{
+\dontrun{
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+}
 }

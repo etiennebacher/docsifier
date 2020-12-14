@@ -7,8 +7,26 @@
 #'
 #' If you don't want to include internal functions (i.e functions that are not exported by the package), include "@@keywords internal" in the roxygen block of the function concerned, and use `include_internal = FALSE`.
 #'
-#' @return A Markdown file called "func_reference.md" in the folder "docs".
+#' @return Creates a Markdown file called "func_reference.md" in the folder "docs", and edit "_sidebar.md" to add a "Reference" section.
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' # Create a test folder and a test package for the example
+#'
+#' test_folder <- tempdir()
+#' setwd(test_folder)
+#' devtools::create("dummy")
+#' setwd("dummy")
+#'
+#' # Generate the minimal documentation for docsify.js
+#'
+#' use_docsify(add_reference = FALSE)
+#'
+#' # Generate the "Reference" page in the documentation
+#'
+#' add_function_references()
+#' }
 
 add_function_references <- function(include_internal = TRUE) {
 

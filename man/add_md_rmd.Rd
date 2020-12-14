@@ -15,15 +15,31 @@ add_rmd(name, open = TRUE)
 
 \item{open}{Open or not the files created. Default is TRUE.}
 }
+\value{
+Creates a Markdown file in "docs".
+}
 \description{
 Create a Markdown (or R Markdown) file to populate your documentation.
 }
 \examples{
 \dontrun{
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+
 # Create a new .md in "/docs"
+
 add_md("test")
 
 # Will output an error because "test.md" already exists
+
 add_md("test")
 }
 }

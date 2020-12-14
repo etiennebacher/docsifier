@@ -11,6 +11,27 @@ add_css(name = NULL, open = TRUE)
 
 \item{open}{Open or not the file created. Default is TRUE.}
 }
+\value{
+Creates a CSS file in "docs/_assets/css"
+}
 \description{
 Add a CSS file to your documentation
+}
+\examples{
+\dontrun{
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+use_docsify()
+
+# Create "custom.css"  in "/docs/_assets/css"
+
+add_css()
+}
 }
