@@ -19,6 +19,9 @@ Add a CSS file to your documentation
 }
 \examples{
 \dontrun{
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()

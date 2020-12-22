@@ -27,6 +27,9 @@ You can add a page containing the list of functions that your package provide, a
 }
 \examples{
 \dontrun{
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()

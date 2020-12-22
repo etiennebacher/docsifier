@@ -8,8 +8,8 @@ Authors@R:
            email = "etienne.bacher@protonmail.com",
 	   role = c("aut", "cre"))
 Description: Sometimes, developers want to create a specific webpage for 
-    their documentation, so that they can easily add new contents for 
-    example. A very popular package to easily generate such a page is 
+    their documentation, so that they can easily describe in details how to use their
+    package for instance. A very popular package to easily generate such a page is 
     'pkgdown'. But there exists many tools to create static pages from
     Markdown documents. One example is 'docsify.js'. The role of 'docsifier'
     is to provide helpers for using 'docsify.js', such as importation of 
@@ -31,4 +31,6 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/etiennebacher/docsifier
 BugReports: https://github.com/etiennebacher/docsifier/issues
 Suggests: 
-    testthat
+    testthat,
+    spelling
+Language: en-US
