@@ -20,6 +20,9 @@ add_css(name = NULL, open = TRUE)
 
  **Examples:** 
  ```
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()
@@ -56,6 +59,9 @@ add_function_references(include_internal = TRUE)
 
  **Examples:** 
  ```
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()
@@ -96,6 +102,9 @@ add_rmd(name, open = TRUE)
 
  **Examples:** 
  ```
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()
@@ -131,6 +140,9 @@ preview_docsify()
  
  **Examples:** 
  ```
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()
@@ -171,6 +183,9 @@ use_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
 
  **Examples:** 
  ```
+
+library(docsifier)
+
 # Create a test folder and a test package for the example
 
 test_folder <- tempdir()

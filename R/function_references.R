@@ -86,11 +86,32 @@ add_function_references <- function(include_internal = TRUE) {
   })
 
 
-  fs::file_copy(
-    system.file("templates/func_reference-template.md",
-                package = "docsifier"),
-    "docs/func_reference.md"
-  )
+  if (!fs::file_exists("docs/func_reference.md")) {
+    fs::file_copy(
+      system.file("templates/func_reference-template.md",
+                  package = "docsifier"),
+      "docs/func_reference.md"
+    )
+  } else {
+
+    # Check if user is ok with overwriting
+    overwrite_md <- usethis::ui_yeah(
+      "This will overwrite 'docs/func_reference.md'. Are you okay with that?",
+      n_yes = 1,
+      n_no = 1
+    )
+    if (overwrite_md) {
+      fs::file_copy(
+        system.file("templates/func_reference-template.md",
+                    package = "docsifier"),
+        "docs/func_reference.md",
+        overwrite = TRUE
+      )
+    } else {
+      stop("File 'docs/func_reference.md' was not updated.")
+    }
+
+  }
 
   # append the markdown text we made into the file
 
