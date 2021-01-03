@@ -169,6 +169,32 @@ use_docsify <- function(
     )
   }
 
+  ### Put README as homepage
+  if ("NEWS.md" %in% fs::dir_ls()) {
+    fs::file_copy(
+      "NEWS.md",
+      "docs/NEWS.md",
+      overwrite = TRUE
+    )
+    # Add the "News" category to the sidebar.
+    # Check whether there is already a "News" section in the sidebar.
+    # If there isn't, I add it.
+    sidebar_file <- readLines("docs/_sidebar.md")
+    reference_in_sidebar <- grepl(
+      "* [News](NEWS.md)",
+      sidebar_file,
+      fixed = TRUE
+    )
+    condition <- TRUE %in% reference_in_sidebar
+    if (!condition) {
+      cat(
+        "* [News](NEWS.md)",
+        file = "docs/_sidebar.md",
+        append = TRUE
+      )
+    }
+  }
+
 
   ### Add a page with function references if user wants
   ### AND if the project is a package

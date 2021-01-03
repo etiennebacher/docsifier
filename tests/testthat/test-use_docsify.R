@@ -110,15 +110,39 @@ test_that("if readme exists, its content is put on homepage", {
 
   # Create a readme
   fs::file_create("README.md")
-  invisible(
-    cat("This is the content from the README file", file = "README.md", append = TRUE)
-  )
+  cat("This is the content from the README file", file = "README.md", append = TRUE)
 
   use_docsify(open = FALSE, add_reference = FALSE)
 
   x <- suppressWarnings(readLines("README.md"))
   y <- suppressWarnings(readLines("docs/homepage.md"))
   expect_identical(x, y)
+
+})
+
+
+### Add NEWS.md
+
+test_that("if news.md exists, it is included in the webpage", {
+  create_local_package()
+
+  # Create a readme
+  fs::file_create("NEWS.md")
+  cat("This is the content from the NEWS.md file", file = "NEWS.md", append = TRUE)
+
+  use_docsify(open = FALSE, add_reference = FALSE)
+
+  x <- suppressWarnings(readLines("NEWS.md"))
+  y <- suppressWarnings(readLines("docs/NEWS.md"))
+  expect_identical(x, y)
+
+  sidebar_file <- suppressWarnings(readLines("docs/_sidebar.md"))
+  news_in_sidebar <- grepl(
+    "* [News](NEWS.md)",
+    sidebar_file,
+    fixed = TRUE
+  )
+  expect_true(TRUE %in% news_in_sidebar)
 
 })
 
