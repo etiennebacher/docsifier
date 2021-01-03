@@ -87,7 +87,7 @@ test_that("user can create references after use_docsify", {
   expect_proj_file("docs/func_reference.md")
 })
 
-test_that("add_function_reference modifies '_sidebar.md", {
+test_that("add_function_reference modifies '_sidebar.md'", {
   create_local_package()
   dir_create("man")
   use_docsify(open = FALSE, add_reference = FALSE)
@@ -103,6 +103,24 @@ test_that("add_function_reference modifies '_sidebar.md", {
 })
 
 
+### README as homepage
+
+test_that("if readme exists, its content is put on homepage", {
+  create_local_package()
+
+  # Create a readme
+  fs::file_create("README.md")
+  invisible(
+    cat("This is the content from the README file", file = "README.md", append = TRUE)
+  )
+
+  use_docsify(open = FALSE, add_reference = FALSE)
+
+  x <- suppressWarnings(readLines("README.md"))
+  y <- suppressWarnings(readLines("docs/homepage.md"))
+  expect_identical(x, y)
+
+})
 
 
 

@@ -159,6 +159,17 @@ use_docsify <- function(
     "docs/docsify_files/vue.min.css"
   )
 
+
+  ### Put README as homepage
+  if ("README.md" %in% fs::dir_ls()) {
+    fs::file_copy(
+      "README.md",
+      "docs/homepage.md",
+      overwrite = TRUE
+    )
+  }
+
+
   ### Add a page with function references if user wants
   ### AND if the project is a package
 
