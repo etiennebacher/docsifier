@@ -3,7 +3,7 @@
 #' @param open Open or not the file created. Default is TRUE.
 #' @param name Name to give to the CSS file you want to create. If `NULL`, the file will be named `custom.css`
 #'
-#' @importFrom utils file.edit
+#'
 #' @export
 #'
 #' @return Creates a CSS file in "docs/_assets/css"
@@ -53,12 +53,10 @@ add_css <- function(name = NULL, open = TRUE) {
     }
   }
 
-  cli::cat_bullet(
-    bullet_col = "green", bullet = "tick",
+  message_validate(
     paste0('File "docs/_assets/css/', file_name, '" has been created.')
   )
-  cli::cat_bullet(
-    bullet_col = "red",
+  message_info(
     paste0("Don't forget to add <link rel='stylesheet' href='/_assets/css/", file_name, "'/> in the head of 'index.html'")
   )
 }

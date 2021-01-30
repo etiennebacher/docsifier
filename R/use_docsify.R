@@ -10,7 +10,6 @@
 #' You can add a page containing the list of functions that your package provide, and their documentation. Internal functions (i.e functions that are not exported by the package) are included by default. If you don't want to include them, add "@@keywords internal" in the roxygen block of the function concerned, and use `include_internal = FALSE`.
 #'
 #'
-#' @importFrom utils file.edit
 #' @export
 #'
 #' @return Creates a folder "docs" (if does not exist yet) and creates necessary files for docsify.js in it.
@@ -34,61 +33,32 @@
 
 use_docsify <- function(
   open = TRUE,
-  add_reference = FALSE,
-  include_internal = FALSE
+  add_reference = TRUE,
+  include_internal = FALSE,
+  readme_as_homepage = TRUE,
+  add_news = TRUE
 ) {
 
   ### Check whether the project is a package
+  is_package <- is_it_a_package()
 
-  if (file.exists("DESCRIPTION")) {
-
-    x <- readLines("DESCRIPTION")
-    first_cond <- grep("Type: Package", x)
-    second_cond <- grep("Package:", x)
-
-    if (length(first_cond) == 0 && length(second_cond) == 0) {
-      is_package <- FALSE
-    } else {
-      is_package <- TRUE
-    }
-
-  } else {
-    is_package <- FALSE
-  }
-
-  ### Creates folder "docs"
-
+  ### Deal with folder "docs"
   if (!file.exists("docs")) {
     fs::dir_create("docs")
-    cli::cat_bullet(
-      bullet_col = "green", bullet = "tick",
-      'Folder "docs" has been created.'
-    )
-
-    # If "docs" isn't already ignored, add it to .Rbuildignore
-    if (isTRUE(is_package)) {
-      buildignore_content <- readChar(
-        ".Rbuildignore",
-        file.info(".Rbuildignore")$size
-      )
-      docs_already_ignored <- grepl("\\^docs\\$", buildignore_content)
-      if (docs_already_ignored == FALSE) {
-        cat("^docs$", file = ".Rbuildignore", append = TRUE)
-        cli::cat_bullet(
-          bullet_col = "red",
-          paste0('Folder "docs" has been added in .Rbuildignore.')
-        )
-      }
-    }
+    message_validate('Folder "docs" has been created.')
   } else {
-    cli::cat_bullet(
-      bullet_col = "red",
-      'Folder "docs" is already present.'
-    )
+    if (!folder_is_empty("docs")) {
+      stop(
+        message_error("Folder 'docs' already exists and is not empty.
+                      Please empty it before using docsifier. Nothing
+                      has been modified.")
+      )
+    }
   }
 
-  if (file.exists("docs/index.html")) {
-    stop('"index.html" already exists. \n Please remove it before running use_docsify(). \n Nothing has been modified.')
+  ### put docs in buildignore
+  if (isTRUE(is_package)) {
+    usethis::use_build_ignore("docs")
   }
 
   ### Import examples of html and md in "docs"
@@ -97,11 +67,6 @@ use_docsify <- function(
     system.file("templates/index-template.html", package = "docsifier"),
     "docs/index.html"
   )
-  cli::cat_bullet(
-    bullet_col = "green", bullet = "tick",
-    'File "index.html" has been created.'
-  )
-
 
   fs::file_copy(
     system.file("templates/homepage-template.md", package = "docsifier"),
@@ -125,25 +90,22 @@ use_docsify <- function(
     "docs/howto.md"
   )
 
+  message_validate('File "index.html" has been created.')
+  message_validate('Files "homepage.md", "_sidebar.md",
+                    and "howto.md" have been created.')
+
+  ### Open files or not
   if (isTRUE(open)) {
     if (rstudioapi::isAvailable()) {
-      invisible(lapply(
-        c("docs/_sidebar.md", "docs/homepage.md",
-          "docs/howto.md", "docs/index.html"),
-        function(x) {
-          rstudioapi::navigateToFile(x)
-          return()
-        }
-      ))
+      rstudioapi::navigateToFile(
+        c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html")
+      )
     } else {
-      file.edit(c("docs/_sidebar.md", "docs/homepage.md",
-                  "docs/howto.md", "docs/index.html"))
+      utils::file.edit(
+        c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html")
+      )
     }
   }
-  cli::cat_bullet(
-    bullet_col = "green", bullet = "tick",
-    'Files "homepage.md", "_sidebar.md", and "howto.md" have been created.'
-  )
 
 
   ### Import the JS and CSS files
@@ -159,40 +121,14 @@ use_docsify <- function(
     "docs/docsify_files/vue.min.css"
   )
 
-
-  ### Put README as homepage
-  if ("README.md" %in% fs::dir_ls()) {
-    fs::file_copy(
-      "README.md",
-      "docs/homepage.md",
-      overwrite = TRUE
-    )
+  ### README as homepage
+  if (isTRUE(readme_as_homepage)) {
+    add_to_sidebar("README.md")
   }
 
-  ### Put README as homepage
-  if ("NEWS.md" %in% fs::dir_ls()) {
-    fs::file_copy(
-      "NEWS.md",
-      "docs/NEWS.md",
-      overwrite = TRUE
-    )
-    # Add the "News" category to the sidebar.
-    # Check whether there is already a "News" section in the sidebar.
-    # If there isn't, I add it.
-    sidebar_file <- readLines("docs/_sidebar.md")
-    reference_in_sidebar <- grepl(
-      "* [News](NEWS.md)",
-      sidebar_file,
-      fixed = TRUE
-    )
-    condition <- TRUE %in% reference_in_sidebar
-    if (!condition) {
-      cat(
-        "* [News](NEWS.md)",
-        file = "docs/_sidebar.md",
-        append = TRUE
-      )
-    }
+  ### include NEWS
+  if (isTRUE(add_news)) {
+    add_to_sidebar("NEWS.md")
   }
 
 
@@ -203,10 +139,7 @@ use_docsify <- function(
     if (isTRUE(is_package)) {
       if (fs::dir_exists("man")) {
         add_function_references(include_internal = include_internal)
-        cli::cat_bullet(
-          bullet_col = "green", bullet = "tick",
-          'File "func_reference.md" has been created.'
-        )
+        message_validate('File "func_reference.md" has been created.')
       } else {
         stop('You need to create the folder "man" before adding a "Reference" page.')
       }
@@ -215,8 +148,6 @@ use_docsify <- function(
     }
 
   }
-
-
 
 
 }

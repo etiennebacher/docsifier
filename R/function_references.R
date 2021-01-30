@@ -132,8 +132,7 @@ add_function_references <- function(include_internal = TRUE) {
   )
   condition <- TRUE %in% reference_in_sidebar
   if (!condition) {
-    cli::cat_bullet(
-      bullet_col = "green", bullet = "tick",
+    message_validate(
       'Added the "Reference" section in "docs/_sidebar.md".'
     )
     cat(

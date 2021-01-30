@@ -5,7 +5,7 @@
 #' @param open Open or not the files created. Default is TRUE.
 #'
 #' @name add_md_rmd
-#' @importFrom utils file.edit
+#'
 #' @export
 #'
 #' @return Creates a Markdown file in "docs".
@@ -58,8 +58,7 @@ add_md <- function(name, open = TRUE) {
     }
   }
 
-  cli::cat_bullet(
-    bullet_col = "green", bullet = "tick",
+  message_validate(
     paste0('File "', file_name, '" has been created.')
   )
 
@@ -92,8 +91,7 @@ add_rmd <- function(name, open = TRUE) {
     }
   }
 
-  cli::cat_bullet(
-    bullet_col = "green", bullet = "tick",
+  message_validate(
     paste0('File "', file_name, '" has been created.')
   )
 
