@@ -4,7 +4,6 @@
 #' @param name_in_doc Name of the file to be updated in "docs".
 #'
 #' @return If file doesn't exist in "docs" then it is created. If file already exists in "docs", then it will overwrite it with the new version.
-#' @export
 #'
 #' @keywords internal
 update_file <- function(filename, name_in_doc = NULL) {
