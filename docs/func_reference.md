@@ -32,7 +32,7 @@ setwd("dummy")
 
 # Generate the minimal documentation for docsify.js
 
-use_docsify()
+init_docsify()
 
 # Create "custom.css"  in "/docs/_assets/css"
 
@@ -71,7 +71,7 @@ setwd("dummy")
 
 # Generate the minimal documentation for docsify.js
 
-use_docsify(add_reference = FALSE)
+init_docsify(add_reference = FALSE)
 
 # Generate the "Reference" page in the documentation
 
@@ -114,7 +114,7 @@ setwd("dummy")
 
 # Generate the minimal documentation for docsify.js
 
-use_docsify()
+init_docsify()
 
 # Create a new .md in "/docs"
 
@@ -152,7 +152,7 @@ setwd("dummy")
 
 # Generate the minimal documentation for docsify.js
 
-use_docsify()
+init_docsify()
 
 # Run the preview
 
@@ -162,13 +162,13 @@ preview_docsify()
  
 --- 
  
-`use_docsify` : Create the structure to use docsify in an R package
+`init_docsify` : Create the structure to use docsify in an R package
  <details>
  <summary> More </summary> 
  
  **Usage:** 
  ``` 
-use_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
+init_docsify(open = TRUE, add_reference = FALSE, include_internal = FALSE)
 
  ``` 
  
@@ -195,7 +195,7 @@ setwd("dummy")
 
 # Generate the minimal documentation for docsify.js
 
-use_docsify()
+init_docsify()
  ```
  </details> 
  

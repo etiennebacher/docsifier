@@ -2,15 +2,15 @@
 
 # Projects
 
-test_that("use_docsify creates a new dir 'docs' if 'docs' doesn't exist", {
+test_that("init_docsify creates a new dir 'docs' if 'docs' doesn't exist", {
   create_local_project()
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
   expect_true(dir_exists("docs"))
 })
 
-test_that("use_docsify creates the right files in 'docs'", {
+test_that("init_docsify creates the right files in 'docs'", {
   create_local_project()
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
   expect_proj_file("docs/index.html")
   expect_proj_file("docs/homepage.md")
   expect_proj_file("docs/_sidebar.md")
@@ -19,25 +19,25 @@ test_that("use_docsify creates the right files in 'docs'", {
   expect_proj_file("docs/docsify_files/vue.min.css")
 })
 
-test_that("use_docsify has an error if 'index.html' already exists", {
+test_that("init_docsify has an error if 'index.html' already exists", {
   create_local_project()
   dir_create("docs")
   file_create("docs/index.html")
-  expect_error(use_docsify(open = FALSE))
+  expect_error(init_docsify(open = FALSE))
 })
 
 
 # Packages
 
-test_that("use_docsify creates a new dir 'docs' if 'docs' doesn't exist", {
+test_that("init_docsify creates a new dir 'docs' if 'docs' doesn't exist", {
   create_local_package()
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
   expect_true(dir_exists("docs"))
 })
 
-test_that("use_docsify creates the right files in 'docs'", {
+test_that("init_docsify creates the right files in 'docs'", {
   create_local_package()
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
   expect_proj_file("docs/index.html")
   expect_proj_file("docs/homepage.md")
   expect_proj_file("docs/_sidebar.md")
@@ -46,20 +46,20 @@ test_that("use_docsify creates the right files in 'docs'", {
   expect_proj_file("docs/docsify_files/vue.min.css")
 })
 
-test_that("use_docsify has an error if 'index.html' already exists", {
+test_that("init_docsify has an error if 'index.html' already exists", {
   create_local_package()
   dir_create("docs")
   file_create("docs/index.html")
-  expect_error(use_docsify(open = FALSE))
+  expect_error(init_docsify(open = FALSE))
 })
 
-test_that("use_docsify adds 'docs' in .Rbuildignore if not already in", {
+test_that("init_docsify adds 'docs' in .Rbuildignore if not already in", {
   create_local_package()
 
   x <- readChar(".Rbuildignore", file.info(".Rbuildignore")$size)
   expect_false(grepl("\\^docs\\$", x))
 
-  use_docsify(open = FALSE)
+  init_docsify(open = FALSE)
   y <- readChar(".Rbuildignore", file.info(".Rbuildignore")$size)
   expect_true(grepl("\\^docs\\$", y))
 })
@@ -67,22 +67,22 @@ test_that("use_docsify adds 'docs' in .Rbuildignore if not already in", {
 
 ### References
 
-test_that("use_docsify has an error if creation of reference is asked but no 'man' folder", {
+test_that("init_docsify has an error if creation of reference is asked but no 'man' folder", {
   create_local_package()
-  expect_error(use_docsify(open = FALSE, add_reference = TRUE))
+  expect_error(init_docsify(open = FALSE, add_reference = TRUE))
 })
 
-test_that("use_docsify creates a file for references if asked and if 'man' exists", {
+test_that("init_docsify creates a file for references if asked and if 'man' exists", {
   create_local_package()
   dir_create("man")
-  use_docsify(open = FALSE, add_reference = TRUE)
+  init_docsify(open = FALSE, add_reference = TRUE)
   expect_proj_file("docs/func_reference.md")
 })
 
-test_that("user can create references after use_docsify", {
+test_that("user can create references after init_docsify", {
   create_local_package()
   dir_create("man")
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
   add_function_references()
   expect_proj_file("docs/func_reference.md")
 })
@@ -90,7 +90,7 @@ test_that("user can create references after use_docsify", {
 test_that("add_function_reference modifies '_sidebar.md'", {
   create_local_package()
   dir_create("man")
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
 
   # no reference section before calling add_function_references
   x <- readChar("docs/_sidebar.md", file.info("docs/_sidebar.md")$size)
@@ -112,7 +112,7 @@ test_that("if readme exists, its content is put on homepage", {
   fs::file_create("README.md")
   cat("This is the content from the README file", file = "README.md", append = TRUE)
 
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
 
   x <- suppressWarnings(readLines("README.md"))
   y <- suppressWarnings(readLines("docs/homepage.md"))
@@ -130,7 +130,7 @@ test_that("if news.md exists, it is included in the webpage", {
   fs::file_create("NEWS.md")
   cat("This is the content from the NEWS.md file", file = "NEWS.md", append = TRUE)
 
-  use_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE, add_reference = FALSE)
 
   x <- suppressWarnings(readLines("NEWS.md"))
   y <- suppressWarnings(readLines("docs/NEWS.md"))

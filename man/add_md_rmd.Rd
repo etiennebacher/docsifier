@@ -35,7 +35,7 @@ setwd("dummy")
 
 # Generate the minimal documentation for docsify.js
 
-use_docsify()
+init_docsify()
 
 # Create a new .md in "/docs"
 

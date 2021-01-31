@@ -1,3 +1,5 @@
+**This is some work in progress: function names, arguments, tests, etc. are likely to change often. Do not necessarily rely on the documentation below.**
+
 # Welcome!
 
 This is the homepage of the package [`{docsifier}`](https://github.com/etiennebacher/docsifier).

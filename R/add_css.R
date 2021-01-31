@@ -22,7 +22,7 @@
 #'
 #' # Generate the minimal documentation for docsify.js
 #'
-#' use_docsify()
+#' init_docsify()
 #'
 #' # Create "custom.css"  in "/docs/_assets/css"
 #'

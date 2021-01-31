@@ -24,7 +24,7 @@ documentation.
 
 ```r
 library(docsifier)
-use_docsify()
+init_docsify()
 
 ✓ Folder "docs" has been created.
 ● Folder "docs" is not standard in R packages. Don't forget to add it in .buildignore.

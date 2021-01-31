@@ -1,5 +1,7 @@
 # docsifier
 
+**This is some work in progress: function names, arguments, tests, etc. are likely to change often. Do not necessarily rely on the documentation below.**
+
 <!-- badges: start -->
 [![](https://codecov.io/gh/etiennebacher/docsifier/branch/master/graphs/badge.svg)](https://codecov.io/github/etiennebacher/docsifier)
 [![](https://github.com/etiennebacher/docsifier/workflows/R-CMD-check/badge.svg)](https://github.com/etiennebacher/docsifier/actions)
@@ -44,7 +46,7 @@ You can do your development workflow as usual. In fact, you can add the document
 
 ```r
 library(docsifier)
-use_docsify()
+init_docsify()
 
 ✓ Folder "docs" has been created.
 ● Folder "docs" is not standard in R packages. Don't forget to add it in .buildignore.

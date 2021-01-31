@@ -3,7 +3,7 @@
 #' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.
 #'
 #'
-#' @details This function is automatically called with `use_docsify()` by default. However, if you didn't want to create it at the beginning but you changed your mind after having run `use_docsify()`, you can run it on its own.
+#' @details This function is automatically called with `init_docsify()` by default. However, if you didn't want to create it at the beginning but you changed your mind after having run `init_docsify()`, you can run it on its own.
 #'
 #' If you don't want to include internal functions (i.e functions that are not exported by the package), include "@@keywords internal" in the roxygen block of the function concerned, and use `include_internal = FALSE`.
 #'
@@ -24,7 +24,7 @@
 #'
 #' # Generate the minimal documentation for docsify.js
 #'
-#' use_docsify(add_reference = FALSE)
+#' init_docsify(add_reference = FALSE)
 #'
 #' # Generate the "Reference" page in the documentation
 #'

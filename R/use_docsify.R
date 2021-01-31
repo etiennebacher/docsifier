@@ -28,10 +28,10 @@
 #'
 #' # Generate the minimal documentation for docsify.js
 #'
-#' use_docsify()
+#' init_docsify()
 #' }
 
-use_docsify <- function(
+init_docsify <- function(
   open = TRUE,
   add_reference = TRUE,
   include_internal = FALSE,
