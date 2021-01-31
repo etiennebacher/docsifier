@@ -35,8 +35,10 @@ init_docsify <- function(
   open = TRUE,
   add_reference = TRUE,
   include_internal = FALSE,
-  readme_as_homepage = TRUE,
-  add_news = TRUE
+  # readme_as_homepage = TRUE,
+  add_news = TRUE,
+  add_license = TRUE,
+  add_code_of_conduct = TRUE
 ) {
 
   ### Check whether the project is a package
@@ -73,21 +75,27 @@ init_docsify <- function(
     "docs/homepage.md"
   )
 
-  if (isTRUE(add_reference)) {
-    fs::file_copy(
-      system.file("templates/sidebar-template2.md", package = "docsifier"),
-      "docs/_sidebar.md"
-    )
-  } else {
-    fs::file_copy(
-      system.file("templates/sidebar-template.md", package = "docsifier"),
-      "docs/_sidebar.md"
-    )
-  }
+  fs::file_copy(
+    system.file("templates/sidebar-template.md", package = "docsifier"),
+    "docs/_sidebar.md"
+  )
 
   fs::file_copy(
     system.file("templates/howto-template.md", package = "docsifier"),
     "docs/howto.md"
+  )
+
+  ### Import the JS and CSS files
+  if (!file.exists("docs/docsify_files")) {
+    fs::dir_create("docs/docsify_files")
+  }
+  fs::file_copy(
+    system.file("docsify/docsify.min.js", package = "docsifier"),
+    "docs/docsify_files/docsify.min.js"
+  )
+  fs::file_copy(
+    system.file("docsify/vue.min.css", package = "docsifier"),
+    "docs/docsify_files/vue.min.css"
   )
 
   message_validate('File "index.html" has been created.')
@@ -107,46 +115,29 @@ init_docsify <- function(
     }
   }
 
-
-  ### Import the JS and CSS files
-  if (!file.exists("docs/docsify_files")) {
-    fs::dir_create("docs/docsify_files")
-  }
-  fs::file_copy(
-    system.file("docsify/docsify.min.js", package = "docsifier"),
-    "docs/docsify_files/docsify.min.js"
-  )
-  fs::file_copy(
-    system.file("docsify/vue.min.css", package = "docsifier"),
-    "docs/docsify_files/vue.min.css"
-  )
-
   ### README as homepage
-  if (isTRUE(readme_as_homepage)) {
-    add_to_sidebar("README.md")
-  }
+  # if (isTRUE(readme_as_homepage)) {
+  #   add_to_sidebar("README.md")
+  # }
 
-  ### include NEWS
-  if (isTRUE(add_news)) {
-    add_to_sidebar("NEWS.md")
-  }
-
-
-  ### Add a page with function references if user wants
-  ### AND if the project is a package
-
-  if (isTRUE(add_reference)) {
-    if (isTRUE(is_package)) {
-      if (fs::dir_exists("man")) {
-        add_function_references(include_internal = include_internal)
-        message_validate('File "func_reference.md" has been created.')
-      } else {
-        stop('You need to create the folder "man" before adding a "Reference" page.')
-      }
-    } else {
-      stop("You can only add functions reference in a package environment.")
+  ### include function_reference/NEWS/LICENSE/CoC
+  if (is_package) {
+    if (isTRUE(add_reference)) {
+      add_function_references(include_internal = include_internal)
+      message_validate("'Reference' section has been added.")
     }
-
+  }
+  if (isTRUE(add_news)) {
+    add_news()
+    message_validate("'News' section has been added.")
+  }
+  if (isTRUE(add_license)) {
+    add_license()
+    message_validate("'License' section has been added.")
+  }
+  if (isTRUE(add_code_of_conduct)) {
+    add_code_of_conduct()
+    message_validate("'Code of Conduct' section has been added.")
   }
 
 
