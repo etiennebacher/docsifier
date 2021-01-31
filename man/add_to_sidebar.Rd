@@ -4,12 +4,16 @@
 \alias{add_to_sidebar}
 \title{Add a section to _sidebar.md}
 \usage{
-add_to_sidebar(section_name, subsection_name = NULL, subsection_md_file = NULL)
+add_to_sidebar(file, name, section_above = NULL, type = "section")
 }
 \arguments{
-\item{section_name}{Name of the section created with this file. If NULL, the name of the file is used.}
+\item{file}{Name of the file to copy in "docs"}
 
-\item{filename}{Name of the file to add, must be a Markdown (.md) file}
+\item{name}{Name of the section or subsection to add}
+
+\item{section_above}{Name of the section under which the new section/subsection will be placed. If NULL (default), it will be placed under all the other sections.}
+
+\item{type}{"section" or "subsection"}
 }
 \value{
 Adds a section below all the other sections in _sidebar.md

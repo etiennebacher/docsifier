@@ -79,6 +79,38 @@ folder_is_empty <- function(x) {
 }
 
 
+#' Insert a line in a text file
+#'
+#' @param file File in which insert a line
+#' @param where After which line we want to insert some text
+#' @param insert Text to insert
+#' @keywords internal
+
+insert_after <- function(file, where, insert) {
+
+  # Import text
+  text <- readLines(file, warn = FALSE)
+  # Find the line after which we want to include text
+  find_line <- which(
+    grepl(where, text)
+  )
+  # Some important numbers
+  n_lines_of_file <- length(text)
+  n_lines_to_add <- length(insert)
+
+  # Text currently below the line after which we want to include text
+  text_below <- text[(find_line+1):(n_lines_of_file)]
+  # Free enough space above this text
+  text[(find_line+1+n_lines_to_add):(n_lines_of_file+n_lines_to_add)] <- text_below
+  # Put the text to insert in the space now free
+  text[(find_line+1):(find_line+n_lines_to_add)] <- insert
+
+  # Write text in file
+  cat(paste(text, collapse = "\n"), file = file)
+
+}
+
+
 
 
 
