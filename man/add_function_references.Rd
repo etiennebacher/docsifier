@@ -4,7 +4,11 @@
 \alias{add_function_references}
 \title{Add a Markdown file with function references}
 \usage{
-add_function_references(include_internal = TRUE)
+add_function_references(
+  include_internal = FALSE,
+  section_above = NULL,
+  type = "section"
+)
 }
 \arguments{
 \item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.}

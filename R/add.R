@@ -4,7 +4,7 @@
 #'
 #' @param open Open or not the files created. Default is TRUE.
 #'
-#' @name add_md_rmd
+#' @name add
 #'
 #' @export
 #'
@@ -64,7 +64,7 @@ add_md <- function(name, open = TRUE) {
 
 }
 
-#' @rdname add_md_rmd
+#' @rdname add
 #' @export
 
 add_rmd <- function(name, open = TRUE) {

@@ -4,7 +4,12 @@
 \alias{add_to_sidebar}
 \title{Add a section to _sidebar.md}
 \usage{
-add_to_sidebar(file, name, section_above = NULL, type = "section")
+add_to_sidebar(
+  file,
+  name,
+  section_above = NULL,
+  type = c("section", "subsection")
+)
 }
 \arguments{
 \item{file}{Name of the file to copy in "docs"}

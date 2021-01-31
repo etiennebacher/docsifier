@@ -1,6 +1,20 @@
 # Reference
 
 
+`add_code_of_conduct` : Helpers for typical package files
+ <details>
+ <summary> More </summary> 
+ 
+ **Usage:** 
+ ``` 
+add_code_of_conduct()
+
+ ``` 
+ 
+ </details> 
+ 
+--- 
+ 
 `add_css` : Add a CSS file to your documentation
  <details>
  <summary> More </summary> 
@@ -128,100 +142,6 @@ add_md("test")
  
 --- 
  
-`add_to_sidebar` : Add a section to _sidebar.md
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-add_to_sidebar(section_name, subsection_name = NULL, subsection_md_file = NULL)
-
- ``` 
- 
- **Arguments:** 
-* `section_name`: Name of the section created with this file. If NULL, the name of the file is used.
- 
-* `filename`: Name of the file to add, must be a Markdown (.md) file
- 
-
-
- </details> 
- 
---- 
- 
-`as_snake_case` : Transform string in snake case
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-as_snake_case(x)
-
- ``` 
- 
- **Arguments:** 
-* `x`: String to transform
- 
-
-
- </details> 
- 
---- 
- 
-`build_function_reference` : Gather the important info in .Rd files
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-build_function_reference(include_internal = TRUE)
-
- ``` 
- 
- </details> 
- 
---- 
- 
-`folder_is_empty` : Detect if the folder is empty
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-folder_is_empty(x)
-
- ``` 
- 
- **Arguments:** 
-* `x`: Name of the folder
- 
-
-
- </details> 
- 
---- 
- 
-`get_in_text` : Obtain words between curly braces in .Rd files
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-get_in_text(item, text)
-
- ``` 
- 
- **Arguments:** 
-* `item`: Text from which to extract.
- 
-* `text`: NA
- 
-
-
- </details> 
- 
---- 
- 
 `init_docsify` : Create the structure to use docsify in an R package
  <details>
  <summary> More </summary> 
@@ -232,8 +152,9 @@ init_docsify(
   open = TRUE,
   add_reference = TRUE,
   include_internal = FALSE,
-  readme_as_homepage = TRUE,
-  add_news = TRUE
+  add_news = TRUE,
+  add_license = TRUE,
+  add_code_of_conduct = TRUE
 )
 
  ``` 
@@ -263,60 +184,6 @@ setwd("dummy")
 
 init_docsify()
  ```
- </details> 
- 
---- 
- 
-`is_it_a_package` : Detect if we are in a package environment or not
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-is_it_a_package()
-
- ``` 
- 
- </details> 
- 
---- 
- 
-`link_md_to_section` : Link a .md file to a section in _sidebar.md
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-link_md_to_section(md_file, section_name)
-
- ``` 
- 
- **Arguments:** 
-* `md_file`: Name of the .md file to link
- 
-* `section_name`: Name of the section to which link the .md file
- 
-
-
- </details> 
- 
---- 
- 
-`message_validate` : Wrappers for cli messages
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-message_validate(x)
-
- ``` 
- 
- **Arguments:** 
-* `x`: Message (character vector)
- 
-
-
  </details> 
  
 --- 
@@ -351,41 +218,6 @@ init_docsify()
 
 preview_docsify()
  ```
- </details> 
- 
---- 
- 
-`transform_vignettes` : Convert .Rmd files to give .md files
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-transform_vignettes()
-
- ``` 
- 
- </details> 
- 
---- 
- 
-`update_file` : Update a file in folder "docs"
- <details>
- <summary> More </summary> 
- 
- **Usage:** 
- ``` 
-update_file(filename, name_in_doc = NULL)
-
- ``` 
- 
- **Arguments:** 
-* `filename`: Name of the file which is up-to-date.
- 
-* `name_in_doc`: Name of the file to be updated in "docs".
- 
-
-
  </details> 
  
 --- 
