@@ -131,6 +131,7 @@ add_rmd <- function(name, open = TRUE) {
 
 add_css <- function(name = NULL, open = TRUE) {
 
+  if (is.null(name)) name <- "custom"
   if (missing(name)) name <- "custom"
   if (name == "") name <- "custom"
   if (!file.exists("docs/_assets/css")) {

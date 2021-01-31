@@ -42,16 +42,14 @@ is_it_a_package <- function() {
 #' @keywords internal
 
 message_validate <- function(x) {
-  cli::cat_bullet(
-    bullet_col = "green", bullet = "tick",
+  cli::cli_alert_success(
     strwrap(prefix = " ", initial = "", x)
   )
 }
 
 #' @keywords internal
 message_info <- function(x) {
-  cli::cat_bullet(
-    bullet_col = "red",
+  cli::cli_alert_info(
     strwrap(prefix = " ", initial = "", x)
   )
 }
