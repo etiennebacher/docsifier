@@ -1,8 +1,7 @@
 ---
 title: "Get started"
 output:
-  rmarkdown::github_document: 
-    html_preview: false
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{get_started}
   %\VignetteEngine{knitr::rmarkdown}

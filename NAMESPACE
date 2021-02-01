@@ -2,7 +2,7 @@
 
 export(add_code_of_conduct)
 export(add_css)
-export(add_function_references)
+export(add_functions_reference)
 export(add_license)
 export(add_md)
 export(add_news)

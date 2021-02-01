@@ -9,9 +9,9 @@ transform_vignettes()
 \description{
 Vignettes files (originally placed in the folder "Vignettes") have the output "html_vignette", which doesn't allow to produce the Markdown files needed for docsifier to work. This function makes several things:
 \itemize{
-\item moves the "vignettes" folder in "docs/articles"
-\item replaces the "output chunk" of each .Rmd file so that it is "md_document" instead of "html_vignettes"
-\item render all of the .Rmd files (now modified), which produce .md files.
+\item moves the .Rmd files from the "vignettes" folder in "docs/articles"
+\item replaces the "output chunk" of each .Rmd file (in "docs/articles") so that it is "md_document" instead of "html_vignette"
+\item render all of the modified .Rmd files (in "docs/articles"), which produce .md files.
 }
 }
 \keyword{internal}

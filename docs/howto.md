@@ -34,7 +34,7 @@ Before explaining how to add contents, let's detail the structure of the `.md` f
 
 You can add either `.Rmd` or `.md` files with `add_rmd()` and `add_md()`. These two functions only take a character vector as argument. For instance, `add_md("deploy")` will create `/docs/deploy.md`.
 
-You may also want to add a file that contains details for the functions. As said above, this can be done by specifying `add_reference = TRUE` in `init_docsify()`. But if you didn't specify this argument, you can still create this file after `init_docsify()` by calling `add_function_references()`. This is also useful when you want to update the function details.
+You may also want to add a file that contains details for the functions. As said above, this can be done by specifying `add_reference = TRUE` in `init_docsify()`. But if you didn't specify this argument, you can still create this file after `init_docsify()` by calling `add_functions_reference()`. This is also useful when you want to update the function details.
 
 
 ## Preview the documentation

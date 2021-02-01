@@ -171,6 +171,33 @@ get_in_text <- function(item, text) {
 }
 
 
+#' Check if vignettes in folder "vignettes" and in folder "docs/articles" differ
+#'
+#' Since the output of the vignette in the folder "vignette" is "html_vignette" and the output of the vignette in the folder "docs/articles" is "github_document", there will necessarily be changes. Therefore, the comparison is made on the files without the YAML.
+#'
+#' @param  x,y Names of the two vignettes to compare
+#'
+#' @return Boolean
+#' @keywords internal
+
+vignettes_differ <- function(x, y) {
+
+  if (!file.exists(x) || !file.exists(y)) {
+    return(FALSE)
+  }
+
+  x_file <- readLines(x, warn = FALSE)
+  x_content <- gsub("---(.*?)---", "", paste(x_file, collapse = " "))
+
+  y_file <- readLines(y, warn = FALSE)
+  y_content <- gsub("---(.*?)---", "", paste(y_file, collapse = " "))
+
+  if (!identical(x_content, y_content)) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
 
 
 

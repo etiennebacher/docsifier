@@ -3,8 +3,7 @@ title: "Graphics"
 author: "John Coene"
 date: "`r Sys.Date()`"
 output:
-  rmarkdown::github_document: 
-    html_preview: false
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Graphics}
   %\VignetteEngine{knitr::rmarkdown}

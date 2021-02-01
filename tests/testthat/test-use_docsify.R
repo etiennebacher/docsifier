@@ -83,7 +83,7 @@ test_that("user can create references after init_docsify", {
   create_local_package()
   dir_create("man")
   init_docsify(open = FALSE, add_reference = FALSE)
-  add_function_references()
+  add_functions_reference()
   expect_proj_file("docs/func_reference.md")
 })
 
@@ -92,12 +92,12 @@ test_that("add_function_reference modifies '_sidebar.md'", {
   dir_create("man")
   init_docsify(open = FALSE, add_reference = FALSE)
 
-  # no reference section before calling add_function_references
+  # no reference section before calling add_functions_reference
   x <- readChar("docs/_sidebar.md", file.info("docs/_sidebar.md")$size)
   expect_false(grepl("* \\[Reference\\]\\(func_reference.md\\)", x))
 
   # reference section after
-  add_function_references()
+  add_functions_reference()
   y <- readChar("docs/_sidebar.md", file.info("docs/_sidebar.md")$size)
   expect_true(grepl("* \\[Reference\\]\\(func_reference.md\\)", y))
 })

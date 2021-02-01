@@ -1,16 +1,49 @@
 # Reference
 
 
-`add_code_of_conduct` : Helpers for typical package files
+`add` : Create a Markdown (or R Markdown) file to populate your documentation.
  <details>
  <summary> More </summary> 
  
  **Usage:** 
  ``` 
-add_code_of_conduct()
+add_md(name, open = TRUE)
+
+add_rmd(name, open = TRUE)
 
  ``` 
  
+ **Arguments:** 
+* `name`: Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.
+ 
+* `open`: Open or not the files created. Default is TRUE.
+ 
+
+
+ **Examples:** 
+ ```
+
+library(docsifier)
+
+# Create a test folder and a test package for the example
+
+test_folder <- tempdir()
+setwd(test_folder)
+devtools::create("dummy")
+setwd("dummy")
+
+# Generate the minimal documentation for docsify.js
+
+init_docsify()
+
+# Create a new .md in "/docs"
+
+add_md("test")
+
+# Will output an error because "test.md" already exists
+
+add_md("test")
+ ```
  </details> 
  
 --- 
@@ -56,13 +89,17 @@ add_css()
  
 --- 
  
-`add_function_references` : Add a Markdown file with function references
+`add_functions_reference` : Add a Markdown file with function references
  <details>
  <summary> More </summary> 
  
  **Usage:** 
  ``` 
-add_function_references(include_internal = TRUE)
+add_functions_reference(
+  include_internal = FALSE,
+  section_above = NULL,
+  type = "section"
+)
 
  ``` 
  
@@ -89,55 +126,33 @@ init_docsify(add_reference = FALSE)
 
 # Generate the "Reference" page in the documentation
 
-add_function_references()
+add_functions_reference()
  ```
  </details> 
  
 --- 
  
-`add_md_rmd` : Create a Markdown (or R Markdown) file to populate your documentation.
+`add_sections` : Add the Code of Conduct, the License and the NEWS file as section or subsection
  <details>
  <summary> More </summary> 
  
  **Usage:** 
  ``` 
-add_md(name, open = TRUE)
+add_code_of_conduct(section_above = NULL, type = "section")
 
-add_rmd(name, open = TRUE)
+add_news(section_above = NULL, type = "section")
+
+add_license(section_above = NULL, type = "section")
 
  ``` 
  
  **Arguments:** 
-* `name`: Name of the .md (or .Rmd) file to create. If the file already exists, it will return an error.
+* `section_above`: Name of the section under which the new section/subsection will be placed. If NULL (default), it will be placed under all the other sections.
  
-* `open`: Open or not the files created. Default is TRUE.
+* `type`: "section" or "subsection"
  
 
 
- **Examples:** 
- ```
-
-library(docsifier)
-
-# Create a test folder and a test package for the example
-
-test_folder <- tempdir()
-setwd(test_folder)
-devtools::create("dummy")
-setwd("dummy")
-
-# Generate the minimal documentation for docsify.js
-
-init_docsify()
-
-# Create a new .md in "/docs"
-
-add_md("test")
-
-# Will output an error because "test.md" already exists
-
-add_md("test")
- ```
  </details> 
  
 --- 

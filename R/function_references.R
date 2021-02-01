@@ -28,10 +28,10 @@
 #'
 #' # Generate the "Reference" page in the documentation
 #'
-#' add_function_references()
+#' add_functions_reference()
 #' }
 
-add_function_references <- function(
+add_functions_reference <- function(
   include_internal = FALSE,
   section_above = NULL,
   type = "section"

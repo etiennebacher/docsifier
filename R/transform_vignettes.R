@@ -1,9 +1,9 @@
 #' Convert .Rmd files to give .md files
 #'
 #' Vignettes files (originally placed in the folder "Vignettes") have the output "html_vignette", which doesn't allow to produce the Markdown files needed for docsifier to work. This function makes several things:
-#' * moves the "vignettes" folder in "docs/articles"
-#' * replaces the "output chunk" of each .Rmd file so that it is "md_document" instead of "html_vignettes"
-#' * render all of the .Rmd files (now modified), which produce .md files.
+#' * moves the .Rmd files from the "vignettes" folder in "docs/articles"
+#' * replaces the "output chunk" of each .Rmd file (in "docs/articles") so that it is "md_document" instead of "html_vignette"
+#' * render all of the modified .Rmd files (in "docs/articles"), which produce .md files.
 #' @keywords internal
 
 transform_vignettes <- function() {
@@ -14,41 +14,59 @@ transform_vignettes <- function() {
 
   list_vignettes <- list.files("vignettes", pattern = ".Rmd")
 
+  # Move vignettes to a custom folder so that I don't modify the original files
+  if (!file.exists("docs/articles")) {
+    fs::dir_create("docs/articles")
+  }
+
   for (i in seq_along(list_vignettes)) {
 
-    file_path <- paste0("vignettes/", list_vignettes[i])
-    original_vignette <- readLines(file_path, warn = FALSE)
+    first_vignette <- paste0("vignettes/", list_vignettes[i])
+    second_vignette <- paste0("docs/articles/", list_vignettes[i])
 
-    # Need to replace output and output options (i.e "output chunk")
-    # by a .md output, so I detect the start and the end of output chunk.
-    # The start is obvious, but for the end I detect the start of the vignette
-    # chunk and then I take the line before.
-    # This relies on the assumption that there's nothing between the output chunk
-    # and the vignette chunk.
-    start_of_output <- which(startsWith(original_vignette, "output:"))
-    end_of_output <- which(startsWith(original_vignette, "vignette:")) - 1
-    output_chunk <- original_vignette[start_of_output:end_of_output]
+    if (vignettes_differ(first_vignette, second_vignette)) {
 
-    # Remove output chunk and insert the new output
-    modified_vignette <- original_vignette[-c(start_of_output:end_of_output)]
-    modified_vignette[start_of_output] <- paste0(
-      "output:\n  rmarkdown::github_document: \n    html_preview: false\n",
-      modified_vignette[start_of_output]
-    )
-    modified_vignette <- paste(modified_vignette, collapse = "\n")
-    cat(modified_vignette, file = file_path)
+      fs::file_copy(
+        first_vignette,
+        second_vignette,
+        overwrite = TRUE
+      )
 
-    # Store vignettes in .md format in "docs/articles"
-    output_file <- paste0(
-      substr(list_vignettes[i], 1, nchar(list_vignettes[i])-4),
-      ".md"
-    )
-    rmarkdown::render(
-      file_path,
-      output_dir = "docs/articles",
-      output_file = output_file,
-      quiet = TRUE
-    )
+      original_vignette <- readLines(second_vignette, warn = FALSE)
+
+      # Need to replace output and output options (i.e "output chunk")
+      # by a .md output, so I detect the start and the end of output chunk.
+      # The start is obvious, but for the end I detect the start of the vignette
+      # chunk and then I take the line before.
+      # This relies on the assumption that there's nothing between the output chunk
+      # and the vignette chunk.
+      start_of_output <- which(startsWith(original_vignette, "output:"))
+      end_of_output <- which(startsWith(original_vignette, "vignette:")) - 1
+      output_chunk <- original_vignette[start_of_output:end_of_output]
+
+      # Remove output chunk and insert the new output
+      modified_vignette <- original_vignette[-c(start_of_output:end_of_output)]
+      modified_vignette[start_of_output] <- paste0(
+        "output:\n  rmarkdown::github_document: \n    html_preview: false\n",
+        modified_vignette[start_of_output]
+      )
+      modified_vignette <- paste(modified_vignette, collapse = "\n")
+      cat(modified_vignette, file = second_vignette)
+
+      # Store vignettes in .md format in "docs/articles"
+      output_file <- paste0(
+        substr(list_vignettes[i], 1, nchar(list_vignettes[i])-4),
+        ".md"
+      )
+
+      rmarkdown::render(
+        second_vignette,
+        output_dir = "docs/articles",
+        output_file = output_file,
+        quiet = TRUE
+      )
+
+    }
 
   }
 
@@ -91,7 +109,7 @@ put_vignettes_as_section <- function(section_name = "Articles") {
   # Link subsections to .md files
   for (i in seq_along(list_md_files)) {
     link_md_to_section(
-      md_file = paste0("articles/", list_md_files[i]),
+      md_file = paste0("fuarticles/", list_md_files[i]),
       section_name = articles_names[i]
     )
   }

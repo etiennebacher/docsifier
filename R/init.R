@@ -123,7 +123,7 @@ init_docsify <- function(
   ### include function_reference/NEWS/LICENSE/CoC
   if (is_package) {
     if (isTRUE(add_reference)) {
-      add_function_references(include_internal = include_internal)
+      add_functions_reference(include_internal = include_internal)
       message_validate("'Reference' section has been added.")
     }
   }

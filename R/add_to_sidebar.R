@@ -34,6 +34,7 @@ add_to_sidebar <- function(
   }
 
   if (is.null(section_above)) {
+    # Strange behavior of cat(append = TRUE) so I do it manually
     text <- readLines("docs/_sidebar.md", warn = FALSE)
     text[length(text)+1] <- line_to_add
     cat(paste(text, collapse = "\n"), file = "docs/_sidebar.md")
@@ -62,6 +63,8 @@ add_code_of_conduct <- function(section_above = NULL, type = "section") {
   if (file.exists("CODE_OF_CONDUCT.md")) {
     add_to_sidebar("CODE_OF_CONDUCT.md", "Code of Conduct",
                    section_above = section_above, type = type)
+  } else {
+    print(paste0("File CODE_OF_CONDUCT.md doesn't exist."))
   }
 }
 
@@ -71,6 +74,8 @@ add_news <- function(section_above = NULL, type = "section") {
   if (file.exists("NEWS.md")) {
     add_to_sidebar("NEWS.md", "Changelog",
                    section_above = section_above, type = type)
+  } else {
+    print(paste0("File NEWS.md doesn't exist."))
   }
 }
 
@@ -83,6 +88,8 @@ add_license <- function(section_above = NULL, type = "section") {
   } else if (file.exists("LICENCE.md")) {
     add_to_sidebar("LICENCE.md", "Licence",
                    section_above = section_above, type = type)
+  } else {
+    print(paste0("Files LICENSE.md and LICENCE.md don't exist."))
   }
 }
 
