@@ -183,7 +183,7 @@ get_in_text <- function(item, text) {
 vignettes_differ <- function(x, y) {
 
   if (!file.exists(x) || !file.exists(y)) {
-    return(FALSE)
+    return(TRUE)
   }
 
   x_file <- readLines(x, warn = FALSE)

@@ -76,17 +76,49 @@ transform_vignettes <- function() {
 }
 
 
-put_vignettes_as_section <- function(section_name = "Articles") {
+#' Insert the vignettes in sidebar
+#'
+#' This function creates the section "Articles" (or with another name) and puts all vignettes in "docs/articles" as subsections.
+#'
+#' @param section_name Name of the section containing the vignettes. Default is "Articles".
+#' @param section_above Section below which the section "Articles" (or the name given in `section_name`) will be placed. By default, it will be placed just under "Home".
+#'
+#' @return Modifies "_sidebar.md" to insert the section containing the vignettes. Each vignette is a subsection.
+#' @keywords internal
+
+put_vignettes_in_sidebar <- function(
+  section_name = "Articles",
+  section_above = "Home"
+) {
 
   if (!file.exists("docs/articles")) {
     stop(message_error("Need to create vignettes or to transform
                        them with transform_vignettes() first."))
   }
 
-  # Get articles names
-  list_of_articles <- list.files("vignettes", pattern = ".Rmd")
-  articles_names <- unlist(lapply(list_of_articles, function(x) {
-    content <- readLines(paste0("vignettes/", x), warn = FALSE)
+  sidebar_md <- readLines("docs/_sidebar.md", warn = FALSE)
+
+
+  # Create section "Articles" in sidebar
+  articles_in_sidebar <- grepl(
+    paste0("* \\[", section_name, "\\]\\(\\)"),
+    sidebar_md
+  )
+  if (!(TRUE %in% articles_in_sidebar)) {
+    insert_after(
+      file = "docs/_sidebar.md",
+      where = section_above,
+      insert = paste0("* [", section_name, "](/)")
+    )
+  }
+
+
+  # Get articles info (title + name of the .md file they produce)
+  list_of_articles <- list.files("docs/articles", pattern = ".Rmd")
+
+  articles_info <- lapply(list_of_articles, function(x) {
+    # Article title
+    content <- readLines(paste0("docs/articles/", x), warn = FALSE)
     line_with_title <- startsWith(content, "title:")
     title <- gsub(
       "title:",
@@ -94,29 +126,62 @@ put_vignettes_as_section <- function(section_name = "Articles") {
       content[line_with_title]
     )
     title <- gsub(' \"', "", title)
-    gsub('\"', "", title)
-  }))
+    title <- gsub('\"', "", title)
 
-  # Get .md files names
-  list_md_files <- list.files("docs/articles", pattern = ".md")
+    # .md file the article produces
+    # Just have to remove .Rmd since all files in this loop are .Rmd
+    md_file <- paste0("articles/", substr(x, 1, nchar(x)-4), ".md")
 
-  # Create subsections with articles names
-  add_to_sidebar(
-    section_name = section_name,
-    subsection_name = articles_names
-  )
+    return(list(title = title, md_file = md_file))
+  })
 
-  # Link subsections to .md files
-  for (i in seq_along(list_md_files)) {
-    link_md_to_section(
-      md_file = paste0("fuarticles/", list_md_files[i]),
-      section_name = articles_names[i]
+
+  # Create the subsections
+  subsections <- lapply(articles_info, function(x) {
+        paste0("  * [", x$title, "](", x$md_file,")")
+  })
+
+  # Only new vignettes are added in "_sidebar.md"
+  for (i in seq_along(subsections)) {
+    x <- subsections[[i]]
+    x <- gsub("\\(", "\\\\(", x)
+    x <- gsub("\\)", "\\\\)", x)
+    x <- gsub("\\[", "\\\\[", x)
+    x <- gsub("\\]", "\\\\]", x)
+    sub_in_sidebar <- grepl(substr(x, 4, nchar(x)), sidebar_md)
+    if (TRUE %in% sub_in_sidebar) {
+      subsections[[i]] <- NA
+    }
+  }
+  new_subsections <- unlist(subsections[which(!is.na(subsections))])
+
+  # Put the subsections in _sidebar.md
+  if (!is.null(new_subsections)) {
+    insert_after(
+      file = "docs/_sidebar.md",
+      where = "Articles",
+      insert = new_subsections
     )
+    message_info("Don't forget to reorder the articles if
+               necessary in 'docs/_sidebar.md'.")
+  } else {
+    message_info("No new vignettes to add in sidebar.")
   }
 
 }
 
+#' Convert, move and insert vignettes
+#'
+#' @param section_name Name of the section containing the vignettes. Default is "Articles".
+#' @param section_above Section below which the section "Articles" (or the name given in `section_name`) will be placed. By default, it will be placed just under "Home".
+#'
+#' @export
 
+add_vignettes <- function(section_name = "Articles", section_above = "Home") {
+  transform_vignettes()
+  put_vignettes_in_sidebar(section_name = section_name,
+                           section_above = section_above)
+}
 
 
 

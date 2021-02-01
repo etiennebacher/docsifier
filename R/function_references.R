@@ -124,6 +124,8 @@ add_functions_reference <- function(
     type = type
   )
 
+  message_validate("'Reference' section has been added.")
+
 }
 
 

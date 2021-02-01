@@ -3,9 +3,10 @@
 #' @param open Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.
 #' @param add_reference Boolean indicating whether to add a Markdown file containing function references, i.e the list of functions (and their title and arguments) exported by the package. Default is TRUE.
 #' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires `add_reference` to be TRUE. Default is TRUE. See Details.
+#' @param add_news,add_license,add_code_of_conduct,add_vignettes Boolean indicating if Changelog, License, Code of Conduct, and Articles sections should be added.
 #'
-#' @details This function creates the folder "/docs" (if it doesn't already exist) and "index.html" to create the documentation with docsify.js. The structure of "index.html" is automatically created and you can complete it with your custom info.
-#' You can use `add_md()` to add Markdown files in "/docs" to populate the documentation.
+#' @details This function creates the folder "docs" (if it doesn't already exist) and "index.html" to create the documentation with docsify.js. The structure of "index.html" is automatically created and you can complete it with your custom info.
+#' You can use `add_md()` to add Markdown files in "docs" to populate the documentation.
 #'
 #' You can add a page containing the list of functions that your package provide, and their documentation. Internal functions (i.e functions that are not exported by the package) are included by default. If you don't want to include them, add "@@keywords internal" in the roxygen block of the function concerned, and use `include_internal = FALSE`.
 #'
@@ -38,7 +39,8 @@ init_docsify <- function(
   # readme_as_homepage = TRUE,
   add_news = TRUE,
   add_license = TRUE,
-  add_code_of_conduct = TRUE
+  add_code_of_conduct = TRUE,
+  add_vignettes = TRUE
 ) {
 
   ### Check whether the project is a package
@@ -124,20 +126,19 @@ init_docsify <- function(
   if (is_package) {
     if (isTRUE(add_reference)) {
       add_functions_reference(include_internal = include_internal)
-      message_validate("'Reference' section has been added.")
     }
   }
   if (isTRUE(add_news)) {
     add_news()
-    message_validate("'News' section has been added.")
   }
   if (isTRUE(add_license)) {
     add_license()
-    message_validate("'License' section has been added.")
   }
   if (isTRUE(add_code_of_conduct)) {
     add_code_of_conduct()
-    message_validate("'Code of Conduct' section has been added.")
+  }
+  if (isTRUE(add_vignettes)) {
+    add_vignettes()
   }
 
 

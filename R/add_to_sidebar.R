@@ -63,6 +63,7 @@ add_code_of_conduct <- function(section_above = NULL, type = "section") {
   if (file.exists("CODE_OF_CONDUCT.md")) {
     add_to_sidebar("CODE_OF_CONDUCT.md", "Code of Conduct",
                    section_above = section_above, type = type)
+    message_validate("'Code of Conduct' section has been added.")
   } else {
     print(paste0("File CODE_OF_CONDUCT.md doesn't exist."))
   }
@@ -74,6 +75,7 @@ add_news <- function(section_above = NULL, type = "section") {
   if (file.exists("NEWS.md")) {
     add_to_sidebar("NEWS.md", "Changelog",
                    section_above = section_above, type = type)
+    message_validate("'News' section has been added.")
   } else {
     print(paste0("File NEWS.md doesn't exist."))
   }
@@ -85,9 +87,11 @@ add_license <- function(section_above = NULL, type = "section") {
   if (file.exists("LICENSE.md")) {
     add_to_sidebar("LICENSE.md", "License",
                    section_above = section_above, type = type)
+    message_validate("'License' section has been added.")
   } else if (file.exists("LICENCE.md")) {
     add_to_sidebar("LICENCE.md", "Licence",
                    section_above = section_above, type = type)
+    message_validate("'License' section has been added.")
   } else {
     print(paste0("Files LICENSE.md and LICENCE.md don't exist."))
   }
