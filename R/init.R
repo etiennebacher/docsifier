@@ -143,5 +143,9 @@ init_docsify <- function(
     add_vignettes()
   }
 
+  ### Change package name and github url in index.html
+  change_pkgname_in_index()
+  change_github_in_index()
+
 
 }
