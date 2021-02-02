@@ -105,12 +105,11 @@ add_license <- function(section_above = NULL, type = "section") {
 #' @keywords internal
 
 readme_as_homepage <- function() {
-  if (!file.exists("README.md")) {
-    stop(message_error("File README.md doesn't exist."))
+  if (file.exists("README.md")) {
+    fs::file_copy("README.md", "docs/homepage.md", overwrite = TRUE)
+    message_validate("The content of README.md has been put in homepage.md.")
+    message_info("Don't forget to run `update_docsify()` if README.md changes.")
   }
-  fs::file_copy("README.md", "docs/homepage.md", overwrite = TRUE)
-  message_validate("The content of README.md has been put in homepage.md.")
-  message_info("Don't forget to run `update_docsify()` if README.md changes.")
 }
 
 
