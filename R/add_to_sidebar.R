@@ -98,4 +98,19 @@ add_license <- function(section_above = NULL, type = "section") {
 }
 
 
+#' Put README as homepage
+#'
+#' This function simply moves README.md in the docs and rename it "homepage.md". This is the only thing to do because homepage.md is defined as the .md file associated to "Home" in index.html.
+#'
+#' @keywords internal
+
+readme_as_homepage <- function() {
+  if (!file.exists("README.md")) {
+    stop(message_error("File README.md doesn't exist."))
+  }
+  fs::file_copy("README.md", "docs/homepage.md", overwrite = TRUE)
+  message_validate("The content of README.md has been put in homepage.md.")
+  message_info("Don't forget to run `update_docsify()` if README.md changes.")
+}
+
 

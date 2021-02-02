@@ -6,22 +6,29 @@
 \usage{
 init_docsify(
   open = TRUE,
+  readme_as_homepage = TRUE,
+  add_vignettes = TRUE,
   add_reference = TRUE,
   include_internal = FALSE,
   add_news = TRUE,
   add_license = TRUE,
-  add_code_of_conduct = TRUE,
-  add_vignettes = TRUE
+  add_code_of_conduct = TRUE
 )
 }
 \arguments{
 \item{open}{Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.}
 
+\item{readme_as_homepage}{Put the README as homepage? Default is TRUE.}
+
+\item{add_vignettes}{Include vignettes as articles? Default is TRUE.}
+
 \item{add_reference}{Boolean indicating whether to add a Markdown file containing function references, i.e the list of functions (and their title and arguments) exported by the package. Default is TRUE.}
 
-\item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires \code{add_reference} to be TRUE. Default is TRUE. See Details.}
+\item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires \code{add_reference} to be TRUE. Default is FALSE See Details.}
 
-\item{add_news, add_license, add_code_of_conduct, add_vignettes}{Boolean indicating if Changelog, License, Code of Conduct, and Articles sections should be added.}
+\item{add_news}{Put NEWS as Changelog? Default is TRUE.}
+
+\item{add_license, add_code_of_conduct}{Include License and Code of Conduct? Default is TRUE.}
 }
 \value{
 Creates a folder "docs" (if does not exist yet) and creates necessary files for docsify.js in it.
@@ -30,8 +37,7 @@ Creates a folder "docs" (if does not exist yet) and creates necessary files for 
 Create the structure to use docsify in an R package
 }
 \details{
-This function creates the folder "docs" (if it doesn't already exist) and "index.html" to create the documentation with docsify.js. The structure of "index.html" is automatically created and you can complete it with your custom info.
-You can use \code{add_md()} to add Markdown files in "docs" to populate the documentation.
+TO FILL.
 
 You can add a page containing the list of functions that your package provide, and their documentation. Internal functions (i.e functions that are not exported by the package) are included by default. If you don't want to include them, add "@keywords internal" in the roxygen block of the function concerned, and use \code{include_internal = FALSE}.
 }

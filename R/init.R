@@ -1,12 +1,14 @@
 #' Create the structure to use docsify in an R package
 #'
 #' @param open Boolean indicating whether to open the HTML and Markdown files created. Default is TRUE.
+#' @param readme_as_homepage Put the README as homepage? Default is TRUE.
+#' @param add_vignettes Include vignettes as articles? Default is TRUE.
 #' @param add_reference Boolean indicating whether to add a Markdown file containing function references, i.e the list of functions (and their title and arguments) exported by the package. Default is TRUE.
-#' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires `add_reference` to be TRUE. Default is TRUE. See Details.
-#' @param add_news,add_license,add_code_of_conduct,add_vignettes Boolean indicating if Changelog, License, Code of Conduct, and Articles sections should be added.
+#' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). This requires `add_reference` to be TRUE. Default is FALSE See Details.
+#' @param add_news Put NEWS as Changelog? Default is TRUE.
+#' @param add_license,add_code_of_conduct Include License and Code of Conduct? Default is TRUE.
 #'
-#' @details This function creates the folder "docs" (if it doesn't already exist) and "index.html" to create the documentation with docsify.js. The structure of "index.html" is automatically created and you can complete it with your custom info.
-#' You can use `add_md()` to add Markdown files in "docs" to populate the documentation.
+#' @details TO FILL.
 #'
 #' You can add a page containing the list of functions that your package provide, and their documentation. Internal functions (i.e functions that are not exported by the package) are included by default. If you don't want to include them, add "@@keywords internal" in the roxygen block of the function concerned, and use `include_internal = FALSE`.
 #'
@@ -34,13 +36,13 @@
 
 init_docsify <- function(
   open = TRUE,
+  readme_as_homepage = TRUE,
+  add_vignettes = TRUE,
   add_reference = TRUE,
   include_internal = FALSE,
-  # readme_as_homepage = TRUE,
   add_news = TRUE,
   add_license = TRUE,
-  add_code_of_conduct = TRUE,
-  add_vignettes = TRUE
+  add_code_of_conduct = TRUE
 ) {
 
   ### Check whether the project is a package
@@ -118,9 +120,9 @@ init_docsify <- function(
   }
 
   ### README as homepage
-  # if (isTRUE(readme_as_homepage)) {
-  #   add_to_sidebar("README.md")
-  # }
+  if (isTRUE(readme_as_homepage)) {
+    readme_as_homepage()
+  }
 
   ### include function_reference/NEWS/LICENSE/CoC
   if (is_package) {
