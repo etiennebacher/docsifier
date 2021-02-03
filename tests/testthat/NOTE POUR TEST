@@ -1,0 +1,1 @@
+ voir le package distill pour pouvoir se passer de withr::defer (peut etre), ils utilisent on.exit dans les tests

@@ -198,3 +198,75 @@ vignettes_differ <- function(x, y) {
     return(FALSE)
   }
 }
+
+
+#' Find image paths in Markdown files
+#'
+#' @param filename Name of the Markdown file from we which extract the image paths
+#'
+#' @keywords internal
+
+get_img_paths <- function(filename) {
+
+  file_content <- paste(readLines(filename, warn = FALSE), collapse = "\n")
+
+  # when double quotes, i.e <img src="path">
+  img_path_double_quotes <- unlist(
+    regmatches(file_content,
+               gregexpr('(?<=img src=\\").*?(?=\\")',
+                        file_content, perl = TRUE)
+              )
+  )
+  # when single quotes, i.e <img src='path'>
+  img_path_single_quotes <- unlist(
+    regmatches(file_content,
+               gregexpr("(?<=img src=\\').*?(?=\\')",
+                        file_content, perl = TRUE)
+    )
+  )
+
+  img_path <- c(img_path_double_quotes, img_path_single_quotes)
+
+  return(img_path)
+
+}
+
+
+#' Replace old image paths by new ones
+#'
+#' @param filename Name of the Markdown file in which we replace the image paths
+#'
+#' @keywords internal
+replace_img_paths <- function(filename) {
+
+  file_content <- paste(readLines(filename, warn = FALSE), collapse = "\n")
+  img_paths <- get_img_paths(filename)
+
+  # Only keep the name (not the path that might be in filename)
+  filename_alone <- trimws(basename(filename))
+  # Create the path where the imgs will be stored
+  path_to_store <- paste0(
+    "_assets/img/",
+    substr(filename_alone, 1, nchar(filename_alone)-3),
+    "_img/"
+  )
+  # generate the new paths
+  new_paths <- unlist(lapply(img_paths, function(x) {
+
+    # Thanks stackoverflow: https://stackoverflow.com/questions/49499703/in-r-how-to-remove-everything-before-the-last-slash
+    y <- trimws(basename(x))
+    z <- gsub(y, "", x)
+    paste0(path_to_store, y)
+  }))
+
+  # replace the old paths by the new ones
+  for (i in seq_along(img_paths)) {
+    file_content <- gsub(img_paths[i], new_paths[i], file_content)
+  }
+
+  cat(file_content, file = filename)
+
+}
+
+
+remove_quotation_marks <- function() {}
