@@ -45,8 +45,12 @@ init_docsify <- function(
   add_code_of_conduct = TRUE
 ) {
 
+
   ### Check whether the project is a package
   is_package <- is_it_a_package()
+
+  #### Part 1 of the messages: import files
+  cli::cli_h1("Docsify.js files imported")
 
   ### Deal with folder "docs"
   if (!file.exists("docs")) {
@@ -118,6 +122,9 @@ init_docsify <- function(
       )
     }
   }
+
+  #### Part 1 of the messages: create sections
+  cli::cli_h1("Creation of content")
 
   ### README as homepage
   if (isTRUE(readme_as_homepage)) {
