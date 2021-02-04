@@ -269,4 +269,53 @@ replace_img_paths <- function(filename) {
 }
 
 
-remove_quotation_marks <- function() {}
+#' Unquote the title given in .Rmd file's YAML
+#'
+#' @param filename File concerned
+#'
+#' @keywords internal
+
+unquote_title <- function(filename) {
+
+  file_content <- readLines(filename, warn = FALSE)
+  line_containing_title <- which(grepl("title:", file_content))
+  title <- gsub(
+    "title: ",
+    "",
+    file_content[line_containing_title]
+  )
+
+  if (is_quoted(title)) {
+    title <- substr(title, 2, nchar(title))
+    title <- substr(title, 1, nchar(title) - 1)
+  }
+
+  new_title <- paste0("title: ", title)
+
+  file_content[line_containing_title] <- new_title
+
+  cat(
+    paste(file_content, collapse = "\n"),
+    file = filename
+  )
+
+}
+
+#' Detect if a string is between quotation marks
+#'
+#' @param string String concerned
+#' @keywords internal
+
+is_quoted <- function(string) {
+
+  beg_string <- substr(string, 1, 1)
+  end_string <- substr(string, nchar(string), nchar(string))
+
+  if ((beg_string == "'" && end_string == "'") |
+      (beg_string == '"' && end_string == '"')) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+
+}

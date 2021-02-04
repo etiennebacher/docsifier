@@ -7,7 +7,6 @@
 #'
 #' @return Adds a section below all the other sections in _sidebar.md
 #' @export
-#' @keywords internal
 
 add_to_sidebar <- function(
   file,
@@ -25,8 +24,8 @@ add_to_sidebar <- function(
   } else {
     filename <- file
   }
-  # If add a section, append a line in _sidebar.md with the name of section
-  # between brackets and the name of the file between parenthesis
+  # Markdown formatting differs with type (need to add an indent if
+  # the type is subsection)
   if (type == "section") {
     line_to_add <- paste0("* [", name, "](", filename, ")")
   } else if (type == "subsection") {
@@ -47,8 +46,7 @@ add_to_sidebar <- function(
   }
 
   # Copy the file at the end so that it is not copied if there is a problem before
-  if (!(grepl("docs/", file))) { # CONDITION NOT IDEAL BECAUSE IT CAN BE IN A
-                           # SUBFOLDER OF DOCS
+  if (!(grepl("docs/", file))) {
     fs::file_copy(path = file, new_path = paste0("docs/", file), overwrite = TRUE)
   }
 }
@@ -59,6 +57,7 @@ add_to_sidebar <- function(
 #' @param type "section" or "subsection"
 #' @export
 #' @name add_sections
+
 add_code_of_conduct <- function(section_above = NULL, type = "section") {
   if (file.exists("CODE_OF_CONDUCT.md")) {
     add_to_sidebar("CODE_OF_CONDUCT.md", "Code of Conduct",
@@ -71,6 +70,7 @@ add_code_of_conduct <- function(section_above = NULL, type = "section") {
 
 #' @export
 #' @name add_sections
+
 add_news <- function(section_above = NULL, type = "section") {
   if (file.exists("NEWS.md")) {
     add_to_sidebar("NEWS.md", "Changelog",
@@ -83,6 +83,7 @@ add_news <- function(section_above = NULL, type = "section") {
 
 #' @export
 #' @name add_sections
+
 add_license <- function(section_above = NULL, type = "section") {
   if (file.exists("LICENSE.md")) {
     add_to_sidebar("LICENSE.md", "License",
@@ -101,8 +102,6 @@ add_license <- function(section_above = NULL, type = "section") {
 #' Put README as homepage
 #'
 #' This function simply moves README.md in the docs and rename it "homepage.md". This is the only thing to do because homepage.md is defined as the .md file associated to "Home" in index.html.
-#'
-#' @keywords internal
 
 readme_as_homepage <- function() {
 

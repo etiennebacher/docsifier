@@ -26,4 +26,3 @@ Adds a section below all the other sections in _sidebar.md
 \description{
 Add a section to _sidebar.md
 }
-\keyword{internal}

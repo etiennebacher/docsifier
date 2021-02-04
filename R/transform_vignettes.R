@@ -118,6 +118,7 @@ put_vignettes_in_sidebar <- function(
 
   articles_info <- lapply(list_of_articles, function(x) {
     # Article title
+    unquote_title(paste0("docs/articles/", x))
     content <- readLines(paste0("docs/articles/", x), warn = FALSE)
     line_with_title <- startsWith(content, "title:")
     title <- gsub(

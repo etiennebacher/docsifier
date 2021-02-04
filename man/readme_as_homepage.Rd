@@ -9,4 +9,3 @@ readme_as_homepage()
 \description{
 This function simply moves README.md in the docs and rename it "homepage.md". This is the only thing to do because homepage.md is defined as the .md file associated to "Home" in index.html.
 }
-\keyword{internal}
