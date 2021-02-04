@@ -133,26 +133,26 @@ init_docsify <- function(
 
   ### include function_reference/NEWS/LICENSE/CoC
   if (is_package) {
+
     if (isTRUE(add_reference)) {
       add_functions_reference(include_internal = include_internal)
     }
-  }
-  if (isTRUE(add_news)) {
-    add_news()
-  }
-  if (isTRUE(add_license)) {
-    add_license()
-  }
-  if (isTRUE(add_code_of_conduct)) {
-    add_code_of_conduct()
-  }
-  if (isTRUE(add_vignettes)) {
-    add_vignettes()
-  }
+    if (isTRUE(add_news)) {
+      add_news()
+    }
+    if (isTRUE(add_license)) {
+      add_license()
+    }
+    if (isTRUE(add_code_of_conduct)) {
+      add_code_of_conduct()
+    }
+    if (isTRUE(add_vignettes)) {
+      add_vignettes()
+    }
 
-  ### Change package name and github url in index.html
-  change_pkgname_in_index()
-  change_github_in_index()
-
+    ### Change package name and github url in index.html
+    change_pkgname_in_index()
+    change_github_in_index()
+  }
 
 }

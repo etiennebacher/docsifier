@@ -1,1 +1,3 @@
  voir le package distill pour pouvoir se passer de withr::defer (peut etre), ils utilisent on.exit dans les tests
+
+besoin de créer de fausses vignettes / readme dans les exemples pour pouvoir les rajouter dans les tests après avoir créé les fake projects
