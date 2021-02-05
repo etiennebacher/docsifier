@@ -1,6 +1,6 @@
 #' Add a Markdown file with function references
 #'
-#' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is TRUE. See Details.
+#' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is FALSE. See Details.
 #'
 #'
 #' @details This function is automatically called with `init_docsify()` by default. However, if you didn't want to create it at the beginning but you changed your mind after having run `init_docsify()`, you can run it on its own.
@@ -62,17 +62,23 @@ add_reference <- function(
   }
 
   # append the markdown text we made into the file
-
   cat(list_man_md, file = "docs/reference.md", append = TRUE)
 
-  add_to_sidebar(
-    file = "docs/reference.md",
-    name = "Reference",
-    section_above = section_above,
-    type = type
-  )
+  sidebar_md <- paste(readLines("docs/_sidebar.md", warn = FALSE),
+                      collapse = "\n")
+  if (!grepl("reference.md", sidebar_md)) {
+    add_to_sidebar(
+      file = "docs/reference.md",
+      name = "Reference",
+      section_above = section_above,
+      type = type
+    )
+    message_validate("'Reference' section has been added.")
+  } else {
+    message_validate("'Reference' section has been updated.")
+  }
 
-  message_validate("'Reference' section has been added.")
+
 
 }
 

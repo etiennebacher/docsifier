@@ -37,7 +37,7 @@ Rd2markdown <- function(rdfile, include_internal = FALSE) {
   arguments_names <- names(results$arguments)
   arguments_formatted <- unlist(lapply(
     seq_along(results$arguments), function(x) {
-    paste0("**", names(results$arguments[x]), "**: ",
+    paste0("**`", names(results$arguments[x]), "`**: ",
            results$arguments[x], "\n")
   }))
 
@@ -45,8 +45,8 @@ Rd2markdown <- function(rdfile, include_internal = FALSE) {
 
     "`", results$name, "`: ", results$title, "\n\n",
     "<details>\n\n <summary> More </summary>\n\n **Usage:**\n\n",
-    "```\n\n",
-    results$usage, "\n\n",
+    "```\n",
+    results$usage, "\n",
     "```\n",
     if (!is.null(arguments_names)) {
       paste0(
@@ -65,7 +65,7 @@ Rd2markdown <- function(rdfile, include_internal = FALSE) {
     if (!is.null(results$examples)) {
       paste0(
         "**Examples:**\n",
-        "```\n\n",
+        "```\n",
         results$examples,
         "\n\n",
         "```\n\n"

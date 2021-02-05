@@ -2,10 +2,10 @@
 
 export(add_code_of_conduct)
 export(add_css)
-export(add_reference)
 export(add_license)
 export(add_md)
 export(add_news)
+export(add_reference)
 export(add_rmd)
 export(add_to_sidebar)
 export(add_vignettes)
