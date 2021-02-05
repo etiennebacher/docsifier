@@ -109,68 +109,6 @@ insert_after <- function(file, where, insert) {
 }
 
 
-
-#' Obtain words between curly braces in .Rd files
-#'
-#' @param item Item to extract from the .Rd file. Can be any character vector among those between "\" and "\{" in a .Rd file. Use `NULL` to return all items between curly braces.
-#'
-#' @param text Text from which to extract.
-#'
-#' @keywords internal
-
-get_in_text <- function(item, text) {
-
-  text <- text
-
-  # item to add in pattern is different when we're
-  # looking for the item description. I want to keep the
-  # item name clear when I call the function, so I replace
-  # this item name by its necessary value. With this, I will be
-  # able to call get_in_text('item_description', .)
-  if (item == "argument_description")
-    item <- "\\}"
-  else if (item == "argument")
-    item <- "item"
-
-
-  # In the examples, there can be \donttest{}, \dontrun{},
-  # or if (interactive()) {}. Therefore, the item we get depends
-  # on the existence of one of this three things
-  if (item == "examples") {
-    if (isTRUE(grepl("\\\\donttest\\{", text))) {
-      item <- "donttest"
-    } else if (isTRUE(grepl("\\\\dontrun\\{", text))) {
-      item <- "dontrun"
-    } else if (isTRUE(grepl("if \\(interactive\\(\\)\\) \\{", text))) {
-      item <- "if \\(interactive\\(\\)\\) "
-    } else {
-      item <- "examples"
-    }
-
-    # regex to get examples is very different than for others
-    # so I put it also in the if condition
-
-    if (item == "if \\(interactive\\(\\)\\) ") {
-      pattern <- paste0(item, "({([^{}]*?(?:(?1)[^{}]*?)*)\\s*})")
-    } else {
-      pattern <- paste0("\\\\", item, "({([^{}]*?(?:(?1)[^{}]*?)*)\\s*})")
-    }
-
-    result <- regmatches(text, regexec(pattern, text, perl=TRUE))
-    unlist(result)[3]
-
-  } else {
-
-    pattern <- paste0(item, "\\{\\K[^{}]+(?=\\})")
-    result <- regmatches(text, gregexpr(pattern, text, perl=TRUE))
-    result <- result[lapply(result, length) > 0]
-    unlist(result)
-
-  }
-
-}
-
-
 #' Check if vignettes in folder "vignettes" and in folder "docs/articles" differ
 #'
 #' Since the output of the vignette in the folder "vignette" is "html_vignette" and the output of the vignette in the folder "docs/articles" is "github_document", there will necessarily be changes. Therefore, the comparison is made on the files without the YAML.
