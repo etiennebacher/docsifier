@@ -89,13 +89,13 @@ add_css()
  
 --- 
  
-`add_functions_reference` : Add a Markdown file with function references
+`add_reference` : Add a Markdown file with function references
  <details>
  <summary> More </summary> 
  
  **Usage:** 
  ``` 
-add_functions_reference(
+add_reference(
   include_internal = FALSE,
   section_above = NULL,
   type = "section"
@@ -126,7 +126,7 @@ init_docsify(add_reference = FALSE)
 
 # Generate the "Reference" page in the documentation
 
-add_functions_reference()
+add_reference()
  ```
  </details> 
  

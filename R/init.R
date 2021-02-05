@@ -135,7 +135,7 @@ init_docsify <- function(
   if (is_package) {
 
     if (isTRUE(add_reference)) {
-      add_functions_reference(include_internal = include_internal)
+      add_reference(include_internal = include_internal)
     }
     if (isTRUE(add_news)) {
       add_news()

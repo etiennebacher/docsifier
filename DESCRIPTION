@@ -26,7 +26,9 @@ Imports:
     rstudioapi,
     usethis,
     withr,
-    rmarkdown
+    rmarkdown,
+    Rd2md,
+    tools
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE) 
 URL: https://github.com/etiennebacher/docsifier

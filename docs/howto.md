@@ -15,7 +15,7 @@ Secondly, when the folder `/docs` is created, it will add Markdown (`.md`) and H
  
 * `_sidebar.md`, `homepage.md`, and `howto.md` provide a minimal documentation so that you can already see what the documentation will look like. Their content is explained in the next part.
 
-* if you are in a package environment with a `/man` folder, and if you choose `add_reference = TRUE`, `func_reference.md` will also be created. This file generates a section called "Reference" that contains some details on the functions you created in your package.
+* if you are in a package environment with a `/man` folder, and if you choose `add_reference = TRUE`, `reference.md` will also be created. This file generates a section called "Reference" that contains some details on the functions you created in your package.
 
 
 With these basic files, you can already run `preview_docsify()` to have a preview of your documentation in RStudio Viewer or in a web browser.
@@ -34,7 +34,7 @@ Before explaining how to add contents, let's detail the structure of the `.md` f
 
 You can add either `.Rmd` or `.md` files with `add_rmd()` and `add_md()`. These two functions only take a character vector as argument. For instance, `add_md("deploy")` will create `/docs/deploy.md`.
 
-You may also want to add a file that contains details for the functions. As said above, this can be done by specifying `add_reference = TRUE` in `init_docsify()`. But if you didn't specify this argument, you can still create this file after `init_docsify()` by calling `add_functions_reference()`. This is also useful when you want to update the function details.
+You may also want to add a file that contains details for the functions. As said above, this can be done by specifying `add_reference = TRUE` in `init_docsify()`. But if you didn't specify this argument, you can still create this file after `init_docsify()` by calling `add_reference()`. This is also useful when you want to update the function details.
 
 
 ## Preview the documentation

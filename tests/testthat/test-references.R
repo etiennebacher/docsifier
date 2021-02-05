@@ -1,11 +1,11 @@
 # Only in packages because need "man" folder
 
-test_that("build_functions_reference cannot work without 'man' folder", {
+test_that("build_reference cannot work without 'man' folder", {
   create_local_package()
-  expect_error(build_functions_reference())
+  expect_error(build_reference())
 })
 
-test_that("build_functions_reference cannot work without 'man' folder", {
+test_that("build_reference cannot work without 'man' folder", {
   create_local_package()
   x <- system.file("templates/test-examples/example-doc.Rd",
                    package = "docsifier")
@@ -15,7 +15,7 @@ test_that("build_functions_reference cannot work without 'man' folder", {
   expect_type(y, "list")
 })
 
-test_that("build_functions_reference cannot work without 'man' folder", {
+test_that("build_reference cannot work without 'man' folder", {
   create_local_package()
   x <- system.file("templates/test-examples/example-doc.Rd",
                    package = "docsifier")

@@ -7,7 +7,7 @@
 #'
 #' If you don't want to include internal functions (i.e functions that are not exported by the package), include "@@keywords internal" in the roxygen block of the function concerned, and use `include_internal = FALSE`.
 #'
-#' @return Creates a Markdown file called "func_reference.md" in the folder "docs", and edit "_sidebar.md" to add a "Reference" section.
+#' @return Creates a Markdown file called "reference.md" in the folder "docs", and edit "_sidebar.md" to add a "Reference" section.
 #' @export
 #'
 #' @examples
@@ -28,82 +28,34 @@
 #'
 #' # Generate the "Reference" page in the documentation
 #'
-#' add_functions_reference()
+#' add_reference()
 #' }
 
-add_functions_reference <- function(
+add_reference <- function(
   include_internal = FALSE,
   section_above = NULL,
   type = "section"
 ){
 
-  function_infos <- build_function_reference(
-    include_internal = include_internal
-  )
+  list_man <- list.files("man/", pattern = ".Rd")
+  list_man_md <- unlist(lapply(list_man, function(x) {
+    Rd2markdown(rdfile = x, include_internal = include_internal)
+  }))
 
-
-  # I need to convert function arguments (and their description)
-  # into a markdown list, so that each argument has its own bullet
-  # point.
-
-  list_in_markdown <- lapply(function_infos, function(x) {
-    argument <- x$argument
-    argument_description <- x$argument_description
-
-    list_args <- list()
-    if (!is.null(argument)) {
-      for (i in seq_along(argument)) {
-        list_args[[i]] <- paste0("* `", argument[i], "`: ",
-                                 argument_description[i], "\n \n")
-      }
-    }
-
-    return(list_args)
-  })
-
-  # Append this markdown list to list of infos for each function
-
-  for (i in seq_along(function_infos)) {
-    function_infos[[i]]$markdown_list <- list_in_markdown[[i]]
-  }
-
-  # create the markdown text for each function
-
-  markdownize <- lapply(function_infos, function(x) {
-    paste0(
-      "`", x$name, "` : ", x$title,
-      "\n <details>",
-      "\n <summary> More </summary> \n \n **Usage:** ",
-      "\n ``` \n", x$usage, "\n ``` \n ",
-      if (!is.null(x$argument)) {
-        paste0(
-          "\n **Arguments:** ", "\n",
-          paste(unlist(x$markdown_list), collapse = ""), "\n"
-        )
-      },
-      if (!is.na(x$examples)) {
-        paste0("\n **Examples:** \n ```", x$examples, "\n ```")
-      },
-      "\n </details> \n \n",
-      "--- \n \n"
-    )
-  })
-
-
-  if (!fs::file_exists("docs/func_reference.md")) {
+  if (!fs::file_exists("docs/reference.md")) {
     fs::file_copy(
-      system.file("templates/func_reference-template.md",
+      system.file("templates/reference-template.md",
                   package = "docsifier"),
-      "docs/func_reference.md"
+      "docs/reference.md"
     )
   } else {
 
     fs::file_copy(
       system.file(
-        "templates/func_reference-template.md",
+        "templates/reference-template.md",
         package = "docsifier"
       ),
-      "docs/func_reference.md",
+      "docs/reference.md",
       overwrite = TRUE
     )
 
@@ -111,14 +63,10 @@ add_functions_reference <- function(
 
   # append the markdown text we made into the file
 
-  invisible(
-    lapply(markdownize, function(x) {
-      cat(x, file = "docs/func_reference.md", append = TRUE)
-    })
-  )
+  cat(list_man_md, file = "docs/reference.md", append = TRUE)
 
   add_to_sidebar(
-    file = "docs/func_reference.md",
+    file = "docs/reference.md",
     name = "Reference",
     section_above = section_above,
     type = type
