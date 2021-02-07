@@ -3,6 +3,13 @@
 ### Copied on 2021-02-05
 ### I slightly changed it
 
+# Convert a .Rd file into a Markdown file
+#
+# @param rdfile Name of the .Rd file to convert
+# @param include_internal If FALSE, internal functions (those with keyword "internal") return NULL.
+#
+# @keywords internal
+
 Rd2markdown <- function(rdfile, include_internal = FALSE) {
 
   # VALIDATION

@@ -78,8 +78,6 @@ add_reference <- function(
     message_validate("'Reference' section has been updated.")
   }
 
-
-
 }
 
 

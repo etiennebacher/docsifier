@@ -1,7 +1,7 @@
-#' Change fields in index.html
-#' @name change_in_index
-#' @keywords internal
-#' Function that automatically changes the github url in index.html
+# Change fields in index.html
+# @name change_in_index
+# @keywords internal
+# Function that automatically changes the github url in index.html
 change_github_in_index <- function() {
 
   index_html <- paste(readLines("docs/index.html", warn = FALSE), collapse = "\n")
@@ -14,9 +14,9 @@ change_github_in_index <- function() {
 
 }
 
-#' @name change_in_index
-#' @keywords internal
-#' Function that automatically puts the package name as the name (title) of the documentation
+# @name change_in_index
+# @keywords internal
+# Function that automatically puts the package name as the name (title) of the documentation
 
 change_pkgname_in_index <- function() {
 
@@ -31,9 +31,9 @@ change_pkgname_in_index <- function() {
 }
 
 
-#' Obtain GitHub URL from the DESCRIPTION file
-#'
-#' @keywords internal
+# Obtain GitHub URL from the DESCRIPTION file
+#
+# @keywords internal
 get_github_url <- function() {
 
   gh_url <- NULL
@@ -56,11 +56,11 @@ get_github_url <- function() {
 }
 
 
-#' Extract github URL from URL or BugReports fields in DESCRIPTION
-#'
-#' @param field URL or BugReports (or another field where the URL could appear)
-#'
-#' @keywords internal
+# Extract github URL from URL or BugReports fields in DESCRIPTION
+#
+# @param field URL or BugReports (or another field where the URL could appear)
+#
+# @keywords internal
 
 github_url_in <- function(field = "URL") {
 
@@ -85,9 +85,9 @@ github_url_in <- function(field = "URL") {
 }
 
 
-#' Get package name
-#'
-#' @keywords internal
+# Get package name
+#
+# @keywords internal
 get_pkgname <- function() {
 
   pkgname <- NULL

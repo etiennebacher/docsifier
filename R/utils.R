@@ -1,8 +1,8 @@
-#' Transform string in snake case
-#'
-#' @param x String to transform
-#'
-#' @keywords internal
+# Transform string in snake case
+#
+# @param x String to transform
+#
+# @keywords internal
 as_snake_case <- function(x) {
 
   x <- tolower(x)
@@ -12,8 +12,8 @@ as_snake_case <- function(x) {
 }
 
 
-#' Detect if we are in a package environment or not
-#' @keywords internal
+# Detect if we are in a package environment or not
+# @keywords internal
 
 is_it_a_package <- function() {
 
@@ -37,9 +37,9 @@ is_it_a_package <- function() {
 }
 
 
-#' Wrappers for cli messages
-#' @param x Message (character vector)
-#' @keywords internal
+# Wrappers for cli messages
+# @param x Message (character vector)
+# @keywords internal
 
 message_validate <- function(x) {
   cli::cli_alert_success(
@@ -47,23 +47,23 @@ message_validate <- function(x) {
   )
 }
 
-#' @keywords internal
+# @keywords internal
 message_info <- function(x) {
   cli::cli_alert_info(
     strwrap(prefix = " ", initial = "", x)
   )
 }
 
-#' @keywords internal
+# @keywords internal
 message_error <- function(x) {
   strwrap(prefix = " ", initial = "", x)
 }
 
 
-#' Detect if the folder is empty
-#'
-#' @param x Name of the folder
-#' @keywords internal
+# Detect if the folder is empty
+#
+# @param x Name of the folder
+# @keywords internal
 
 folder_is_empty <- function(x) {
 
@@ -77,12 +77,12 @@ folder_is_empty <- function(x) {
 }
 
 
-#' Insert a line in a text file
-#'
-#' @param file File in which insert a line
-#' @param where After which line we want to insert some text
-#' @param insert Text to insert
-#' @keywords internal
+# Insert a line in a text file
+#
+# @param file File in which insert a line
+# @param where After which line we want to insert some text
+# @param insert Text to insert
+# @keywords internal
 
 insert_after <- function(file, where, insert) {
 
@@ -109,14 +109,14 @@ insert_after <- function(file, where, insert) {
 }
 
 
-#' Check if vignettes in folder "vignettes" and in folder "docs/articles" differ
-#'
-#' Since the output of the vignette in the folder "vignette" is "html_vignette" and the output of the vignette in the folder "docs/articles" is "github_document", there will necessarily be changes. Therefore, the comparison is made on the files without the YAML.
-#'
-#' @param  x,y Names of the two vignettes to compare
-#'
-#' @return Boolean
-#' @keywords internal
+# Check if vignettes in folder "vignettes" and in folder "docs/articles" differ
+#
+# Since the output of the vignette in the folder "vignette" is "html_vignette" and the output of the vignette in the folder "docs/articles" is "github_document", there will necessarily be changes. Therefore, the comparison is made on the files without the YAML.
+#
+# @param  x,y Names of the two vignettes to compare
+#
+# @return Boolean
+# @keywords internal
 
 vignettes_differ <- function(x, y) {
 
@@ -138,11 +138,11 @@ vignettes_differ <- function(x, y) {
 }
 
 
-#' Find image paths in Markdown files
-#'
-#' @param filename Name of the Markdown file from we which extract the image paths
-#'
-#' @keywords internal
+# Find image paths in Markdown files
+#
+# @param filename Name of the Markdown file from we which extract the image paths
+#
+# @keywords internal
 
 get_img_paths <- function(filename) {
 
@@ -170,11 +170,11 @@ get_img_paths <- function(filename) {
 }
 
 
-#' Replace old image paths by new ones
-#'
-#' @param filename Name of the Markdown file in which we replace the image paths
-#'
-#' @keywords internal
+# Replace old image paths by new ones
+#
+# @param filename Name of the Markdown file in which we replace the image paths
+#
+# @keywords internal
 replace_img_paths <- function(filename) {
 
   file_content <- paste(readLines(filename, warn = FALSE), collapse = "\n")
@@ -207,11 +207,11 @@ replace_img_paths <- function(filename) {
 }
 
 
-#' Unquote the title given in .Rmd file's YAML
-#'
-#' @param filename File concerned
-#'
-#' @keywords internal
+# Unquote the title given in .Rmd file's YAML
+#
+# @param filename File concerned
+#
+# @keywords internal
 
 unquote_title <- function(filename) {
 
@@ -239,10 +239,10 @@ unquote_title <- function(filename) {
 
 }
 
-#' Detect if a string is between quotation marks
-#'
-#' @param string String concerned
-#' @keywords internal
+# Detect if a string is between quotation marks
+#
+# @param string String concerned
+# @keywords internal
 
 is_quoted <- function(string) {
 
