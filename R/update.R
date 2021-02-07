@@ -1,3 +1,27 @@
+update_docsify <- function() {
+
+  ### Check whether the project is a package
+  is_package <- is_it_a_package()
+
+  if (is_package) {
+
+    update_news()
+    update_readme()
+    update_license()
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
 #' Update a file in folder "docs"
 #'
 #' @param filename Name of the file which is up-to-date.
@@ -8,67 +32,79 @@
 #' @keywords internal
 update_file <- function(filename, name_in_doc = NULL) {
 
-  if (is.null(name_in_doc)) {
-    name_in_doc <- filename
-  }
-  # Must be in different loop (not else if)
-  if (filename == "README.md") {
-    name_in_doc <- "homepage.md"
-  }
+  if (!file.exists(filename)) {
+    message_info(paste0("File '", filename, "' doesn't
+                        exist so it can't be updated."))
+  } else {
 
-  # Check if up-to-date file has the right extension
-  file_extension <- substr(filename, nchar(filename) - 2, nchar(filename))
-  if (file_extension != ".md")
-    stop("The file must be a Markdown (.md) file.")
+    if (is.null(name_in_doc)) {
+      name_in_doc <- filename
+    }
+    # Must be in different loop (not else if)
+    if (filename == "README.md") {
+      name_in_doc <- "homepage.md"
+    }
 
-  # Check if to-be-updated file has the right extension
-  name_in_doc_extension <- substr(
-    name_in_doc,
-    nchar(name_in_doc) - 2,
-    nchar(name_in_doc)
-  )
-  if (name_in_doc_extension != ".md")
-    stop("The file in documentation must be a Markdown (.md) file.")
+    # Check if up-to-date file has the right extension
+    file_extension <- substr(filename, nchar(filename) - 2, nchar(filename))
+    if (file_extension != ".md")
+      stop("The file must be a Markdown (.md) file.")
 
-
-  # If file not in doc, just have to create it
-  if (!file.exists(paste0("docs/", name_in_doc))) {
-    fs::file_copy(
-      path = filename,
-      new_path = paste0("docs/", name_in_doc)
+    # Check if to-be-updated file has the right extension
+    name_in_doc_extension <- substr(
+      name_in_doc,
+      nchar(name_in_doc) - 2,
+      nchar(name_in_doc)
     )
-  }
+    if (name_in_doc_extension != ".md")
+      stop("The file in documentation must be a Markdown (.md) file.")
 
-  # If file in doc, have to replace it
-  else {
-    file_in_doc <- readLines(paste0("docs/", name_in_doc))
-    file_up_to_date <- readLines(filename)
 
-    usethis::ui_yeah(
-      paste0("This will replace 'docs/",
-             name_in_doc,
-             "'. Are you sure you want to do it?"
-      )
-    )
-
-    if (!identical(file_up_to_date, file_in_doc)) {
+    # If file not in doc, just have to create it
+    if (!file.exists(paste0("docs/", name_in_doc))) {
       fs::file_copy(
         path = filename,
-        new_path = paste0("docs/", name_in_doc),
-        overwrite = TRUE
+        new_path = paste0("docs/", name_in_doc)
       )
     }
+
+    # If file in doc, have to replace it
+    else {
+      file_in_doc <- readLines(paste0("docs/", name_in_doc), warn = FALSE)
+      file_up_to_date <- readLines(filename, warn = FALSE)
+
+      if (!identical(file_up_to_date, file_in_doc)) {
+        fs::file_copy(
+          path = filename,
+          new_path = paste0("docs/", name_in_doc),
+          overwrite = TRUE
+        )
+      }
+    }
+
   }
 
 }
 
 
-#' @export
+#' @keywords internal
 update_readme <- function() {
   update_file("README.md")
 }
 
-#' @export
+#' @keywords internal
 update_news <- function() {
   update_file("NEWS.md")
+}
+
+#' @keywords internal
+update_license <- function() {
+  if (file.exists("LICENSE.md")) {
+    update_file("LICENSE.md")
+  } else if (file.exists("LICENCE.md")) {
+    update_file("LICENCE.md")
+  } else {
+    message_info(paste0("No file 'LICENSE.md' or 'LICENCE.md' were found."))
+  }
+
 }
