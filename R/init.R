@@ -88,11 +88,6 @@ init_docsify <- function(
     "docs/_sidebar.md"
   )
 
-  fs::file_copy(
-    system.file("templates/howto-template.md", package = "docsifier"),
-    "docs/howto.md"
-  )
-
   ### Import the JS and CSS files
   if (!file.exists("docs/docsify_files")) {
     fs::dir_create("docs/docsify_files")
@@ -107,18 +102,17 @@ init_docsify <- function(
   )
 
   message_validate('File "index.html" has been created.')
-  message_validate('Files "homepage.md", "_sidebar.md",
-                    and "howto.md" have been created.')
+  message_validate('Files "homepage.md" and "_sidebar.md" have been created.')
 
   ### Open files or not
   if (isTRUE(open)) {
     if (rstudioapi::isAvailable()) {
       rstudioapi::navigateToFile(
-        c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html")
+        c("docs/_sidebar.md", "docs/homepage.md", "docs/index.html")
       )
     } else {
       utils::file.edit(
-        c("docs/_sidebar.md", "docs/homepage.md", "docs/howto.md", "docs/index.html")
+        c("docs/_sidebar.md", "docs/homepage.md", "docs/index.html")
       )
     }
   }
