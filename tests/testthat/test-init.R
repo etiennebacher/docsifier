@@ -4,13 +4,13 @@
 
 test_that("init_docsify creates a new dir 'docs' if 'docs' doesn't exist", {
   create_local_project()
-  init_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE)
   expect_true(dir_exists("docs"))
 })
 
 test_that("init_docsify creates the right files in 'docs'", {
   create_local_project()
-  init_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE)
   expect_proj_file("docs/index.html")
   expect_proj_file("docs/homepage.md")
   expect_proj_file("docs/_sidebar.md")
@@ -30,13 +30,13 @@ test_that("init_docsify has an error if 'index.html' already exists", {
 
 test_that("init_docsify creates a new dir 'docs' if 'docs' doesn't exist", {
   create_local_package()
-  init_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE)
   expect_true(dir_exists("docs"))
 })
 
 test_that("init_docsify creates the right files in 'docs'", {
   create_local_package()
-  init_docsify(open = FALSE, add_reference = FALSE)
+  init_docsify(open = FALSE)
   expect_proj_file("docs/index.html")
   expect_proj_file("docs/homepage.md")
   expect_proj_file("docs/_sidebar.md")
