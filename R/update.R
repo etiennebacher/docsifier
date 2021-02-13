@@ -1,4 +1,9 @@
-update_docsify <- function() {
+#' Update files in docs
+#'
+#' @export
+#'
+
+update_docsify <- function(include_internal = FALSE) {
 
   ### Check whether the project is a package
   is_package <- is_it_a_package()
@@ -8,6 +13,7 @@ update_docsify <- function() {
     update_news()
     update_readme()
     update_license()
+    update_reference(include_internal = include_internal)
 
   }
 
@@ -107,4 +113,9 @@ update_license <- function() {
     message_info(paste0("No file 'LICENSE.md' or 'LICENCE.md' were found."))
   }
 
+}
+
+#' @keywords internal
+update_reference <- function(include_internal) {
+  add_reference(include_internal = include_internal)
 }
