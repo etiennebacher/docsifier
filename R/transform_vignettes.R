@@ -9,69 +9,71 @@
 transform_vignettes <- function() {
 
   if (!file.exists("vignettes") || folder_is_empty("vignettes")) {
-    stop("No vignettes to transform.")
-  }
+    message_info("No vignettes to transform.")
+  } else {
 
-  list_vignettes <- list.files("vignettes", pattern = ".Rmd")
+    list_vignettes <- list.files("vignettes", pattern = ".Rmd")
 
-  # Move vignettes to a custom folder so that I don't modify the original files
-  if (!file.exists("docs/articles")) {
-    fs::dir_create("docs/articles")
-  }
+    # Move vignettes to a custom folder so that I don't modify the original files
+    if (!file.exists("docs/articles")) {
+      fs::dir_create("docs/articles")
+    }
 
-  for (i in seq_along(list_vignettes)) {
+    for (i in seq_along(list_vignettes)) {
 
-    first_vignette <- paste0("vignettes/", list_vignettes[i])
-    second_vignette <- paste0("docs/articles/", list_vignettes[i])
+      first_vignette <- paste0("vignettes/", list_vignettes[i])
+      second_vignette <- paste0("docs/articles/", list_vignettes[i])
 
-    if (vignettes_differ(first_vignette, second_vignette)) {
+      if (vignettes_differ(first_vignette, second_vignette)) {
 
-      fs::file_copy(
-        first_vignette,
-        second_vignette,
-        overwrite = TRUE
-      )
+        fs::file_copy(
+          first_vignette,
+          second_vignette,
+          overwrite = TRUE
+        )
 
-      original_vignette <- readLines(second_vignette, warn = FALSE)
+        original_vignette <- readLines(second_vignette, warn = FALSE)
 
-      # Need to replace output and output options (i.e "output chunk")
-      # by a .md output, so I detect the start and the end of output chunk.
-      # The start is obvious, but for the end I detect the start of the vignette
-      # chunk and then I take the line before.
-      # This relies on the assumption that there's nothing between the output chunk
-      # and the vignette chunk.
-      start_of_output <- which(startsWith(original_vignette, "output:"))
-      end_of_output <- which(startsWith(original_vignette, "vignette:")) - 1
-      output_chunk <- original_vignette[start_of_output:end_of_output]
+        # Need to replace output and output options (i.e "output chunk")
+        # by a .md output, so I detect the start and the end of output chunk.
+        # The start is obvious, but for the end I detect the start of the vignette
+        # chunk and then I take the line before.
+        # This relies on the assumption that there's nothing between the output chunk
+        # and the vignette chunk.
+        start_of_output <- which(startsWith(original_vignette, "output:"))
+        end_of_output <- which(startsWith(original_vignette, "vignette:")) - 1
+        output_chunk <- original_vignette[start_of_output:end_of_output]
 
-      # Remove output chunk and insert the new output
-      modified_vignette <- original_vignette[-c(start_of_output:end_of_output)]
-      modified_vignette[start_of_output] <- paste0(
-        "output:\n  rmarkdown::github_document: \n    html_preview: false\n",
-        modified_vignette[start_of_output]
-      )
-      modified_vignette <- paste(modified_vignette, collapse = "\n")
-      cat(modified_vignette, file = second_vignette)
+        # Remove output chunk and insert the new output
+        modified_vignette <- original_vignette[-c(start_of_output:end_of_output)]
+        modified_vignette[start_of_output] <- paste0(
+          "output:\n  rmarkdown::github_document: \n    html_preview: false\n",
+          modified_vignette[start_of_output]
+        )
+        modified_vignette <- paste(modified_vignette, collapse = "\n")
+        cat(modified_vignette, file = second_vignette)
 
-      # Store vignettes in .md format in "docs/articles"
-      output_file <- paste0(
-        substr(list_vignettes[i], 1, nchar(list_vignettes[i])-4),
-        ".md"
-      )
+        # Store vignettes in .md format in "docs/articles"
+        output_file <- paste0(
+          substr(list_vignettes[i], 1, nchar(list_vignettes[i])-4),
+          ".md"
+        )
 
-      rmarkdown::render(
-        second_vignette,
-        output_dir = "docs/articles",
-        output_file = output_file,
-        quiet = TRUE
-      )
+        rmarkdown::render(
+          second_vignette,
+          output_dir = "docs/articles",
+          output_file = output_file,
+          quiet = TRUE
+        )
+
+      }
 
     }
 
-  }
+    message_validate("Vignettes have been converted to produce Markdown files.")
+    message_validate("Markdown files have been produced and put in 'docs/articles'.")
 
-  message_validate("Vignettes have been converted to produce Markdown files.")
-  message_validate("Markdown files have been produced and put in 'docs/articles'.")
+  }
 
 }
 
@@ -180,8 +182,10 @@ put_vignettes_in_sidebar <- function(
 
 add_vignettes <- function(section_name = "Articles", section_above = "Home") {
   transform_vignettes()
-  put_vignettes_in_sidebar(section_name = section_name,
-                           section_above = section_above)
+  if (file.exists("docs/articles")) {
+    put_vignettes_in_sidebar(section_name = section_name,
+                             section_above = section_above)
+  }
 }
 
 
