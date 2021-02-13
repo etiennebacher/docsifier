@@ -67,7 +67,7 @@ test_that("init_docsify adds 'docs' in .Rbuildignore if not already in", {
 
 test_that("init_docsify has an error if creation of reference is asked but no 'man' folder", {
   create_local_package()
-  expect_error(init_docsify(open = FALSE, add_reference = TRUE))
+  expect_message(init_docsify(open = FALSE, add_reference = TRUE))
 })
 
 test_that("init_docsify creates a file for references if asked and if 'man' exists", {
@@ -124,7 +124,7 @@ test_that("if readme exists, its content is put on homepage", {
 test_that("if news.md exists, it is included in the webpage", {
   create_local_package()
 
-  # Create a readme
+  # Create a News file
   fs::file_create("NEWS.md")
   cat("This is the content from the NEWS.md file", file = "NEWS.md", append = TRUE)
 
@@ -136,25 +136,10 @@ test_that("if news.md exists, it is included in the webpage", {
 
   sidebar_file <- suppressWarnings(readLines("docs/_sidebar.md"))
   news_in_sidebar <- grepl(
-    "* [News](NEWS.md)",
+    "* [Changelog](NEWS.md)",
     sidebar_file,
     fixed = TRUE
   )
   expect_true(TRUE %in% news_in_sidebar)
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
