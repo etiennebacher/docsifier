@@ -83,9 +83,16 @@ insert_after <- function(file, where, insert) {
   n_lines_to_add <- length(insert)
 
   # Text currently below the line after which we want to include text
-  text_below <- text[(find_line+1):(n_lines_of_file)]
+  if (find_line < n_lines_of_file) {
+    text_below <- text[(find_line+1):(n_lines_of_file)]
+  } else if (find_line == n_lines_of_file) {
+    text_below <- NULL
+  }
+
   # Free enough space above this text
-  text[(find_line+1+n_lines_to_add):(n_lines_of_file+n_lines_to_add)] <- text_below
+  if (!is.null(text_below)) {
+    text[(find_line+1+n_lines_to_add):(n_lines_of_file+n_lines_to_add)] <- text_below
+  }
   # Put the text to insert in the space now free
   text[(find_line+1):(find_line+n_lines_to_add)] <- insert
 
