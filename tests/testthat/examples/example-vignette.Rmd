@@ -1,0 +1,11 @@
+---
+title: "Get started"
+output:
+  rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{get_started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This is a Rmd file.
