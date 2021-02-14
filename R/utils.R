@@ -1,17 +1,3 @@
-# Transform string in snake case
-#
-# @param x String to transform
-#
-# @keywords internal
-as_snake_case <- function(x) {
-
-  x <- tolower(x)
-  x <- gsub(" ", "_", x)
-  return(x)
-
-}
-
-
 # Detect if we are in a package environment or not
 # @keywords internal
 
