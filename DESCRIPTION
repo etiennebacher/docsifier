@@ -6,7 +6,7 @@ Authors@R:
     person(given = "Etienne",
            family = "Bacher",
            email = "etienne.bacher@protonmail.com",
-	   role = c("aut", "cre"))
+	   role = c("aut", "cre", "cph"))
 Description: Sometimes, developers want to create a specific webpage for 
     their documentation, so that they can easily describe in details how to use their
     package for instance. A very popular package to easily generate such a page is 

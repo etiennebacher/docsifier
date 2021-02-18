@@ -197,7 +197,8 @@ test_that("if CoC exists, it is included in the webpage", {
   create_local_package()
 
   fs::file_create("CODE_OF_CONDUCT.md")
-  cat("This is the content from the CODE_OF_CONDUCT file", file = "CODE_OF_CONDUCT.md", append = TRUE)
+  cat("This is the content from the CODE_OF_CONDUCT file",
+      file = "CODE_OF_CONDUCT.md", append = TRUE)
 
   init_docsify(open = FALSE)
 
