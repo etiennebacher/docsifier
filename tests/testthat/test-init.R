@@ -100,6 +100,31 @@ test_that("add_function_reference modifies '_sidebar.md'", {
   expect_true(grepl("* \\[Reference\\]\\(reference.md\\)", y))
 })
 
+test_that("reference.md is correct", {
+
+  # Create package with an Rd file
+  create_local_package()
+  dir_create("man")
+  x <- system.file("templates/test-examples/example-doc.Rd",
+                   package = "docsifier")
+  file_copy(x, "man/example-doc.Rd")
+
+  # Init docsify and get the content of reference.md
+  init_docsify(open = FALSE, add_reference = TRUE)
+  y <- readLines("docs/reference.md", warn = F)
+  y <- paste(y, collapse = "")
+
+  # Get the right content
+  z <- paste(readLines(system.file("templates/test-examples/example-doc-correct.md",
+                             package = "docsifier"),
+                 warn = F),
+             collapse = ""
+  )
+  z <- paste0("# Reference", z)
+  expect_equal(y, z)
+
+})
+
 
 ### README as homepage
 

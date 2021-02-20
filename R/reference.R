@@ -43,7 +43,7 @@ add_reference <- function(
 
     list_man <- list.files("man/", pattern = ".Rd")
     list_man_md <- unlist(lapply(list_man, function(x) {
-      Rd2markdown(rdfile = x, include_internal = include_internal)
+      Rd2markdown(rdfile = paste0("man/", x), include_internal = include_internal)
     }))
 
     if (!fs::file_exists("docs/reference.md")) {
@@ -112,12 +112,12 @@ Rd2markdown <- function(rdfile, include_internal = FALSE) {
 
   # Parse rd file
   if (type == "src") {
-    rd <- tools::parse_Rd(paste0("man/", rdfile))
+    rd <- tools::parse_Rd(rdfile)
   } else {
-    if (inherits(paste0("man/", rdfile), "list"))  {
-      rdfile <- paste0("man/", rdfile)[[1]]
+    if (inherits(rdfile, "list"))  {
+      rdfile <- rdfile[[1]]
     }
-    rd <- paste0("man/", rdfile)
+    rd <- rdfile
     class(rd) <- "Rd"
   }
   # takes as input an "Rd" object
