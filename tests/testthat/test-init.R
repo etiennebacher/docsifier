@@ -100,7 +100,7 @@ test_that("add_function_reference modifies '_sidebar.md'", {
   expect_true(grepl("* \\[Reference\\]\\(reference.md\\)", y))
 })
 
-test_that("reference.md is correct", {
+test_that("reference.md is correct ", {
 
   # Create package with an Rd file
   create_local_package()
