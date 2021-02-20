@@ -2,6 +2,8 @@
 #'
 #' @param include_internal Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is FALSE. See Details.
 #'
+#' @param section_above Section that should be above the (sub)section you want to include. In other words, the (sub)section you want to include will be placed just below this section.
+#' @param type Section ("section") or subsection ("subsection")
 #'
 #' @details This function is automatically called with `init_docsify()` by default. However, if you didn't want to create it at the beginning but you changed your mind after having run `init_docsify()`, you can run it on its own.
 #'

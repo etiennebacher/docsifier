@@ -8,6 +8,10 @@ add_reference(include_internal = FALSE, section_above = NULL, type = "section")
 }
 \arguments{
 \item{include_internal}{Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is FALSE. See Details.}
+
+\item{section_above}{Section that should be above the (sub)section you want to include. In other words, the (sub)section you want to include will be placed just below this section.}
+
+\item{type}{Section ("section") or subsection ("subsection")}
 }
 \value{
 Creates a Markdown file called "reference.md" in the folder "docs", and edit "_sidebar.md" to add a "Reference" section.

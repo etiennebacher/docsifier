@@ -6,6 +6,9 @@
 \usage{
 update_docsify(include_internal = FALSE)
 }
+\arguments{
+\item{include_internal}{Boolean indicating if internal functions should be included in the "Reference" page.}
+}
 \description{
 Update files in docs
 }

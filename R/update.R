@@ -1,5 +1,7 @@
 #' Update files in docs
 #'
+#' @param include_internal Boolean indicating if internal functions should be included in the "Reference" page.
+#'
 #' @export
 #'
 
