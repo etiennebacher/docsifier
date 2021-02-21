@@ -103,10 +103,10 @@ put_vignettes_in_sidebar <- function(
 
   # Create section "Articles" in sidebar
   articles_in_sidebar <- grepl(
-    paste0("* \\[", section_name, "\\]\\(\\)"),
-    sidebar_md
+    paste0("* \\[", section_name, "\\]\\(/\\)"),
+    paste(sidebar_md, collapse = "")
   )
-  if (!(TRUE %in% articles_in_sidebar)) {
+  if (articles_in_sidebar == FALSE) {
     insert_after(
       file = "docs/_sidebar.md",
       where = section_above,

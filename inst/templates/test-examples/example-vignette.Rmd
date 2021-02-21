@@ -1,0 +1,22 @@
+---
+title: "Special word for vignette 1: erinaceous"
+author: ""
+date: "`r Sys.Date()`"
+output: 
+    html_vignette:
+        df_print: kable
+        toc: true
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Covariate Balance Tables and Plots: A Guide to the cobalt Package}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+This is a vignette example.
+
+## Introduction
+
+This is an introductory guide for the use of `cobalt` in most common scenarios. Three appendices are available for its use with more complicated data scenarios and packages not demonstrated here.^[If none of the examples are working, this may be because `MatchIt`, `twang`, or `WeightIt` are missing. Such issues should be fixed soon.]
+

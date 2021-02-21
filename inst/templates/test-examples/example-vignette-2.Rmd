@@ -1,0 +1,21 @@
+---
+title: "Special word for vignette 2: philodox"
+author: ""
+date: "`r Sys.Date()`"
+output: 
+    html_vignette:
+        df_print: kable
+        toc: true
+
+vignette: >
+  %\VignetteIndexEntry{Appendix 1: Using cobalt with Other Preprocessing Packages}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This is a second vignette.
+
+## Introduction
+
+This is an appendix to the main vignette, "Covariate Balance Tables and Plots: A Guide to the cobalt Package". It contains descriptions and demonstrations of several utility functions in `cobalt` and the use of `bal.tab()` with `twang`, `Matching`, `optmatch`, `CBPS`, `ebal`, `designmatch`, `sbw`, `MatchThem`, and `cem`. Note that `MatchIt` can perform most of the functions that `Matching`, `optmatch`, and `cem` can, and `WeightIt` can perform most of the functions that  `twang`, `CBPS`, `ebal`, and `sbw` can. Because `cobalt` has been optimized to work with `MatchIt` and `WeightIt`, it is recommended to use those packages to simplify preprocessing and balance assessment, but we recognize users may prefer to use the packages described in this vignette.
+
