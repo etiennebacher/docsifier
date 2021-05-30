@@ -16,6 +16,7 @@ update_docsify <- function(include_internal = FALSE) {
     update_readme()
     update_license()
     update_reference(include_internal = include_internal)
+    update_vignettes()
 
   }
 
@@ -84,6 +85,9 @@ update_file <- function(filename, name_in_doc = NULL) {
     }
   }
 
+  # Change path for README images
+  replace_readme_img_paths()
+
 }
 
 
@@ -117,4 +121,11 @@ update_license <- function() {
 update_reference <- function(include_internal) {
   add_reference(include_internal = include_internal)
   message_info("Reference updated.")
+}
+
+#' @keywords internal
+update_vignettes <- function() {
+  add_vignettes()
+  message_info("Vignettes updated. Don't forget to check 'docs/sidebar.md'
+               if you want to change the order.")
 }
