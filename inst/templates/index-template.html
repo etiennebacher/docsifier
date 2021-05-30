@@ -19,7 +19,21 @@
       name: '',
       repo: '',
       homepage: "homepage.md",
-      loadSidebar: true
+      loadSidebar: true,
+      plugins: [
+        function(hook) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span>Documentation created with <a href="https://github.com/etiennebacher/docsifier" target="_blank">docsifier</a> and <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify.js</a>.</span>',
+            '</footer>'
+          ].join('');
+
+          hook.afterEach(function(html) {
+            return html + footer;
+          });
+        }
+      ]
     }
   </script>
   <!-- Docsify v4 -->
