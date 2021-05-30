@@ -86,7 +86,9 @@ update_file <- function(filename, name_in_doc = NULL) {
   }
 
   # Change path for README images
-  replace_readme_img_paths()
+  if (filename == "README.md") {
+    replace_readme_img_paths()
+  }
 
 }
 

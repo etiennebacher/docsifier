@@ -110,8 +110,12 @@ readme_as_homepage <- function() {
 
     fs::file_copy("README.md", "docs/homepage.md", overwrite = TRUE)
     replace_readme_img_paths()
+
+    # Add the new section and remove the default line of template
     add_to_sidebar("docs/homepage.md", "Home",
-                   section_above = "homepage", type = "section")
+                   section_above = "Home", type = "section")
+    remove_from_sidebar("\\[Home\\]\\(/\\)", "docs/_sidebar.md")
+
     message_validate("The content of README.md has been put in homepage.md.")
     message_info("Don't forget to run `update_docsify()` if README.md changes.")
 
@@ -119,4 +123,8 @@ readme_as_homepage <- function() {
 }
 
 
-
+remove_from_sidebar <- function(regex, file) {
+  tmp <- readLines(file)
+  tmp_new <- tmp[-which(grepl(regex, tmp))]
+  writeLines(tmp_new, file)
+}
