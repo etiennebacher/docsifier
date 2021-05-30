@@ -68,7 +68,7 @@ init_docsify <- function(
 
   ### put docs in buildignore
   if (isTRUE(is_package)) {
-    usethis::use_build_ignore("^docs$")
+    usethis::use_build_ignore("docs")
   }
 
   ### Import examples of html and md in "docs"
