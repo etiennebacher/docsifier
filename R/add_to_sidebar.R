@@ -103,30 +103,20 @@ add_license <- function(section_above = NULL, type = "section") {
 #'
 #' This function simply moves README.md in the docs and rename it "homepage.md". This is the only thing to do because homepage.md is defined as the .md file associated to "Home" in index.html.
 
+
 readme_as_homepage <- function() {
 
   if (file.exists("README.md")) {
 
     fs::file_copy("README.md", "docs/homepage.md", overwrite = TRUE)
-    img_paths <- get_img_paths("docs/homepage.md")
-    img_names <- trimws(basename(img_paths))
-
-    if (!is.null(img_paths)) {
-      fs::dir_create("docs/_assets/img/homepage_img")
-      for (i in seq_along(img_paths)) {
-        fs::file_copy(
-          img_paths[i],
-          paste0("docs/_assets/img/homepage_img/", img_names[i])
-        )
-      }
-      # replace the img paths but only in the README in the docs
-      replace_img_paths("docs/homepage.md")
-    }
-
+    replace_readme_img_paths()
+    add_to_sidebar("docs/homepage.md", "Home",
+                   section_above = "homepage", type = "section")
     message_validate("The content of README.md has been put in homepage.md.")
     message_info("Don't forget to run `update_docsify()` if README.md changes.")
 
   }
 }
+
 
 

@@ -200,6 +200,26 @@ replace_img_paths <- function(filename) {
 }
 
 
+# Replace the img paths in README
+
+replace_readme_img_paths <- function() {
+  img_paths <- get_img_paths("docs/homepage.md")
+  img_names <- trimws(basename(img_paths))
+
+  if (!is.null(img_paths)) {
+    fs::dir_create("docs/_assets/img/homepage_img")
+    for (i in seq_along(img_paths)) {
+      fs::file_copy(
+        img_paths[i],
+        paste0("docs/_assets/img/homepage_img/", img_names[i]),
+        overwrite = T
+      )
+    }
+    # replace the img paths but only in the README in the docs
+    replace_img_paths("docs/homepage.md")
+  }
+}
+
 # Unquote the title given in .Rmd file's YAML
 #
 # @param filename File concerned
