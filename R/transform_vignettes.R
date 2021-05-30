@@ -70,8 +70,7 @@ transform_vignettes <- function() {
 
     }
 
-    message_validate("Vignettes have been converted to produce Markdown files.")
-    message_validate("Markdown files have been produced and put in 'docs/articles'.")
+    message_validate("Vignettes have been converted and put in 'docs/articles'.")
 
   }
 

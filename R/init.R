@@ -50,7 +50,7 @@ init_docsify <- function(
   is_package <- is_it_a_package()
 
   #### Part 1 of the messages: import files
-  cli::cli_h1("Docsify.js files imported")
+  cli::cli_h1("Import docsify.js files")
 
   ### Deal with folder "docs"
   if (!file.exists("docs")) {
@@ -68,7 +68,7 @@ init_docsify <- function(
 
   ### put docs in buildignore
   if (isTRUE(is_package)) {
-    usethis::use_build_ignore("docs")
+    usethis::use_build_ignore("^docs$")
   }
 
   ### Import examples of html and md in "docs"
@@ -101,8 +101,7 @@ init_docsify <- function(
     "docs/docsify_files/vue.min.css"
   )
 
-  message_validate('File "index.html" has been created.')
-  message_validate('Files "homepage.md" and "_sidebar.md" have been created.')
+  message_validate('Files "index.html", "homepage.md" and "_sidebar.md" have been created.')
 
   ### Open files or not
   if (isTRUE(open)) {
@@ -118,7 +117,7 @@ init_docsify <- function(
   }
 
   #### Part 1 of the messages: create sections
-  cli::cli_h1("Creation of content")
+  cli::cli_h1("Create content")
 
   ### README as homepage
   if (isTRUE(readme_as_homepage)) {
