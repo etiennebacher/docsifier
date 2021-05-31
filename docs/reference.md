@@ -61,6 +61,10 @@ add_reference(include_internal = FALSE, section_above = NULL, type = "section")
 
 **`include_internal`**: Boolean indicating if you want to include the documentation of internal (i.e non-exported functions). Default is FALSE. See Details.
 
+**`section_above`**: Section that should be above the (sub)section you want to include. In other words, the (sub)section you want to include will be placed just below this section.
+
+**`type`**: Section ("section") or subsection ("subsection")
+
 
 **Details:**
 
@@ -226,26 +230,6 @@ add_md("test")
 
 ---
 
- `change_in_index`: Change fields in index.html
-
-<details>
-
- <summary> More </summary>
-
- **Usage:**
-
-```
-change_github_in_index()
-change_pkgname_in_index()
-```
-
-
-
-
-</details>
-
----
-
  `init_docsify`: Create the structure to use docsify in an R package
 
 <details>
@@ -361,6 +345,28 @@ preview_docsify()
 ```
 readme_as_homepage()
 ```
+
+
+
+
+</details>
+
+---
+
+ `update_docsify`: Update files in docs
+
+<details>
+
+ <summary> More </summary>
+
+ **Usage:**
+
+```
+update_docsify(include_internal = FALSE)
+```
+**Arguments:**
+
+**`include_internal`**: Boolean indicating if internal functions should be included in the "Reference" page.
 
 
 
