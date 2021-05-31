@@ -34,7 +34,7 @@ First, let’s create a package called `dummy` using RStudio buttons (New Projec
     └── hello.Rd
 ```
 
-You can do your development workflow as usual. In fact, you can add the documentation whenever you want. For now, we create it now.
+You can do your development workflow as usual. In fact, you can add the documentation whenever you want. Let's create it now.
 
 ```r
 > library(docsifier)
