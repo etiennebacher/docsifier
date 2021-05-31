@@ -164,7 +164,7 @@ put_vignettes_in_sidebar <- function(
       where = "Articles",
       insert = new_subsections
     )
-    message_info("Don't forget to reorder the articles if
+    message_info("Vignettes updated. Don't forget to reorder the articles if
                necessary in 'docs/_sidebar.md'.")
   } else {
     message_info("No new vignettes to add in sidebar.")

@@ -96,23 +96,23 @@ update_file <- function(filename, name_in_doc = NULL) {
 #' @keywords internal
 update_readme <- function() {
   update_file("README.md")
-  message_info("README updated.")
+  message_validate("README updated.")
 }
 
 #' @keywords internal
 update_news <- function() {
   update_file("NEWS.md")
-  message_info("NEWS updated.")
+  message_validate("NEWS updated.")
 }
 
 #' @keywords internal
 update_license <- function() {
   if (file.exists("LICENSE.md")) {
     update_file("LICENSE.md")
-    message_info("LICENSE updated.")
+    message_validate("LICENSE updated.")
   } else if (file.exists("LICENCE.md")) {
     update_file("LICENCE.md")
-    message_info("LICENCE updated.")
+    message_validate("LICENCE updated.")
   } else {
     message_info(paste0("No file 'LICENSE.md' or 'LICENCE.md' were found."))
   }
@@ -122,12 +122,9 @@ update_license <- function() {
 #' @keywords internal
 update_reference <- function(include_internal) {
   add_reference(include_internal = include_internal)
-  message_info("Reference updated.")
 }
 
 #' @keywords internal
 update_vignettes <- function() {
   add_vignettes()
-  message_info("Vignettes updated. Don't forget to check 'docs/sidebar.md'
-               if you want to change the order.")
 }
