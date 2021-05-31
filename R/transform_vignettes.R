@@ -109,7 +109,7 @@ put_vignettes_in_sidebar <- function(
     insert_after(
       file = "docs/_sidebar.md",
       where = section_above,
-      insert = paste0("* [", section_name, "](/)")
+      insert = paste0("* ", section_name)
     )
   }
 
