@@ -23,7 +23,7 @@ In case it helps some people, I describe here how I got this documentation deplo
 
 * I would like to have the package documentation as a subdomain, such as `mypackage.mywebsite.com`.
 
-If you are in the same situation, you can follow the steps below. Otherwise, you should refer to the `docsify.js`'s documentation linked above.
+If you are in the same situation, you can follow the steps below. Otherwise, you should refer to `docsify.js` documentation linked above.
 
 **Step 1:** Push your package with the documentation to GitHub
 
