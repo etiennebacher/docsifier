@@ -1,14 +1,11 @@
 # docsifier
 
-**This is some work in progress: function names, arguments, tests, etc. are likely to change often. Do not necessarily rely on the documentation below.**
-
 <!-- badges: start -->
 [![](https://codecov.io/gh/etiennebacher/docsifier/branch/master/graphs/badge.svg)](https://codecov.io/github/etiennebacher/docsifier)
 [![](https://github.com/etiennebacher/docsifier/workflows/R-CMD-check/badge.svg)](https://github.com/etiennebacher/docsifier/actions)
 <!-- badges: end -->
 
-The goal of `{docsifier}` is to generate the structure to use [docsify.js](https://docsify.js.org/#/) for the documentation of an R
-package.
+The goal of `{docsifier}` is to provide helper functions to create the documentation of an R package or project with [docsify.js](https://docsify.js.org/#/).
 
 ## Installation and documentation
 
@@ -18,42 +15,45 @@ You can install the development version with:
 # install.packages("devtools")
 devtools::install_github("etiennebacher/docsifier")
 ```
-Follow the demo below to see how to implement `{docsifier}` in your package, and check the [documentation](https://docsifier.etiennebacher.com) for more details.
 
 
-## Demo
+## Basic demo
 
-Here's a small demo that you can also find [here](https://docsifier.etiennebacher.com/#/demo). 
+This is a small demo that shows the main steps for creating the documentation. For more details about e.g customization, or deployment, check out the [website](https://docsifier.etiennebacher.com).
 
-Let’s see the steps to create your documentation with `{docsifier}`. First, let’s create a dummy package:
 
-``` r
-devtools::create("dummy")
+First, let’s create a package called `dummy` using RStudio buttons (New Project > New Directory > R Package). This package has the following structure:
+```
+.
+├── DESCRIPTION
+├── NAMESPACE
+├── R
+│   └── hello.R
+├── dummy.Rproj
+└── man
+    └── hello.Rd
 ```
 
-This has the following structure:
-
-    .
-    ├── DESCRIPTION
-    ├── NAMESPACE
-    ├── R
-    │   └── hello.R
-    ├── dummy.Rproj
-    └── man
-        └── hello.Rd
-
-You can do your development workflow as usual. In fact, you can add the documentation whenever you want. For now, we just create the documentation.
+You can do your development workflow as usual. In fact, you can add the documentation whenever you want. For now, we create it now.
 
 ```r
-library(docsifier)
-init_docsify()
+> library(docsifier)
+> init_docsify()
 
+── Import docsify.js files ───────────────────────────────────────────────────────
 ✓ Folder "docs" has been created.
-● Folder "docs" is not standard in R packages. Don't forget to add it in .buildignore.
-✓ File "index.html" has been created.
-✓ Files "homepage.md", "_sidebar.md", and "howto.md" have been created.
-```
+✓ Setting active project to 'path/to/dummy'
+✓ Adding '^docs$' to '.Rbuildignore'
+✓ Files "index.html", "homepage.md" and "_sidebar.md" have been created.
 
+── Create content ────────────────────────────────────────────────────────────────
+✓ 'Reference' section has been added.
+ℹ File NEWS.md doesn't exist.
+ℹ Files LICENSE.md and LICENCE.md don't exist.
+ℹ File CODE_OF_CONDUCT.md doesn't exist.
+ℹ No vignettes to transform.
+```
+This code has created the folder `docs` and added basic docsify.js files in it (note that this will not work if you already have a folder "docs").
 ```
 .
 ├── DESCRIPTION
@@ -62,23 +62,21 @@ init_docsify()
 │   └── hello.R
 ├── docs
 │   ├── _sidebar.md
+│   ├── docsify_files
+│   │   ├── docsify.min.js
+│   │   └── vue.min.css
 │   ├── homepage.md
-│   ├── howto.md
-│   └── index.html
+│   ├── index.html
+│   └── reference.md
 ├── dummy.Rproj
 └── man
     └── hello.Rd
 ```
 
-We can see that the folder "docs" and the template files were created. If you already had a folder "docs", the files would have been created inside. You can already run `preview_docsify()` to see what the documentation looks like. 
+Finally, you can already run `preview_docsify()` to see what the documentation looks like. 
 
-The structure of the documentation is made in `_sidebar.md` and the options detailed in the part "Customize" are in `index.html`. You can now add `.md` or `.Rmd` files in "docs" with `add_md()` and `add_rmd()`. If you want to customize the style of the documentation, you can add a CSS file with `add_css()` or check the themes available [online](https://docsify.js.org/#/themes).
+More details and features on the [website](https://docsifier.etiennebacher.com/#/).
 
-When you have finished your documentation, you can deploy it with several tools. This procedure is detailed in the ["Deploy" part](https://docsifier.etiennebacher.com/#/deploy) in the documentation. 
-
-Here's a GIF that reproduces these steps (except the package creation and the online deployment):
-
-![](docs/_assets/image/demo.gif)
 
 ## Code of Conduct
 
