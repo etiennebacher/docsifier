@@ -102,7 +102,7 @@ put_vignettes_in_sidebar <- function(
 
   # Create section "Articles" in sidebar
   articles_in_sidebar <- grepl(
-    paste0("* \\[", section_name, "\\]\\(/\\)"),
+    paste0("* ", section_name),
     paste(sidebar_md, collapse = "")
   )
   if (articles_in_sidebar == FALSE) {
