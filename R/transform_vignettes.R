@@ -59,11 +59,13 @@ transform_vignettes <- function() {
           ".md"
         )
 
-        rmarkdown::render(
-          second_vignette,
-          output_dir = "docs/articles",
-          output_file = output_file,
-          quiet = TRUE
+        suppressMessages(
+          rmarkdown::render(
+            second_vignette,
+            output_dir = "docs/articles",
+            output_file = output_file,
+            quiet = TRUE
+          )
         )
 
       }

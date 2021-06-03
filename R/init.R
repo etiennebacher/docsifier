@@ -140,6 +140,7 @@ init_docsify <- function(
       add_code_of_conduct()
     }
     if (isTRUE(add_vignettes)) {
+      message_info("Rendering vignettes...")
       add_vignettes()
     }
 
