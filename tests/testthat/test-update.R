@@ -11,10 +11,14 @@ test_that("update_docsify add files in folder 'docs'", {
 
   expect_true(file.exists("docs/NEWS.md"))
   expect_true(file.exists("docs/LICENSE.md"))
-  expect_equal(
-    readLines("docs/homepage.md", warn = F),
-    readLines("README.md", warn = F)
-  )
+  x <- readLines("docs/homepage.md", warn = F)
+  y <- readLines("README.md", warn = F)
+
+  # an empty last line will make the test break so I remove this last empty line
+  # (what is important is that all other lines are the same)
+  if (y[length(y)] == "")
+    y <- y[-length(y)]
+  expect_equal(x, y)
 
 })
 

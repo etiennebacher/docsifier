@@ -135,7 +135,7 @@ test_that("if readme exists, its content is put on homepage", {
   fs::file_create("README.md")
   cat("This is the content from the README file", file = "README.md", append = TRUE)
 
-  init_docsify(open = FALSE)
+  suppressWarnings(init_docsify(open = FALSE))
 
   x <- suppressWarnings(readLines("README.md"))
   y <- suppressWarnings(readLines("docs/homepage.md"))

@@ -115,7 +115,7 @@ test_that("insert_after returns the right output when added at the end of the fi
   original_content <- paste(readLines("docs/_sidebar.md", warn = FALSE), collapse = "")
   expect_equal(
     original_content,
-    "<!-- homepage.md is defined as the first page in index.html  --> * [Home](/)"
+    "<!-- homepage.md is defined as the first page in index.html  -->  * [Home](/)"
   )
 
   insert_after(
@@ -126,7 +126,7 @@ test_that("insert_after returns the right output when added at the end of the fi
   new_content <- paste(readLines("docs/_sidebar.md", warn = FALSE), collapse = "")
   expect_equal(
     new_content,
-    "<!-- homepage.md is defined as the first page in index.html  --> * [Home](/)* [Other section]"
+    "<!-- homepage.md is defined as the first page in index.html  -->  * [Home](/)* [Other section]"
   )
 
 })
@@ -139,7 +139,7 @@ test_that("insert_after returns the right output when added in the middle of the
   original_content <- paste(readLines("docs/_sidebar.md", warn = FALSE), collapse = "")
   expect_equal(
     original_content,
-    "<!-- homepage.md is defined as the first page in index.html  --> * [Home](/)"
+    "<!-- homepage.md is defined as the first page in index.html  -->  * [Home](/)"
   )
 
   insert_after(
@@ -150,7 +150,7 @@ test_that("insert_after returns the right output when added in the middle of the
   new_content <- paste(readLines("docs/_sidebar.md", warn = FALSE), collapse = "")
   expect_equal(
     new_content,
-    "<!-- homepage.md is defined as the first page in index.html  --> * [Other section]* [Home](/)"
+    "<!-- homepage.md is defined as the first page in index.html  -->  * [Other section]* [Home](/)"
   )
 
 })
