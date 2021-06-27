@@ -1,7 +1,7 @@
 Package: docsifier
 Type: Package
 Title: Generate the Structure to Use 'docsify.js' for Package Documentation
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Etienne",
            family = "Bacher",

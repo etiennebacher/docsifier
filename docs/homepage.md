@@ -7,7 +7,7 @@
 
 The goal of `{docsifier}` is to provide helper functions to create the documentation of an R package or project with [docsify.js](https://docsify.js.org/#/).
 
-## Installation and documentation
+## Installation 
 
 You can install the development version with:
 

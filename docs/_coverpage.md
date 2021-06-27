@@ -1,4 +1,4 @@
-# docsifier
+# docsifier <small>0.1.0</small>
 
 > Use docsify.js to create documentation for R packages and projects
 
