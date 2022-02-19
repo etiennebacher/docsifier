@@ -1,3 +1,5 @@
+**This repo is archived. See [altdoc](github.com/etiennebacher/altdoc) instead**
+
 # docsifier
 
 <!-- badges: start -->
